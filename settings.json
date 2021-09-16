@@ -1,0 +1,29 @@
+// Place your settings in this file to override the default settings
+{
+  "editor.fontFamily": "'Source Code Pro', Menlo",
+  "editor.fontSize": 18,
+  "terminal.integrated.fontSize": 18,
+  "workbench.settings.editor": "json",
+  "workbench.iconTheme": "material-icon-theme",
+  "editor.minimap.enabled": false,
+  "explorer.confirmDragAndDrop": false,
+  "editor.formatOnSave": true,
+  "workbench.editor.enablePreview": false,
+  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[css]": {
+    "editor.tabSize": 2
+  },
+  "[ruby]": {
+    "editor.tabSize": 2,
+    "editor.defaultFormatter": "jnbt.vscode-rufo"
+  },
+  "editor.cursorSurroundingLines": 7,
+  "javascript.suggest.completeFunctionCalls": true,
+  "code-runner.clearPreviousOutput": true,
+  "code-runner.runInTerminal": true,
+  "code-runner.saveFileBeforeRun": true,
+  "rufo.exe": "/Users/parsa/.rvm/gems/ruby-2.7.3/wrappers/rufo",
+  "rufo.useBundler": false,
+  "workbench.colorTheme": "Gruvbox Dark Medium"
+}
