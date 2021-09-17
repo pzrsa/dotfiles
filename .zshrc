@@ -1,9 +1,5 @@
 # custom prompt
-autoload -U colors && colors	# load colors
-
-PROMPT="%B%{$fg[red]%}[%{$fg[white]%}%n%{$fg[red]%}@%{$fg[white]%}%M %{$fg[white]%}%2~%{$fg[red]%}]%{$fg[white]%} >%b "
+PROMPT="%B%F{15}➜ %f%b%B%F{14}%~ %f%b"
 
 # vim stuff
 alias vi='nvim'
-alias vim='nvim'
-export EDITOR='nvim'
