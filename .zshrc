@@ -1,7 +1,22 @@
+# git branch
+function parse_git_branch() {
+    git branch 2> /dev/null | sed -n -e 's/^\* \(.*\)/[\1]/p'
+}
+
+COLOR_DEF=$'\e[0m'
+COLOR_USR=$'\e[38;5;243m'
+COLOR_DIR=$'\e[38;5;197m'
+COLOR_GIT=$'\e[38;5;39m'
+NEWLINE=$'\n'
+setopt PROMPT_SUBST
+
 # custom prompt
-PROMPT="%B%F{#ADD7FF}%2~ %f%b%B%F{#A6ACCD}〉%f%b"
+export PROMPT='${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}➜ '
 
 # other stuff
+autoload -Uz compinit
+compinit
+
 alias vi='nvim'
 alias c='clear'
 unsetopt LIST_BEEP
