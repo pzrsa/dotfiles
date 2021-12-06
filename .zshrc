@@ -11,15 +11,19 @@ NEWLINE=$'\n'
 setopt PROMPT_SUBST
 
 # custom prompt
-export PROMPT='${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}➜ '
+export PROMPT='%B${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}➜%b '
 
-# other stuff
 autoload -Uz compinit
 compinit
 
+# other stuff
 alias vi='nvim'
 alias c='clear'
+alias gs='git status'
+alias gp='git push'
+
 unsetopt LIST_BEEP
+export TERM=xterm-256color
 
 # enable ls colors
 export CLICOLOR=1
@@ -36,3 +40,10 @@ lfcd () {
     fi
 }
 bindkey -s '^o' 'lfcd\n'
+
+
+# To activate the syntax highlighting, add the following at the end of your .zshrc:
+source "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# To activate the autosuggestions, add the following at the end of your .zshrc:
+source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
