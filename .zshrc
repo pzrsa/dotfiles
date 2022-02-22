@@ -11,7 +11,7 @@ COLOR_DEF=$'\e[38;5;250m'
 setopt PROMPT_SUBST
 
 # custom prompt
-export PROMPT='%B${COLOR_USR}%n ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}➜%b '
+export PROMPT='%B${COLOR_USR}%n@%m ${COLOR_DIR}%~ ${COLOR_GIT}$(parse_git_branch)${COLOR_DEF}${NEWLINE}➜%b '
 
 # adds to $PATH
 export PATH="/opt/homebrew/bin:$PATH"
