@@ -17,6 +17,8 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'lewis6991/gitsigns.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -84,6 +86,9 @@ command! -nargs=0 Format :call CocActionAsync('format')
 
 " Add `:OR` command for organize imports of the current buffer.
 command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+
+command! -nargs=0 Prettier :call CocAction('runCommand', 'prettier.formatFile')
+
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -166,4 +171,5 @@ require("toggleterm").setup{
   open_mapping = [[<c-\>]],
   direction = "float"
 }
+require('gitsigns').setup()
 EOF
