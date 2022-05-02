@@ -33,7 +33,7 @@ set tabstop=2 softtabstop=2
 set smarttab
 set number
 set cursorline
-set clipboard="unnamedplus"
+set clipboard+=unnamedplus
 set nohlsearch
 set nowrap
 set noswapfile
