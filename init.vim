@@ -19,6 +19,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mhinz/vim-startify'
+Plug 'Mofiqul/vscode.nvim'
 
 " Initialize plugin system
 call plug#end()
@@ -32,6 +33,7 @@ set tabstop=2 softtabstop=2
 set smarttab
 set number
 set cursorline
+set clipboard="unnamedplus"
 set nohlsearch
 set nowrap
 set noswapfile
@@ -43,13 +45,47 @@ set mouse=a
 set updatetime=300
 set shortmess+=c
 
-colorscheme darkplus
+let g:vscode_style = "dark"
+colorscheme vscode
 
 if has("nvim-0.5.0") || has("patch-8.1.1564")
   set signcolumn=number
 else
   set signcolumn=yes
 endif
+
+lua << EOF
+local opts = { noremap = true, silent = true }
+
+local term_opts = { silent = true }
+
+-- Shorten function name
+local keymap = vim.api.nvim_set_keymap
+
+--Remap space as leader key
+keymap("", "<Space>", "<Nop>", opts)
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
+
+-- Modes
+--   normal_mode = "n",
+--   insert_mode = "i",
+--   visual_mode = "v",
+--   visual_block_mode = "x",
+--   term_mode = "t",
+--   command_mode = "c",
+
+-- Normal --
+-- Better window navigation
+keymap("n", "<C-h>", "<C-w>h", opts)
+keymap("n", "<C-j>", "<C-w>j", opts)
+keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-l>", "<C-w>l", opts)
+
+-- Navigate buffers
+keymap("n", "<S-l>", ":bnext<CR>", opts)
+keymap("n", "<S-h>", ":bprevious<CR>", opts)
+EOF
 
 " Use <c-space> to trigger completion.
 if has('nvim')
