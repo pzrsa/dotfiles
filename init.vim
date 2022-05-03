@@ -17,9 +17,9 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'kyazdani42/nvim-tree.lua'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'mhinz/vim-startify'
 Plug 'Mofiqul/vscode.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'nvim-lualine/lualine.nvim'
 
 
 " Initialize plugin system
@@ -203,10 +203,17 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 highlight NvimTreeFolderIcon guibg=blue
 
 lua << EOF
-require'nvim-tree'.setup()
+require'nvim-tree'.setup{
+  disable_netrw = true,
+  hijack_cursor = true,
+  hijack_netrw = true,
+  open_on_tab = true,
+  update_cwd = true,
+}
 require('gitsigns').setup()
 require('telescope').setup{  defaults = { file_ignore_patterns = { "node_modules" }} }
 require("bufferline").setup{ options = { diagnostics = "coc" } }
+require('lualine').setup()
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = "all",
