@@ -21,18 +21,20 @@ Plug 'Mofiqul/vscode.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'nvim-lualine/lualine.nvim'
 
-
 " Initialize plugin system
 call plug#end()
 
-set scrolloff=7 sidescrolloff=7
+set scrolloff=7
+set sidescrolloff=7
 set showtabline=2
 set smartindent
 set expandtab
 set shiftwidth=2
-set tabstop=2 softtabstop=2
+set tabstop=2
+set softtabstop=2
 set smarttab
 set number
+set noshowmode
 set cursorline
 set clipboard+=unnamedplus
 set nohlsearch
@@ -41,10 +43,12 @@ set noswapfile
 set hidden
 set nobackup
 set incsearch
-set cmdheight=2
 set mouse=a
 set updatetime=300
 set shortmess+=c
+set undofile
+set pumheight=10
+set cmdheight=2
 
 let g:vscode_style = "dark"
 colorscheme vscode
@@ -238,7 +242,7 @@ require'nvim-treesitter.configs'.setup {
     -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
-    additional_vim_regex_highlighting = true,
+    additional_vim_regex_highlighting = false,
   },
   indent = { enable = true, disable = { "" } },
   autopairs = {
