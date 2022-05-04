@@ -19,6 +19,7 @@ Plug 'moll/vim-bbye'
 Plug 'morhetz/gruvbox'
 Plug 'neovim/nvim-lspconfig'
 
+
 " Initialize plugin system
 call plug#end()
 
@@ -212,3 +213,4 @@ require("bufferline").setup{
 }
 require('lualine').setup()
 EOF
+
