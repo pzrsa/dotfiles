@@ -1,29 +1,69 @@
 // Place your settings in this file to override the default settings
 {
-  "editor.fontFamily": "'Source Code Pro', Menlo",
-  "editor.fontSize": 18,
-  "terminal.integrated.fontSize": 18,
+  // Editor
+  "editor.fontFamily": "SauceCodePro Nerd Font",
+  "editor.fontSize": 22,
+  "terminal.integrated.fontSize": 22,
   "workbench.settings.editor": "json",
-  "workbench.iconTheme": "material-icon-theme",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
-  "workbench.editor.enablePreview": false,
-  "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true
+  },
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.cursorSurroundingLines": 7,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  // // Python
+  // "[python]": {
+  //   "editor.defaultFormatter": "ms-python.python"
+  // },
+  // "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
+
+  // CSS
   "[css]": {
     "editor.tabSize": 2
   },
-  "[ruby]": {
-    "editor.tabSize": 2,
-    "editor.defaultFormatter": "jnbt.vscode-rufo"
+  // JS/TS
+  "[javascript]": {
+    "editor.tabSize": 2
   },
-  "editor.cursorSurroundingLines": 7,
+  "[javascriptreact]": {
+    "editor.tabSize": 2
+  },
   "javascript.suggest.completeFunctionCalls": true,
-  "code-runner.clearPreviousOutput": true,
-  "code-runner.runInTerminal": true,
-  "code-runner.saveFileBeforeRun": true,
-  "rufo.exe": "/Users/parsa/.rvm/gems/ruby-2.7.3/wrappers/rufo",
-  "rufo.useBundler": false,
-  "workbench.colorTheme": "Gruvbox Dark Medium"
+  "[typescript]": {
+    "editor.tabSize": 2
+  },
+  "[typescriptreact]": {
+    "editor.tabSize": 2
+  },
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  // Git
+  "git.enableSmartCommit": true,
+  "extensions.ignoreRecommendations": true,
+  "workbench.colorTheme": "Minimal Dark"
+  // "[prisma]": {
+  //   "editor.defaultFormatter": "Prisma.prisma"
+  // },
+  // // Ruby
+  // "[ruby]": {
+  //   "editor.tabSize": 2,
+  //   "editor.defaultFormatter": "jnbt.vscode-rufo"
+  // },
+  // "rufo.exe": "/Users/parsa/.rvm/gems/ruby-3.0.0/wrappers/rufo",
+  // "rufo.useBundler": false,
+  // "emmet.includeLanguages": {
+  //   "erb": "html"
+  // },
+
+  // // Code Runner extension
+  // "code-runner.clearPreviousOutput": true,
+  // "code-runner.runInTerminal": true,
+  // "code-runner.saveFileBeforeRun": true
 }
