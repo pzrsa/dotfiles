@@ -18,13 +18,13 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'moll/vim-bbye'
-Plug 'jiangmiao/auto-pairs'
+Plug 'windwp/nvim-autopairs'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'kristijanhusak/defx-git'
 Plug 'numToStr/Comment.nvim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
-
+Plug 'kristijanhusak/defx-git'
+Plug 'kristijanhusak/defx-icons'
 
 " Initialize plugin system
 call plug#end()
@@ -52,6 +52,9 @@ set mouse=a
 set updatetime=50
 set shortmess+=c
 set undofile
+set winblend=0
+set wildoptions=pum
+set pumblend=5
 set pumheight=10
 set cmdheight=2
 set colorcolumn=80
@@ -165,6 +168,7 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 lua << EOF
 require('gitsigns').setup()
+require('nvim-autopairs').setup{}
 require('Comment').setup{
     pre_hook = function(ctx)
     local U = require "Comment.utils"
