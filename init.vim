@@ -22,6 +22,9 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'kristijanhusak/defx-git'
+Plug 'numToStr/Comment.nvim'
+Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+
 
 " Initialize plugin system
 call plug#end()
@@ -52,8 +55,6 @@ set undofile
 set pumheight=10
 set cmdheight=2
 set colorcolumn=80
-
-
 
 set background=dark
 colorscheme gruvbox
@@ -112,11 +113,20 @@ endfunction
 " Highlight the symbol and its references when holding the cursor.
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
+" Remap keys for applying codeAction to the current buffer.
+nmap <leader>ac  <Plug>(coc-codeaction)
+" Apply AutoFix to problem on the current line.
+nmap <leader>qf  <Plug>(coc-fix-current)
+
 " Symbol renaming.
 nmap <leader>rn <Plug>(coc-rename)
 
 " Add `:OR` command for organize imports of the current buffer.
-command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.js :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.jsx :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.ts :silent call CocAction('runCommand', 'editor.action.organizeImport')
+autocmd BufWritePre *.tsx :silent call CocAction('runCommand', 'editor.action.organizeImport')
+command! -nargs=0 OR :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
 " NOTE: Please see `:h coc-status` for integrations with external plugins that
@@ -155,6 +165,23 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 lua << EOF
 require('gitsigns').setup()
+require('Comment').setup{
+    pre_hook = function(ctx)
+    local U = require "Comment.utils"
+
+    local location = nil
+    if ctx.ctype == U.ctype.block then
+      location = require("ts_context_commentstring.utils").get_cursor_location()
+    elseif ctx.cmotion == U.cmotion.v or ctx.cmotion == U.cmotion.V then
+      location = require("ts_context_commentstring.utils").get_visual_start_location()
+    end
+
+    return require("ts_context_commentstring.internal").calculate_commentstring {
+      key = ctx.ctype == U.ctype.line and "__default" or "__multiline",
+      location = location,
+    }
+  end,
+}
 require('telescope').setup{ 
   defaults = { 
     file_ignore_patterns = { 
@@ -197,7 +224,12 @@ require'nvim-treesitter.configs'.setup {
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
-
+  autopairs = {
+    enable = true,
+  },
+  indent = { 
+    enable = true 
+  },
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
@@ -207,6 +239,9 @@ require'nvim-treesitter.configs'.setup {
     -- Using this option may slow down your editor, and you may see some duplicate highlights.
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
+    context_commentstring = {
+      enable = true
+    }
   },
 }
 EOF
