@@ -18,7 +18,6 @@ Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
 Plug 'moll/vim-bbye'
-Plug 'windwp/nvim-autopairs'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'numToStr/Comment.nvim'
@@ -64,7 +63,8 @@ colorscheme gruvbox
 
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-css', 'coc-tsserver', 'coc-json', 'coc-prettier']
+let g:coc_global_extensions = ['coc-css', 'coc-tsserver', 'coc-json', 'coc-prettier', 'coc-pairs']
+
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
@@ -168,7 +168,6 @@ set termguicolors " this variable must be enabled for colors to be applied prope
 
 lua << EOF
 require('gitsigns').setup()
-require('nvim-autopairs').setup{}
 require('Comment').setup{
     pre_hook = function(ctx)
     local U = require "Comment.utils"
