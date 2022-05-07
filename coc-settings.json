@@ -1,0 +1,13 @@
+{
+  "coc.preferences.formatOnSaveFiletypes": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact",
+    "json",
+    "css",
+    "markdown"
+  ],
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false
+}

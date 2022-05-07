@@ -17,6 +17,7 @@ Plug 'nvim-telescope/telescope.nvim'
 Plug 'kyazdani42/nvim-web-devicons' " for file icons
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'akinsho/bufferline.nvim', { 'tag': 'v2.*' }
+Plug 'nvim-lualine/lualine.nvim'
 Plug 'moll/vim-bbye'
 Plug 'morhetz/gruvbox'
 Plug 'Shougo/defx.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -47,6 +48,7 @@ set hidden
 set nobackup
 set lazyredraw
 set incsearch
+set noshowmode
 set mouse=a
 set updatetime=50
 set shortmess+=c
@@ -63,7 +65,7 @@ colorscheme gruvbox
 
 set signcolumn=yes
 
-let g:coc_global_extensions = ['coc-css', 'coc-tsserver', 'coc-json', 'coc-prettier', 'coc-pairs']
+let g:coc_global_extensions = ['coc-css', 'coc-tsserver', 'coc-json', 'coc-prettier', 'coc-pairs', 'coc-snippets']
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -188,7 +190,8 @@ require('Comment').setup{
 require('telescope').setup{ 
   defaults = { 
     file_ignore_patterns = { 
-      "node_modules" 
+      "node_modules",
+      "dist"
     }
   },
   pickers = {
@@ -220,6 +223,35 @@ require("bufferline").setup{
     enforce_regular_tabs = true,
     always_show_bufferline = true,
   },
+}
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {},
+    always_divide_middle = true,
+    globalstatus = false,
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  extensions = {}
 }
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
