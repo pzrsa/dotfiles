@@ -25,6 +25,8 @@ Plug 'numToStr/Comment.nvim'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
+Plug 'Mofiqul/vscode.nvim'
+
 
 " Initialize plugin system
 call plug#end()
@@ -59,11 +61,10 @@ set pumblend=5
 set pumheight=10
 set cmdheight=2
 set colorcolumn=80
-
-set background=dark
-colorscheme gruvbox
-
 set signcolumn=yes
+
+let g:vscode_style = "dark"
+colorscheme vscode
 
 let g:coc_global_extensions = ['coc-css', 'coc-tsserver', 'coc-json', 'coc-prettier', 'coc-pairs', 'coc-snippets']
 
@@ -124,13 +125,9 @@ nmap <leader>ac  <Plug>(coc-codeaction)
 nmap <leader>qf  <Plug>(coc-fix-current)
 
 " Symbol renaming.
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent> <F2> <Plug>(coc-rename)
 
 " Add `:OR` command for organize imports of the current buffer.
-autocmd BufWritePre *.js :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufWritePre *.jsx :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufWritePre *.ts :silent call CocAction('runCommand', 'editor.action.organizeImport')
-autocmd BufWritePre *.tsx :silent call CocAction('runCommand', 'editor.action.organizeImport')
 command! -nargs=0 OR :silent call CocAction('runCommand', 'editor.action.organizeImport')
 
 " Add (Neo)Vim's native statusline support.
@@ -228,7 +225,7 @@ require("bufferline").setup{
 require('lualine').setup {
   options = {
     icons_enabled = true,
-    theme = 'auto',
+    theme = 'codedark',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
     disabled_filetypes = {},
