@@ -8,6 +8,6 @@
     "css",
     "markdown"
   ],
-  "diagnostic.virtualText": true,
-  "diagnostic.virtualTextCurrentLineOnly": false
+  "suggest.noselect": false,
+  "diagnostic.checkCurrentLine": true
 }

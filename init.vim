@@ -192,13 +192,14 @@ require('telescope').setup{
     file_ignore_patterns = { 
       "node_modules",
       "dist"
-    }
+    },
   },
   pickers = {
     find_files = {
       theme = "dropdown",
+      previewer = false
     }
-  }
+  },
  }
 require("bufferline").setup{ 
   options = { 
