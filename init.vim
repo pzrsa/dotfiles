@@ -282,14 +282,9 @@ require'nvim-treesitter.configs'.setup {
 EOF
 
 " Define mappings
-"cnoreabbrev sf Defx -listed -new
-"      \ -columns=indent:mark:icon:icons:filename:git:size
-"      \ -buffer-name=tab`tabpagenr()`<CR>
-nnoremap <silent>sf :<C-u>Defx -listed -resume
-      \ -columns=indent:mark:icon:icons:filename:git:size
-      \ -buffer-name=tab`tabpagenr()`
+nnoremap <silent>sf :<C-u>Defx -listed -resume -show-ignored-files
+      \ -columns=indent:mark:icon:icons:space:filename:git
       \ `expand('%:p:h')` -search=`expand('%:p')`<CR>
-nnoremap <silent>fi :<C-u>Defx -new `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
 autocmd FileType defx call s:defx_my_settings()
 	function! s:defx_my_settings() abort
