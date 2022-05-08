@@ -26,6 +26,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'kristijanhusak/defx-git'
 Plug 'kristijanhusak/defx-icons'
 Plug 'Mofiqul/vscode.nvim'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 
 " Initialize plugin system
@@ -251,6 +252,7 @@ require('lualine').setup {
   tabline = {},
   extensions = {}
 }
+require("indent_blankline").setup()
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = { "css", "javascript", "json", "tsx", "typescript", "lua", "vim" },
