@@ -27,5 +27,7 @@ return require('packer').startup(function()
   use "akinsho/bufferline.nvim"
 
   -- utils
-  use 'moll/vim-bbye'
+  use "moll/vim-bbye"
+  use "nvim-lua/plenary.nvim"
+  use "nvim-telescope/telescope.nvim"
 end)
