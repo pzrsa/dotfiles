@@ -26,6 +26,10 @@ return require('packer').startup(function()
   use "kyazdani42/nvim-web-devicons"
   use "nvim-lualine/lualine.nvim"
   use "akinsho/bufferline.nvim"
+  use "lukas-reineke/indent-blankline.nvim"
+
+  -- lsp
+
 
   -- file navigating
   use "nvim-lua/plenary.nvim"
