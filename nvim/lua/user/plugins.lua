@@ -29,7 +29,8 @@ return require('packer').startup(function()
   use "lukas-reineke/indent-blankline.nvim"
 
   -- lsp
-
+  use "neovim/nvim-lspconfig"
+  use "williamboman/nvim-lsp-installer"
 
   -- file navigating
   use "nvim-lua/plenary.nvim"
