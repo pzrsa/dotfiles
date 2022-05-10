@@ -66,7 +66,6 @@ for _, lsp in pairs(servers) do
 end
 
 lspconfig.sumneko_lua.setup {
-    -- ... other configs
     settings = {
         Lua = {
             diagnostics = {
