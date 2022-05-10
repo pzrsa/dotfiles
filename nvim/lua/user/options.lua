@@ -31,7 +31,7 @@ local options = {
   splitright = true
 }
 
-
+vim.cmd "let g:python3_host_prog  = '/opt/homebrew/bin/python3'"
 
 for k, v in pairs(options) do
   vim.opt[k] = v

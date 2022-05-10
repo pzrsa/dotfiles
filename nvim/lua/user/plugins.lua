@@ -17,6 +17,7 @@ end
 return require('packer').startup(function()
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
+
   -- colorschemes
   use "morhetz/gruvbox"
   use "Mofiqul/vscode.nvim"
@@ -26,8 +27,21 @@ return require('packer').startup(function()
   use "nvim-lualine/lualine.nvim"
   use "akinsho/bufferline.nvim"
 
-  -- utils
-  use "moll/vim-bbye"
+  -- file navigating
   use "nvim-lua/plenary.nvim"
   use "nvim-telescope/telescope.nvim"
+  use {
+    "Shougo/defx.nvim",
+    run = ":UpdateRemotePlugins"
+  }
+  use "kristijanhusak/defx-git"
+  use "kristijanhusak/defx-icons"
+
+  -- utils
+  use "moll/vim-bbye"
+  use {
+    "nvim-treesitter/nvim-treesitter",
+    run = ":TSUpdate",
+  }
+
 end)
