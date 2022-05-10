@@ -4,7 +4,6 @@ local options = {
   showtabline = 2,
   smartindent = true,
   expandtab = true,
-  expandtab = true,
   shiftwidth = 2,
   tabstop = 2,
   softtabstop = 2,
@@ -28,7 +27,8 @@ local options = {
   colorcolumn = "80",
   signcolumn = "yes",
   splitbelow = true,
-  splitright = true
+  splitright = true,
+  completeopt= "menu,menuone,noselect"
 }
 
 vim.cmd "let g:python3_host_prog  = '/opt/homebrew/bin/python3'"

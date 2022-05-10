@@ -8,6 +8,21 @@ if not lspinstaller_status_ok then
 	return
 end
 
+local cmp_status_ok, cmp = pcall(require, "cmp")
+if not cmp_status_ok then
+	return
+end
+
+local cmpnvimlsp_status_ok, cmpnvimlsp = pcall(require, "cmp_nvim_lsp")
+if not cmpnvimlsp_status_ok then
+	return
+end
+
+local luasnip_status_ok, luasnip = pcall(require, "luasnip")
+if not luasnip_status_ok then
+	return
+end
+
 local servers = { "cssmodules_ls", "jsonls", "sumneko_lua", "tsserver" }
 
 lspinstaller.setup({
@@ -21,6 +36,7 @@ lspinstaller.setup({
         }
     }
 })
+
 
 -- Mappings.
 -- See `:help vim.diagnostic.*` for documentation on any of the below functions
@@ -53,11 +69,44 @@ local on_attach = function(bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+
+cmp.setup({
+    snippet = {
+      -- REQUIRED - you must specify a snippet engine
+      expand = function(args)
+        luasnip.lsp_expand(args.body) -- For `luasnip` users.
+      end,
+    },
+    window = {
+      -- completion = cmp.config.window.bordered(),
+      -- documentation = cmp.config.window.bordered(),
+    },
+    completion = {
+     completeopt = 'menu,menuone,noinsert'
+    },
+    mapping = cmp.mapping.preset.insert({
+      ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+      ['<C-f>'] = cmp.mapping.scroll_docs(4),
+      ['<C-Space>'] = cmp.mapping.complete(),
+      ['<C-e>'] = cmp.mapping.abort(),
+      ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+    }),
+    sources = cmp.config.sources({
+      { name = "nvim_lsp" },
+      { name = "luasnip" }, -- For luasnip users.
+      { name = "buffer" },
+      { name = "path" },
+    })
+})
+
+-- Setup lspconfig.
+local capabilities = cmpnvimlsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
 for _, lsp in pairs(servers) do
   lspconfig[lsp].setup {
     on_attach = on_attach,
+    capabilities = capabilities,
     flags = {
       -- This will be the default in neovim 0.7+
       debounce_text_changes = 150,
