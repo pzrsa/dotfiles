@@ -31,6 +31,11 @@ return packer.startup(function(use)
   -- lsp
   use "neovim/nvim-lspconfig"
   use "williamboman/nvim-lsp-installer"
+  use "windwp/nvim-autopairs"
+  use "windwp/nvim-ts-autotag"
+
+  -- formatter
+  use "jose-elias-alvarez/null-ls.nvim"
 
   -- cmp
   use "hrsh7th/nvim-cmp" -- The completion plugin
@@ -40,9 +45,6 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-path" -- path completions
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "L3MON4D3/LuaSnip" --snippet engine
-
-  use "windwp/nvim-autopairs"
-  use "windwp/nvim-ts-autotag"
 
 
   -- file navigating
