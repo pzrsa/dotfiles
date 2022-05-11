@@ -3,8 +3,8 @@ if not status_ok then
   return
 end
 
-bufferline.setup({ 
-  options = { 
+bufferline.setup({
+  options = {
     diagnostics = false,
     numbers = "none",
     close_command = "Bdelete! %d",
@@ -16,7 +16,7 @@ bufferline.setup({
     right_trunc_marker = "",
     max_name_length = 30,
     max_prefix_length = 30,
-    tab_size = 21, 
+    tab_size = 21,
     show_buffer_icons = true,
     show_buffer_close_icons = true,
     show_close_icon = true,

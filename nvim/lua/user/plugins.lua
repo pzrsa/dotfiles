@@ -41,6 +41,8 @@ return packer.startup(function(use)
   use "saadparwaiz1/cmp_luasnip" -- snippet completions
   use "L3MON4D3/LuaSnip" --snippet engine
 
+  use "windwp/nvim-autopairs"
+
 
   -- file navigating
   use "nvim-lua/plenary.nvim"

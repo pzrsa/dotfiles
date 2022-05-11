@@ -9,8 +9,11 @@ configs.setup {
 
   -- Install parsers synchronously (only applied to `ensure_installed`)
   sync_install = true,
-  indent = { 
-    enable = true 
+  autopairs = {
+    enable = true,
+  },
+  indent = {
+    enable = true
   },
   highlight = {
     -- `false` will disable the whole extension
