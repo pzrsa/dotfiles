@@ -1,12 +1,13 @@
-require "user.options"
-require "user.keymaps"
-require "user.plugins"
-require "user.colorscheme"
-require "user.lualine"
-require "user.bufferline"
-require "user.telescope"
-require "user.treesitter"
-require "user.defx"
-require "user.indentline"
-require "user.lsp"
-require "user.autopairs"
+require("user.options")
+require("user.keymaps")
+require("user.plugins")
+require("user.colorscheme")
+require("user.lualine")
+require("user.bufferline")
+require("user.telescope")
+require("user.treesitter")
+require("user.defx")
+require("user.indentline")
+require("user.lsp")
+require("user.autopairs")
+require("user.gitsigns")
