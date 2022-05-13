@@ -5,7 +5,7 @@ end
 
 configs.setup({
 	-- A list of parser names, or "all"
-	ensure_installed = { "css", "javascript", "json", "tsx", "typescript", "lua", "vim" },
+	ensure_installed = { "css", "javascript", "json", "tsx", "typescript", "lua" },
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = true,

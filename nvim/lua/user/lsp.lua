@@ -129,14 +129,10 @@ for _, lsp in pairs(servers) do
 	lspconfig[lsp].setup({
 		on_attach = on_attach,
 		capabilities = capabilities,
-		flags = {
-			-- This will be the default in neovim 0.7+
-			debounce_text_changes = 150,
-		},
 	})
 end
 
-local function organize_imports()
+local function organise_imports()
 	local params = {
 		command = "_typescript.organizeImports",
 		arguments = { vim.api.nvim_buf_get_name(0) },
@@ -148,14 +144,10 @@ end
 lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	flags = {
-		-- This will be the default in neovim 0.7+
-		debounce_text_changes = 150,
-	},
 	commands = {
 		OR = {
-			organize_imports,
-			description = "Organize Imports",
+			organise_imports,
+			description = "Organise Imports",
 		},
 	},
 })
@@ -163,10 +155,6 @@ lspconfig.tsserver.setup({
 lspconfig.sumneko_lua.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	flags = {
-		-- This will be the default in neovim 0.7+
-		debounce_text_changes = 150,
-	},
 	settings = {
 		Lua = {
 			diagnostics = {
@@ -175,6 +163,7 @@ lspconfig.sumneko_lua.setup({
 		},
 	},
 })
+
 local signs = {
 	{ name = "DiagnosticSignError", text = "" },
 	{ name = "DiagnosticSignWarn", text = "" },
