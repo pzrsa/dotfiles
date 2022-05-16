@@ -85,10 +85,6 @@ cmp.setup({
 			luasnip.lsp_expand(args.body) -- For `luasnip` users.
 		end,
 	},
-	window = {
-		-- completion = cmp.config.window.bordered(),
-		-- documentation = cmp.config.window.bordered(),
-	},
 	completion = {
 		completeopt = "menu,menuone,noinsert",
 	},
@@ -107,7 +103,7 @@ cmp.setup({
 	}),
 })
 
-local servers = { "cssmodules_ls", "jsonls", "sumneko_lua", "tsserver" }
+local servers = { "cssmodules_ls", "jsonls", "sumneko_lua", "tsserver", "eslint" }
 
 lspinstaller.setup({
 	ensure_installed = servers, -- ensure these servers are always installed
@@ -145,7 +141,7 @@ lspconfig.tsserver.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	commands = {
-		OR = {
+		ot = {
 			organise_imports,
 			description = "Organise Imports",
 		},
