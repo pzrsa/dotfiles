@@ -14,56 +14,20 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.defaultFormatter": "esbenp.prettier-vscode",
-  "editor.cursorSurroundingLines": 7,
+  "editor.cursorSurroundingLines": 10,
   "files.exclude": {
     "**/node_modules": true
   },
-  // // Python
-  // "[python]": {
-  //   "editor.defaultFormatter": "ms-python.python"
-  // },
-  // "python.defaultInterpreterPath": "/opt/homebrew/bin/python3",
-
-  // CSS
-  "[css]": {
-    "editor.tabSize": 2
-  },
-  // JS/TS
-  "[javascript]": {
-    "editor.tabSize": 2
-  },
-  "[javascriptreact]": {
-    "editor.tabSize": 2
-  },
+  "editor.tabSize": 2,
+  // TS/JS
   "javascript.suggest.completeFunctionCalls": true,
-  "[typescript]": {
-    "editor.tabSize": 2
-  },
-  "[typescriptreact]": {
-    "editor.tabSize": 2
-  },
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  // Git
   "git.enableSmartCommit": true,
   "extensions.ignoreRecommendations": true,
-  "workbench.colorTheme": "Minimal Dark"
-  // "[prisma]": {
-  //   "editor.defaultFormatter": "Prisma.prisma"
-  // },
-  // // Ruby
-  // "[ruby]": {
-  //   "editor.tabSize": 2,
-  //   "editor.defaultFormatter": "jnbt.vscode-rufo"
-  // },
-  // "rufo.exe": "/Users/parsa/.rvm/gems/ruby-3.0.0/wrappers/rufo",
-  // "rufo.useBundler": false,
-  // "emmet.includeLanguages": {
-  //   "erb": "html"
-  // },
-
-  // // Code Runner extension
-  // "code-runner.clearPreviousOutput": true,
-  // "code-runner.runInTerminal": true,
-  // "code-runner.saveFileBeforeRun": true
+  "workbench.colorTheme": "Minimal Dark",
+  "task.problemMatchers.neverPrompt": {
+    "npm": true
+  },
+  "vim.useSystemClipboard": true
 }
