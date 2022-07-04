@@ -18,13 +18,14 @@ return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- colorschemes
-	use("morhetz/gruvbox")
-	use("Mofiqul/vscode.nvim")
-
 	-- appearance
 	use("kyazdani42/nvim-web-devicons")
 	use("akinsho/bufferline.nvim")
+
+  -- lsp
+  use "neovim/nvim-lspconfig"
+  use "williamboman/nvim-lsp-installer"
+
 
 	-- file navigating
 	use({

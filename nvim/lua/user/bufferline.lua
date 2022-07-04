@@ -7,7 +7,7 @@ bufferline.setup({
 	options = {
 		diagnostics = false,
 		numbers = "none",
-		close_command = "Bdelete! %d",
+		close_command = "bd! %d",
 		indicator_icon = "▎",
 		buffer_close_icon = "",
 		modified_icon = "●",
