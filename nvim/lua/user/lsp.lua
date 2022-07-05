@@ -10,13 +10,6 @@ end
 
 lspinstaller.setup{
   ensure_installed = {"sumneko_lua", "tsserver", "tailwindcss"},
-  ui = {
-    icons = {
-      server_installed = "✓",
-      server_pending = "➜",
-      server_uninstalled = "✗"
-    }
-  }
 }
 
 -- 3. Loop through all of the installed servers and set it up via lspconfig
