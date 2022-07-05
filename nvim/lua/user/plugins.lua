@@ -20,7 +20,8 @@ return packer.startup(function(use)
 
 	-- appearance
 	use("kyazdani42/nvim-web-devicons")
-	use("akinsho/bufferline.nvim")
+	use("itchyny/lightline.vim")
+  use("mengelbrecht/lightline-bufferline")
 
   -- lsp
   use "neovim/nvim-lspconfig"
