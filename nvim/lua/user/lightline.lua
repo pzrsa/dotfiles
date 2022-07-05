@@ -14,3 +14,7 @@ vim.g['lightline'] = {
     buffers = 'tabsel'
   }
 }
+
+vim.cmd[[
+autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
+]]

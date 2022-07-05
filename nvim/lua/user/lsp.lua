@@ -24,4 +24,14 @@ for _, server in ipairs(lspinstaller.get_installed_servers()) do
   lspconfig[server.name].setup {}
 end
 
+lspconfig.sumneko_lua.setup{
+  settings = {
+    Lua = {
+      diagnostics = {
+        -- Get the language server to recognize the `vim` global
+        globals = {'vim'},
+      },
+    },
+  },
+}
 
