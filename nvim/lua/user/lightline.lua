@@ -12,10 +12,11 @@ vim.g['lightline'] = {
   },
   component_type = {
     buffers = 'tabsel'
-  },
+  }
 }
 
 vim.cmd[[
 let g:lightline#bufferline#enable_devicons = 1
+
 autocmd BufWritePost,TextChanged,TextChangedI * call lightline#update()
 ]]

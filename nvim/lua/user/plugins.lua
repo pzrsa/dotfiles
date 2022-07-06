@@ -30,6 +30,10 @@ return packer.startup(function(use)
 
 
 	-- file navigating
+  use {
+  'nvim-telescope/telescope.nvim',
+  requires = { {'nvim-lua/plenary.nvim'} }
+  }
 	use({
 		"Shougo/defx.nvim",
 		run = ":UpdateRemotePlugins",
