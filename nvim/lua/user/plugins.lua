@@ -19,14 +19,13 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- appearance
+  use("Mofiqul/vscode.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("itchyny/lightline.vim")
   use("mengelbrecht/lightline-bufferline")
 
   -- lsp
-  use "neovim/nvim-lspconfig"
-  use "williamboman/nvim-lsp-installer"
-
+  use {'neoclide/coc.nvim', branch = 'release'}
 
 	-- file navigating
   use {
@@ -35,7 +34,7 @@ return packer.startup(function(use)
   }
 	use({
 		"Shougo/defx.nvim",
-		run = ":UpdateRemotePlugins",
+		run = ":UpdateRemoteuseins",
 	})
 	use("kristijanhusak/defx-git")
 	use("kristijanhusak/defx-icons")
