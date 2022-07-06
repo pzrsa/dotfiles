@@ -48,4 +48,6 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 	})
 	use("lewis6991/impatient.nvim")
+  use("windwp/nvim-autopairs")
+  use("windwp/nvim-ts-autotag")
 end)
