@@ -19,15 +19,15 @@
     "**/node_modules": true
   },
   "editor.tabSize": 2,
+  "vim.useSystemClipboard": true,
   // TS/JS
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "git.enableSmartCommit": true,
   "extensions.ignoreRecommendations": true,
-  "workbench.colorTheme": "Minimal Dark",
+  // Misc
   "task.problemMatchers.neverPrompt": {
     "npm": true
   },
-  "vim.useSystemClipboard": true
+  "workbench.colorTheme": "Minimal Dark"
 }
