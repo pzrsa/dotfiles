@@ -19,31 +19,31 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- appearance
-  use({
-	"catppuccin/nvim",
-	as = "catppuccin"
-})
-  use("Mofiqul/vscode.nvim")
+	use({
+		"catppuccin/nvim",
+		as = "catppuccin",
+	})
+	use("Mofiqul/vscode.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("itchyny/lightline.vim")
-  use("mengelbrecht/lightline-bufferline")
+	use("mengelbrecht/lightline-bufferline")
 
-  -- lsp
-  use ("neovim/nvim-lspconfig")
-  use ("williamboman/nvim-lsp-installer")
+	-- lsp
+	use("neovim/nvim-lspconfig")
+	use("williamboman/nvim-lsp-installer")
 
-  -- cmp
-  use('hrsh7th/nvim-cmp')
-  use('hrsh7th/cmp-nvim-lsp')
-  use('hrsh7th/cmp-path')
-  use('L3MON4D3/LuaSnip')
-  use('saadparwaiz1/cmp_luasnip')
+	-- cmp
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-path")
+	use("L3MON4D3/LuaSnip")
+	use("saadparwaiz1/cmp_luasnip")
 
 	-- file navigating
-  use {
-  'nvim-telescope/telescope.nvim',
-  requires = { {'nvim-lua/plenary.nvim'} }
-  }
+	use({
+		"nvim-telescope/telescope.nvim",
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
 	use({
 		"Shougo/defx.nvim",
 		run = ":UpdateRemoteuseins",
@@ -58,6 +58,9 @@ return packer.startup(function(use)
 		run = ":TSUpdate",
 	})
 	use("lewis6991/impatient.nvim")
-  use("windwp/nvim-autopairs")
-  use("windwp/nvim-ts-autotag")
+	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
+  use("numToStr/Comment.nvim")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
+
 end)

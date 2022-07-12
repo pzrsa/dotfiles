@@ -1,4 +1,4 @@
-vim.cmd [[
+vim.cmd([[
 " Define mappings
 nnoremap <silent><leader>df :<C-u>Defx -listed -resume -show-ignored-files
       \ -columns=indent:mark:icon:icons:space:filename:git
@@ -86,4 +86,4 @@ call defx#custom#column('git', 'indicators', {
   \ 'Deleted'   : '✖',
   \ 'Unknown'   : '?'
   \ })
-]]
+]])
