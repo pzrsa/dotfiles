@@ -19,6 +19,10 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- appearance
+  use({
+	"catppuccin/nvim",
+	as = "catppuccin"
+})
   use("Mofiqul/vscode.nvim")
 	use("kyazdani42/nvim-web-devicons")
 	use("itchyny/lightline.vim")
@@ -34,8 +38,6 @@ return packer.startup(function(use)
   use('hrsh7th/cmp-path')
   use('L3MON4D3/LuaSnip')
   use('saadparwaiz1/cmp_luasnip')
-
-
 
 	-- file navigating
   use {
