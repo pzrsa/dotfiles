@@ -1,4 +1,5 @@
 vim.g['lightline'] = {
+  colorscheme = 'catppuccin',
   active = {
     left = {{'mode', 'paste'}, {'readonly', 'filename', 'modified'}}
   },
