@@ -1,5 +1,4 @@
 vim.g['lightline'] = {
-  colorscheme = 'ayu_dark',
   active = {
     left = {{'mode', 'paste'}, {'readonly', 'filename', 'modified'}}
   },

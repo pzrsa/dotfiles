@@ -25,7 +25,17 @@ return packer.startup(function(use)
   use("mengelbrecht/lightline-bufferline")
 
   -- lsp
-  use {'neoclide/coc.nvim', branch = 'release'}
+  use ("neovim/nvim-lspconfig")
+  use ("williamboman/nvim-lsp-installer")
+
+  -- cmp
+  use('hrsh7th/nvim-cmp')
+  use('hrsh7th/cmp-nvim-lsp')
+  use('hrsh7th/cmp-path')
+  use('L3MON4D3/LuaSnip')
+  use('saadparwaiz1/cmp_luasnip')
+
+
 
 	-- file navigating
   use {

@@ -1,6 +1,6 @@
 vim.cmd [[
 " Define mappings
-nnoremap <silent>;df :<C-u>Defx -listed -resume -show-ignored-files
+nnoremap <silent><leader>df :<C-u>Defx -listed -resume -show-ignored-files
       \ -columns=indent:mark:icon:icons:space:filename:git
       \ `expand('%:p:h')` -search=`expand('%:p')`<CR>
 
