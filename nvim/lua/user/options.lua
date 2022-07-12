@@ -29,7 +29,8 @@ local options = {
   signcolumn = "yes",
   splitbelow = true,
   splitright = true,
-  completeopt= "menu,menuone,noselect"
+  completeopt= "menu,menuone,noselect",
+  guicursor = "i:block",
 }
 
 vim.cmd "let g:python3_host_prog  = '/opt/homebrew/bin/python3'"
