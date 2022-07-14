@@ -1,4 +1,19 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+local fn = vim.fn
+
+-- Automatically install packer
+local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if fn.empty(fn.glob(install_path)) > 0 then
+	PACKER_BOOTSTRAP = fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	print("Installing packer close and reopen Neovim...")
+	vim.cmd([[packadd packer.nvim]])
+end
 
 -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
@@ -38,6 +53,7 @@ return packer.startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
+	use("rafamadriz/friendly-snippets")
 
 	-- file navigating
 	use({
@@ -57,10 +73,10 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
+	use("mhartington/formatter.nvim")
 	use("lewis6991/impatient.nvim")
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
-  use("numToStr/Comment.nvim")
+	use("numToStr/Comment.nvim")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
-
 end)
