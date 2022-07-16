@@ -60,12 +60,7 @@ return packer.startup(function(use)
 		"nvim-telescope/telescope.nvim",
 		requires = { { "nvim-lua/plenary.nvim" } },
 	})
-	use({
-		"Shougo/defx.nvim",
-		run = ":UpdateRemoteuseins",
-	})
-	use("kristijanhusak/defx-git")
-	use("kristijanhusak/defx-icons")
+	use("kyazdani42/nvim-tree.lua")
 
 	-- utils
 	use("moll/vim-bbye")
@@ -73,11 +68,11 @@ return packer.startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
-	use("mhartington/formatter.nvim")
 	use("lewis6991/impatient.nvim")
 	use("windwp/nvim-autopairs")
 	use("windwp/nvim-ts-autotag")
 	use("numToStr/Comment.nvim")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lewis6991/gitsigns.nvim")
+	use("sbdchd/neoformat")
 end)

@@ -30,7 +30,7 @@ cmp.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 lsp_installer.setup({
-	ensure_installed = { "sumneko_lua", "tsserver", "gopls", "eslint" },
+	ensure_installed = { "sumneko_lua", "tsserver", "gopls", "eslint", "remark_ls", "yamlls" },
 })
 
 local capabilities = cmpnvimlsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())

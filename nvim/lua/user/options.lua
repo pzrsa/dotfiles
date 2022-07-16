@@ -9,6 +9,7 @@ local options = {
 	softtabstop = 2,
 	number = true,
 	cursorline = true,
+	smartcase = true,
 	clipboard = "unnamedplus",
 	hlsearch = false,
 	wrap = false,
@@ -25,15 +26,12 @@ local options = {
 	undofile = true,
 	pumheight = 12,
 	cmdheight = 2,
-	colorcolumn = "80",
 	signcolumn = "yes",
 	splitbelow = true,
 	splitright = true,
 	completeopt = "menu,menuone,noselect",
 	guicursor = "i:block",
 }
-
-vim.cmd("let g:python3_host_prog  = '/opt/homebrew/bin/python3'")
 
 for k, v in pairs(options) do
 	vim.opt[k] = v
