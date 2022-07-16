@@ -1,10 +1,10 @@
-// Place your settings in this file to override the default settings
 {
-  // Editor
   "editor.fontFamily": "SauceCodePro Nerd Font",
   "editor.fontSize": 22,
   "terminal.integrated.fontSize": 22,
   "workbench.settings.editor": "json",
+  "editor.cursorStyle": "block",
+  "editor.cursorBlinking": "solid",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
@@ -13,21 +13,25 @@
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
-  "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.cursorSurroundingLines": 10,
   "files.exclude": {
     "**/node_modules": true
   },
   "editor.tabSize": 2,
   "vim.useSystemClipboard": true,
-  // TS/JS
   "javascript.suggest.completeFunctionCalls": true,
   "typescript.suggest.completeFunctionCalls": true,
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "extensions.ignoreRecommendations": true,
-  // Misc
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "task.problemMatchers.neverPrompt": {
     "npm": true
-  },
-  "workbench.colorTheme": "Minimal Dark"
+  }
 }
