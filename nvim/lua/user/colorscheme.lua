@@ -1,9 +1,8 @@
 vim.cmd([[
 try
-  let g:catppuccin_flavour = "mocha" " latte, frappe, macchiato, mocha
-  colorscheme catppuccin
+  let g:gruvbox_contrast_dark = "hard"
+  colorscheme gruvbox 
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
-  set background=dark
 endtry
 ]])

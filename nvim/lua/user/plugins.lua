@@ -39,6 +39,7 @@ return packer.startup(function(use)
 		as = "catppuccin",
 	})
 	use("Mofiqul/vscode.nvim")
+	use("morhetz/gruvbox")
 	use("kyazdani42/nvim-web-devicons")
 	use("itchyny/lightline.vim")
 	use("mengelbrecht/lightline-bufferline")
