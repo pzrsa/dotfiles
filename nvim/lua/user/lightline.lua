@@ -1,7 +1,8 @@
 vim.g["lightline"] = {
 	colorscheme = "catppuccin",
 	active = {
-		left = { { "mode", "paste" }, { "readonly", "filename", "modified" } },
+		left = { { "mode", "paste" }, { "readonly", "relativepath", "modified" } },
+		right = { { "filetype" }, { "percent" }, { "lineinfo" } },
 	},
 	tabline = {
 		left = { { "buffers" } },

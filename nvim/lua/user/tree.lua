@@ -2,10 +2,10 @@ local tree = require("nvim-tree")
 
 tree.setup({
 	filters = {
-		exclude = { "node_modules", ".git" },
+		custom = { "node_modules", ".git" },
 	},
 })
 
 vim.cmd([[
-nnoremap <leader>t <cmd>:NvimTreeToggle<cr>
+nnoremap <C-n> <cmd>:NvimTreeToggle<cr>
 ]])

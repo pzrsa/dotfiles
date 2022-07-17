@@ -42,6 +42,7 @@ return packer.startup(function(use)
 	use("kyazdani42/nvim-web-devicons")
 	use("itchyny/lightline.vim")
 	use("mengelbrecht/lightline-bufferline")
+	use("mhinz/vim-startify")
 
 	-- lsp
 	use("neovim/nvim-lspconfig")

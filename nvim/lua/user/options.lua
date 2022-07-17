@@ -10,6 +10,7 @@ local options = {
 	number = true,
 	cursorline = true,
 	smartcase = true,
+	ignorecase = true,
 	clipboard = "unnamedplus",
 	hlsearch = false,
 	wrap = false,
