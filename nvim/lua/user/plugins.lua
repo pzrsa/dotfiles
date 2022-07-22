@@ -41,9 +41,10 @@ return packer.startup(function(use)
 	use("Mofiqul/vscode.nvim")
 	use("morhetz/gruvbox")
 	use("kyazdani42/nvim-web-devicons")
-	use("itchyny/lightline.vim")
-	use("mengelbrecht/lightline-bufferline")
+	use("nvim-lualine/lualine.nvim")
+	use("akinsho/bufferline.nvim")
 	use("mhinz/vim-startify")
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
