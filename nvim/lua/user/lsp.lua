@@ -30,7 +30,7 @@ cmp.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 lsp_installer.setup({
-	ensure_installed = { "sumneko_lua", "tsserver", "gopls", "eslint", "dockerls" },
+	ensure_installed = { "sumneko_lua", "tsserver", "gopls", "eslint", "dockerls", "tailwindcss" },
 })
 
 -- Use an on_attach function to only map the following keys
