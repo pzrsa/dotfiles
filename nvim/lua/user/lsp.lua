@@ -30,9 +30,19 @@ cmp.setup({
 require("luasnip.loaders.from_vscode").lazy_load()
 
 lsp_installer.setup({
-	ensure_installed = { "sumneko_lua", "tsserver", "gopls", "eslint", "dockerls", "tailwindcss" },
+	ensure_installed = {
+		"sumneko_lua",
+		"tsserver",
+		"gopls",
+		"eslint",
+		"dockerls",
+		"clangd",
+		"tailwindcss",
+		"prismals",
+	},
 })
 
+local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -57,6 +67,18 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 	vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting, bufopts)
+
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_clear_autocmds({ group = augroup, buffer = bufnr })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = augroup,
+			buffer = bufnr,
+			callback = function()
+				-- on 0.8, you should use vim.lsp.buf.format({ bufnr = bufnr }) instead
+				vim.lsp.buf.formatting_sync()
+			end,
+		})
+	end
 end
 
 local capabilities = cmpnvimlsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
