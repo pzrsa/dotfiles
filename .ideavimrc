@@ -1,0 +1,7 @@
+set belloff=all
+set visualbell
+set scrolloff=10
+set sidescrolloff=10
+set guicursor=i:block
+set clipboard=unnamedplus
+
