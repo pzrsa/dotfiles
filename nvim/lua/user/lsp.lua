@@ -42,6 +42,12 @@ lsp_installer.setup({
 	},
 })
 
+local opts = { noremap = true, silent = true }
+vim.keymap.set("n", "<space>e", vim.diagnostic.open_float, opts)
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, opts)
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, opts)
+vim.keymap.set("n", "<space>q", vim.diagnostic.setloclist, opts)
+
 local on_attach = function(client, bufnr)
 	-- Enable completion triggered by <c-x><c-o>
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -64,6 +70,21 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, bufopts)
 	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
 	vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting, bufopts)
+
+	vim.api.nvim_create_autocmd("CursorHold", {
+		buffer = bufnr,
+		callback = function()
+			local cursorOpts = {
+				focusable = false,
+				close_events = { "BufLeave", "CursorMoved", "InsertEnter", "FocusLost" },
+				border = "rounded",
+				source = "always",
+				prefix = " ",
+				scope = "cursor",
+			}
+			vim.diagnostic.open_float(nil, cursorOpts)
+		end,
+	})
 end
 
 local capabilities = cmpnvimlsp.update_capabilities(vim.lsp.protocol.make_client_capabilities())
@@ -112,5 +133,7 @@ local config = {
 		prefix = "",
 	},
 }
+
+vim.cmd([[autocmd! CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 
 vim.diagnostic.config(config)
