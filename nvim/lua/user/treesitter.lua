@@ -25,6 +25,7 @@ configs.setup({
 		"css",
 		"bash",
 		"prisma",
+		"html",
 	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)
