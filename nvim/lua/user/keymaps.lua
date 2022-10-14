@@ -38,4 +38,4 @@ keymap("n", "<C-Right>", "<cmd>vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", "<cmd>bnext<CR>", opts)
 keymap("n", "<S-h>", "<cmd>bprevious<CR>", opts)
 
-keymap("n", "w", "<cmd>bd<CR>", opts)
+keymap("n", "<leader>w", "<cmd>bd<CR>", opts)
