@@ -1,7 +1,6 @@
 vim.cmd([[
 try
-  let g:gruvbox_contrast_dark = "hard"
-  colorscheme gruvbox 
+  colorscheme moonfly
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry

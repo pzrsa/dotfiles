@@ -33,8 +33,12 @@ return packer.startup(function(use)
 	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- appearance
+	-- colorschemes
 	use("morhetz/gruvbox")
+	use("folke/tokyonight.nvim")
+	use("bluz71/vim-moonfly-colors")
+
+	-- appearance
 	use("kyazdani42/nvim-web-devicons")
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim")
@@ -75,5 +79,5 @@ return packer.startup(function(use)
 	use("numToStr/Comment.nvim")
 	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lewis6991/gitsigns.nvim")
-	use("sbdchd/neoformat")
+	use("jose-elias-alvarez/null-ls.nvim")
 end)
