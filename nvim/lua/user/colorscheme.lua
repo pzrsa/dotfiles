@@ -1,6 +1,10 @@
+require("vscode").setup({
+  -- Enable transparent background
+  transparent = true,
+})
 vim.cmd([[
 try
-  colorscheme moonfly
+  colorscheme vscode
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
 endtry
