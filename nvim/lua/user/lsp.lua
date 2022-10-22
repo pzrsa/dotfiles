@@ -76,7 +76,6 @@ lsp_installer.setup({
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
-
 saga.init_lsp_saga({})
 
 -- Lsp finder find the symbol definition implement reference
@@ -113,9 +112,6 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   local bufopts = { noremap = true, silent = true, buffer = bufnr }

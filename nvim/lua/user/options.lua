@@ -38,3 +38,10 @@ local options = {
 for k, v in pairs(options) do
   vim.opt[k] = v
 end
+
+vim.cmd([[
+augroup Markdown
+  autocmd!
+  autocmd FileType markdown set wrap linebreak
+augroup END
+]])
