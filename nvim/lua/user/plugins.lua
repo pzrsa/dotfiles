@@ -39,10 +39,14 @@ return packer.startup(function(use)
   use("bluz71/vim-moonfly-colors")
 
   -- appearance
-  use("kyazdani42/nvim-web-devicons")
   use("nvim-lualine/lualine.nvim")
   use("akinsho/bufferline.nvim")
-  use("mhinz/vim-startify")
+  use({
+    "goolord/alpha-nvim",
+    config = function()
+      require("alpha").setup(require("alpha.themes.dashboard").config)
+    end,
+  })
   use("lukas-reineke/indent-blankline.nvim")
 
   -- lsp
@@ -61,10 +65,7 @@ return packer.startup(function(use)
   use("onsails/lspkind.nvim")
 
   -- file navigating
-  use({
-    "nvim-telescope/telescope.nvim",
-    requires = { { "nvim-lua/plenary.nvim" } },
-  })
+  use("nvim-telescope/telescope.nvim")
   use("kyazdani42/nvim-tree.lua")
 
   -- utils
@@ -80,4 +81,8 @@ return packer.startup(function(use)
   use("JoosepAlviste/nvim-ts-context-commentstring")
   use("lewis6991/gitsigns.nvim")
   use("jose-elias-alvarez/null-ls.nvim")
+
+  -- deps
+  use("nvim-lua/plenary.nvim")
+  use("kyazdani42/nvim-web-devicons")
 end)
