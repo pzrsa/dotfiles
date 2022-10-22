@@ -41,12 +41,6 @@ return packer.startup(function(use)
   -- appearance
   use("nvim-lualine/lualine.nvim")
   use("akinsho/bufferline.nvim")
-  use({
-    "goolord/alpha-nvim",
-    config = function()
-      require("alpha").setup(require("alpha.themes.dashboard").config)
-    end,
-  })
   use("lukas-reineke/indent-blankline.nvim")
 
   -- lsp
