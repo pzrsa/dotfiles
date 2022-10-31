@@ -71,6 +71,7 @@ lsp_installer.setup({
     "clangd",
     "tailwindcss",
     "prismals",
+    "cssls",
   },
 })
 
