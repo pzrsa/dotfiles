@@ -1,7 +1,7 @@
 {
   "editor.fontFamily": "SauceCodePro Nerd Font",
-  "editor.fontSize": 22,
-  "terminal.integrated.fontSize": 22,
+  "editor.fontSize": 20,
+  "terminal.integrated.fontSize": 20,
   "workbench.settings.editor": "json",
   "editor.cursorStyle": "block",
   "editor.cursorBlinking": "solid",
@@ -14,9 +14,6 @@
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.cursorSurroundingLines": 10,
-  "files.exclude": {
-    "**/node_modules": true
-  },
   "editor.tabSize": 2,
   "vim.useSystemClipboard": true,
   "javascript.suggest.completeFunctionCalls": true,
@@ -35,11 +32,46 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "[prisma]": {
-    "editor.defaultFormatter": "Prisma.prisma"
+  "[go]": {
+    "editor.defaultFormatter": "golang.go"
   },
   "task.problemMatchers.neverPrompt": {
     "npm": true
   },
-  "workbench.colorTheme": "Gruvbox Dark Hard"
+  "terminal.integrated.enablePersistentSessions": false,
+  "files.exclude": {
+    "**/node_modules": true
+  },
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["g", "d"],
+      "commands": ["editor.action.peekDefinition"],
+      "silent": true
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.referenceSearch.trigger"],
+      "silent": true
+    },
+    {
+      "before": ["r", "n"],
+      "commands": ["editor.action.rename"],
+      "silent": true
+    },
+    {
+      "before": ["]", "e"],
+      "commands": ["editor.action.marker.next"],
+      "silent": true
+    },
+    {
+      "before": ["[", "e"],
+      "commands": ["editor.action.marker.prev"],
+      "silent": true
+    },
+    {
+      "before": ["shift", "k"],
+      "commands": ["editor.action.showHover"],
+      "silent": true
+    }
+  ]
 }
