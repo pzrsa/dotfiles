@@ -69,7 +69,7 @@
       "silent": true
     },
     {
-      "before": ["shift", "k"],
+      "before": ["<S-k>"],
       "commands": ["editor.action.showHover"],
       "silent": true
     }
