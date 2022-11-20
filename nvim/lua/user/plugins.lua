@@ -42,6 +42,7 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
+	use("p00f/nvim-ts-rainbow")
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
