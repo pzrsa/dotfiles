@@ -42,7 +42,12 @@ return packer.startup(function(use)
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("p00f/nvim-ts-rainbow")
+
+	-- treesitter
+	use("nvim-treesitter/nvim-treesitter")
+	use("windwp/nvim-autopairs")
+	use("windwp/nvim-ts-autotag")
+	use("JoosepAlviste/nvim-ts-context-commentstring")
 
 	-- lsp
 	use("neovim/nvim-lspconfig")
@@ -57,24 +62,16 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
 	use("rafamadriz/friendly-snippets")
-	-- vscode like pictograms
-	use("onsails/lspkind.nvim")
+	use("onsails/lspkind.nvim") -- vscode like pictograms
 
-	-- file navigating
+	-- file navigation
 	use("nvim-telescope/telescope.nvim")
 	use("kyazdani42/nvim-tree.lua")
 
 	-- utils
 	use("moll/vim-bbye")
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
-	})
 	use("lewis6991/impatient.nvim")
-	use("windwp/nvim-autopairs")
-	use("windwp/nvim-ts-autotag")
 	use("numToStr/Comment.nvim")
-	use("JoosepAlviste/nvim-ts-context-commentstring")
 	use("lewis6991/gitsigns.nvim")
 	use("mhartington/formatter.nvim")
 

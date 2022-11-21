@@ -1,9 +1,10 @@
 require("vscode").setup({
-  -- Enable transparent background
-  transparent = true,
+	transparent = true,
 })
 vim.cmd([[
 try
+  " let g:gruvbox_contrast_dark = "hard"
+  " colorscheme gruvbox 
   colorscheme vscode
 catch /^Vim\%((\a\+)\)\=:E185/
   colorscheme default
