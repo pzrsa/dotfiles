@@ -1,6 +1,3 @@
--- Utilities for creating configurations
-local util = require("formatter.util")
-
 -- Provides the Format, FormatWrite, FormatLock, and FormatWriteLock commands
 require("formatter").setup({
 	-- All formatter configurations are opt-in
@@ -53,6 +50,7 @@ require("formatter").setup({
 vim.cmd([[
 augroup FormatAutogroup
   autocmd!
+  autocmd User FormatterPre lua print "This will print before formatting"
   autocmd BufWritePost * FormatWrite
 augroup END
 ]])
