@@ -50,7 +50,6 @@ require("formatter").setup({
 vim.cmd([[
 augroup FormatAutogroup
   autocmd!
-  autocmd User FormatterPre lua print "This will print before formatting"
   autocmd BufWritePost * FormatWrite
 augroup END
 ]])
