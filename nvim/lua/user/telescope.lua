@@ -1,6 +1,7 @@
 require("telescope").setup({
 	defaults = {
 		preview = false,
+		wrap_results = true,
 	},
 	pickers = {
 		find_files = {
