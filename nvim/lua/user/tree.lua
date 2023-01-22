@@ -2,7 +2,7 @@ local tree = require("nvim-tree")
 
 tree.setup({
 	filters = {
-		custom = { "node_modules", "^.git$" },
+		custom = { "node_modules", "^.git$", "out" },
 		dotfiles = true,
 	},
 	view = {

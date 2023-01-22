@@ -45,7 +45,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
-saga.init_lsp_saga({})
+saga.setup({})
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
