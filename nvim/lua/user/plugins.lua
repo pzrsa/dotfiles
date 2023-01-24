@@ -73,6 +73,15 @@ return packer.startup(function(use)
 	use("lewis6991/impatient.nvim")
 	use("numToStr/Comment.nvim")
 	use("lewis6991/gitsigns.nvim")
+	use({
+		"rmagatti/auto-session",
+		config = function()
+			require("auto-session").setup({
+				log_level = "error",
+				auto_session_suppress_dirs = { "~/", "~/Downloads", "/" },
+			})
+		end,
+	})
 	use("mhartington/formatter.nvim")
 
 	-- deps
