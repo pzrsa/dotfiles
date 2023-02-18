@@ -20,7 +20,7 @@ mason_lsp.setup({
 		"jsonls",
 		"jdtls",
 		"kotlin_language_server",
-		"sumneko_lua",
+		"lua_ls",
 		"pyright",
 		"tailwindcss",
 		"tsserver",
@@ -83,7 +83,7 @@ keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
 
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, opts)
 
-lspconfig.sumneko_lua.setup({
+lspconfig.lua_ls.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
