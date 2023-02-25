@@ -21,6 +21,8 @@
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "extensions.ignoreRecommendations": true,
   "terminal.integrated.enablePersistentSessions": false,
+  "terminal.integrated.macOptionClickForcesSelection": true,
+
   "files.exclude": {
     "**/node_modules": true,
     "**/out": true
@@ -73,6 +75,16 @@
     {
       "before": ["<S-k>"],
       "commands": ["editor.action.showHover"],
+      "silent": true
+    },
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.previousEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.nextEditor"],
       "silent": true
     }
   ]
