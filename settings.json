@@ -16,19 +16,21 @@
   "editor.cursorSurroundingLines": 10,
   "editor.tabSize": 2,
   "vim.useSystemClipboard": true,
-  "javascript.suggest.completeFunctionCalls": true,
-  "typescript.suggest.completeFunctionCalls": true,
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "extensions.ignoreRecommendations": true,
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.macOptionClickForcesSelection": true,
-
   "files.exclude": {
     "**/node_modules": true,
     "**/out": true
   },
-  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "javascript.suggest.completeFunctionCalls": true,
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "python.analysis.completeFunctionParens": true,
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -45,7 +47,6 @@
   "[python]": {
     "editor.defaultFormatter": "ms-python.python"
   },
-  "python.analysis.completeFunctionParens": true,
   "vim.normalModeKeyBindings": [
     {
       "before": ["g", "d"],
