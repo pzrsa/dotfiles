@@ -88,5 +88,17 @@
       "commands": ["workbench.action.nextEditor"],
       "silent": true
     }
+  ],
+  "vim.insertModeKeyBindings": [
+    {
+      "before": ["<C-h>"],
+      "commands": ["workbench.action.previousEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<C-l>"],
+      "commands": ["workbench.action.nextEditor"],
+      "silent": true
+    }
   ]
 }
