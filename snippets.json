@@ -1,0 +1,58 @@
+{
+  // TypeScript
+  "Typescript Default Export Function": {
+    "prefix": "def",
+    "body": [
+      "const $TM_FILENAME_BASE = ($1) => {",
+      "  return ($2);",
+      "}",
+      "",
+      "export default $TM_FILENAME_BASE;"
+    ]
+  },
+  "Typescript Named Export Function": {
+    "prefix": "nef",
+    "body": ["export const $1 = ($2) => {", "  return $3;", "}", ""]
+  },
+  
+  // TypeScript React
+  "Typescript React Function Component": {
+    "prefix": "rfc",
+    "body": [
+      "type ${TM_FILENAME_BASE}Props = {",
+      "$1",
+      "}",
+      "",
+      "const $TM_FILENAME_BASE: React.FC<${TM_FILENAME_BASE}Props> = ({$2}) => {",
+      "  return ($3);",
+      "}",
+      "",
+      "export default $TM_FILENAME_BASE;"
+    ],
+    "description": "Typescript React Function Component"
+  },
+  
+  // Markdown
+  "Markdown Article Front Matter": {
+    "prefix": "afm",
+    "body": [
+      "---",
+      "date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+      "title: \"$1\"",
+      "---"
+    ],
+    "description": "Markdown Article Front Matter"
+  },
+  "Markdown Book Note Front Matter": {
+    "prefix": "bfm",
+    "body": [
+      "---",
+      "date: \"$CURRENT_YEAR-$CURRENT_MONTH-$CURRENT_DATE\"",
+      "title: \"$1\"",
+      "author: \"$2\"",
+      "description: \"$3\"",
+      "---"
+    ],
+    "description": "Markdown Book Note Front Matter"
+  }
+}
