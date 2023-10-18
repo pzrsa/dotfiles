@@ -32,7 +32,6 @@ local options = {
 	splitbelow = true,
 	splitright = true,
 	completeopt = "menu,menuone,noselect",
-	guicursor = "i:block",
 }
 
 for k, v in pairs(options) do
@@ -40,10 +39,10 @@ for k, v in pairs(options) do
 end
 
 vim.cmd([[
-cabb w wa
-]])
+colorscheme iceberg
 
-vim.cmd([[
+cabb w wa
+
 augroup Markdown
   autocmd!
   autocmd FileType markdown set wrap linebreak

@@ -30,15 +30,12 @@ if not status_ok then
 end
 
 return packer.startup(function(use)
-	-- Packer can manage itself
 	use("wbthomason/packer.nvim")
 
-	-- colorschemes
-	use("morhetz/gruvbox")
-	use("Mofiqul/vscode.nvim")
-	use("bluz71/vim-moonfly-colors")
-
 	-- appearance
+	use("sjl/badwolf")
+	use("cocopon/iceberg.vim")
+
 	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
@@ -70,7 +67,6 @@ return packer.startup(function(use)
 
 	-- utils
 	use("moll/vim-bbye")
-	use("lewis6991/impatient.nvim")
 	use("numToStr/Comment.nvim")
 	use("lewis6991/gitsigns.nvim")
 	use({
