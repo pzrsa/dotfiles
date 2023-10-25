@@ -45,6 +45,7 @@ for _, server in ipairs(mason_lsp.get_installed_servers()) do
 end
 
 require("luasnip.loaders.from_vscode").lazy_load()
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./my-snippets" } })
 saga.setup({})
 
 local keymap = vim.keymap.set
