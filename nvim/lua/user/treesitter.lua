@@ -24,8 +24,8 @@ configs.setup({
 		"dart",
 		"css",
 		"bash",
-		"prisma",
 		"html",
+		"markdown_inline",
 	},
 
 	-- Install parsers synchronously (only applied to `ensure_installed`)

@@ -33,12 +33,9 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- appearance
-	use("sjl/badwolf")
-	use("cocopon/iceberg.vim")
-
-	use("nvim-lualine/lualine.nvim")
 	use("akinsho/bufferline.nvim")
 	use("lukas-reineke/indent-blankline.nvim")
+	use("bluz71/nvim-linefly")
 
 	-- treesitter
 	use("nvim-treesitter/nvim-treesitter")
@@ -59,7 +56,6 @@ return packer.startup(function(use)
 	use("L3MON4D3/LuaSnip")
 	use("saadparwaiz1/cmp_luasnip")
 	use("rafamadriz/friendly-snippets")
-	use("onsails/lspkind.nvim") -- vscode like pictograms
 
 	-- file navigation
 	use("nvim-telescope/telescope.nvim")

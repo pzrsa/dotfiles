@@ -2,29 +2,22 @@ local lspconfig = require("lspconfig")
 local cmp = require("cmp")
 local cmpnvimlsp = require("cmp_nvim_lsp")
 local luasnip = require("luasnip")
-local lspkind = require("lspkind")
 local saga = require("lspsaga")
 local mason_lsp = require("mason-lspconfig")
 
 require("mason").setup()
 mason_lsp.setup({
 	ensure_installed = {
-		"bashls",
 		"clangd",
-		"cmake",
 		"cssls",
 		"dockerls",
 		"eslint",
 		"gopls",
-		"html",
 		"jsonls",
-		"jdtls",
-		"kotlin_language_server",
 		"lua_ls",
 		"pyright",
 		"tailwindcss",
 		"tsserver",
-		"lemminx",
 		"vimls",
 	},
 })
@@ -46,28 +39,29 @@ end
 
 require("luasnip.loaders.from_vscode").lazy_load()
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "./my-snippets" } })
-saga.setup({})
+saga.setup({
+	symbol_in_winbar = {
+		enable = false,
+	},
+	lightbulb = {
+		enable = false,
+	},
+})
 
 local keymap = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
--- Lsp finder find the symbol definition implement reference
--- if there is no implement it will hide
--- when you use action in finder like open vsplit then you can
--- use <C-t> to jump back
-keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>", opts)
+-- Finder
+keymap("n", "gh", "<cmd>Lspsaga finder<CR>", opts)
+
+-- Peek Definition
+keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 
 -- Code action
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>", opts)
 
 -- Rename
 keymap("n", "<leader>rn", "<cmd>Lspsaga rename<CR>", opts)
-
--- Peek Definition
--- you can edit the definition file in this flaotwindow
--- also support open/vsplit/etc operation check definition_action_keys
--- support tagstack C-t jump back
-keymap("n", "gd", "<cmd>Lspsaga peek_definition<CR>", opts)
 
 -- Show line diagnostics
 keymap("n", "<leader>e", "<cmd>Lspsaga show_line_diagnostics<CR>", opts)
@@ -77,7 +71,7 @@ keymap("n", "[e", "<cmd>Lspsaga diagnostic_jump_prev<CR>", opts)
 keymap("n", "]e", "<cmd>Lspsaga diagnostic_jump_next<CR>", opts)
 
 -- Outline
-keymap("n", "<C-m>", "<cmd>LSoutlineToggle<CR>", opts)
+keymap("n", "<C-m>", "<cmd>Lspsaga outline<CR>", opts)
 
 -- Hover Doc
 keymap("n", "K", "<cmd>Lspsaga hover_doc<CR>", opts)
@@ -96,19 +90,9 @@ lspconfig.lua_ls.setup({
 	},
 })
 
-local signs = { Error = " ", Warn = " ", Hint = " ", Info = " " }
-for type, icon in pairs(signs) do
-	local hl = "DiagnosticSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-end
-
 local config = {
 	-- disable virtual text
 	virtual_text = false,
-	-- show signs
-	signs = {
-		active = signs,
-	},
 	update_in_insert = false,
 	underline = true,
 	severity_sort = false,
@@ -145,11 +129,4 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "path" },
 	}),
-	formatting = {
-		format = lspkind.cmp_format({
-			mode = "symbol", -- show only symbol annotations
-			maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
-			ellipsis_char = "...", -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
-		}),
-	},
 })
