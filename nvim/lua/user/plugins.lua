@@ -33,7 +33,16 @@ return packer.startup(function(use)
 	use("wbthomason/packer.nvim")
 
 	-- appearance
-	use("akinsho/bufferline.nvim")
+	use("Mofiqul/vscode.nvim")
+	use("craftzdog/solarized-osaka.nvim")
+	use("kepano/flexoki-neovim")
+
+	use({
+		"akinsho/bufferline.nvim",
+		config = function()
+			require("bufferline").setup()
+		end,
+	})
 	use("lukas-reineke/indent-blankline.nvim")
 	use("bluz71/nvim-linefly")
 
@@ -63,8 +72,18 @@ return packer.startup(function(use)
 
 	-- utils
 	use("moll/vim-bbye")
-	use("numToStr/Comment.nvim")
-	use("lewis6991/gitsigns.nvim")
+	use({
+		"numToStr/Comment.nvim",
+		config = function()
+			require("Comment").setup()
+		end,
+	})
+	use({
+		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+		end,
+	})
 	use({
 		"rmagatti/auto-session",
 		config = function()

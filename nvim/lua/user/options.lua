@@ -39,7 +39,7 @@ for k, v in pairs(options) do
 end
 
 vim.cmd([[
-colorscheme lunaperche
+colorscheme solarized-osaka
 
 cabb w wa
 
