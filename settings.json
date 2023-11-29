@@ -3,8 +3,6 @@
   "editor.fontSize": 20,
   "terminal.integrated.fontSize": 20,
   "workbench.settings.editor": "json",
-  "editor.cursorStyle": "block",
-  "editor.cursorBlinking": "solid",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
@@ -23,12 +21,12 @@
     "**/node_modules": true,
     "**/out": true
   },
-  "javascript.suggest.completeFunctionCalls": true,
+  "workbench.activityBar.location": "top",
+  "window.commandCenter": false,
+  "explorer.compactFolders": false,
   "javascript.preferences.importModuleSpecifier": "relative",
-  "typescript.suggest.completeFunctionCalls": true,
-  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "typescript.preferences.importModuleSpecifier": "relative",
-  "python.analysis.completeFunctionParens": true,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true,
   "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -38,15 +36,8 @@
   "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[yaml]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[go]": {
-    "editor.defaultFormatter": "golang.go"
-  },
-  "[python]": {
-    "editor.defaultFormatter": "ms-python.python"
-  },
+  "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[go]": { "editor.defaultFormatter": "golang.go" },
   "vim.normalModeKeyBindings": [
     {
       "before": ["g", "d"],
