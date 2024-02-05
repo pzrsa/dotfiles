@@ -34,8 +34,12 @@ return packer.startup(function(use)
 
 	-- appearance
 	use("Mofiqul/vscode.nvim")
-	use("craftzdog/solarized-osaka.nvim")
-	use("kepano/flexoki-neovim")
+	use("bluz71/vim-moonfly-colors")
+	use("folke/tokyonight.nvim")
+	use({
+		"jesseleite/nvim-noirbuddy",
+		requires = { "tjdevries/colorbuddy.nvim", branch = "dev" },
+	})
 
 	use({
 		"akinsho/bufferline.nvim",
