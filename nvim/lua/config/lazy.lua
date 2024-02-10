@@ -46,7 +46,7 @@ require("lazy").setup({
 		-- disabled plugins
 		{ "echasnovski/mini.surround", enabled = false },
 		{ "folke/flash.nvim", enabled = false },
-		{ "catppuccin/nvim", enabled = false },
+		{ "catppuccin", enabled = false },
 		{ "folke/tokyonight.nvim", enabled = false },
 	},
 	defaults = {
