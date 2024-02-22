@@ -10,13 +10,9 @@ require("lazy").setup({
 	spec = {
 		-- add LazyVim and import its plugins
 		{ "LazyVim/LazyVim", import = "lazyvim.plugins", opts = {
-			colorscheme = "noirbuddy",
+			colorscheme = "onedark_dark",
 		} },
-		-- import any extras modules here
-		-- { import = "lazyvim.plugins.extras.lang.typescript" },
-		-- { import = "lazyvim.plugins.extras.lang.json" },
-		-- { import = "lazyvim.plugins.extras.ui.mini-animate" },
-		-- import/override with your plugins
+		-- extras
 		{ import = "plugins" },
 		{ import = "lazyvim.plugins.extras.formatting.prettier" },
 		{ import = "lazyvim.plugins.extras.lang.typescript" },
@@ -27,6 +23,7 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.python" },
 		{ import = "lazyvim.plugins.extras.formatting.black" },
 
+		-- overrides
 		{
 			"akinsho/bufferline.nvim",
 			opts = {
@@ -35,12 +32,26 @@ require("lazy").setup({
 				},
 			},
 		},
-		-- custom plugins
+
+		-- custom
 		{
 			"jesseleite/nvim-noirbuddy",
 			dependencies = {
 				{ "tjdevries/colorbuddy.nvim", branch = "dev" },
 			},
+		},
+		{
+			"olimorris/onedarkpro.nvim",
+			config = function()
+				require("onedarkpro").setup({
+					options = {
+						cursorline = true,
+					},
+					highlights = {
+						PmenuSel = { bg = "#212121" },
+					},
+				})
+			end,
 		},
 
 		-- disabled plugins
