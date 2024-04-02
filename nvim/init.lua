@@ -11,6 +11,9 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
+-- block and blinking cursor
+vim.opt.guicursor = "i:block"
+
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
@@ -271,10 +274,10 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
 			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
-			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Fearch current Word" })
+			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find current Word" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find by Grep" })
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find Diagnostics" })
-			vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = 'Find in Recent Files ("." for repeat)' })
+			vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find in Recent Files" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffers" })
 
 			-- Slightly advanced example of overriding default behavior and theme
@@ -636,23 +639,31 @@ require("lazy").setup({
 			})
 		end,
 	},
-
-	{ -- You can easily change to a different colorscheme.
-		-- Change the name of the colorscheme plugin below, and then
-		-- change the command in the config to whatever the name of that colorscheme is
-		--
+	{
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
 		"folke/tokyonight.nvim",
 		priority = 1000, -- make sure to load this before all the other start plugins
 		init = function()
-			-- Load the colorscheme here.
-			-- Like many other themes, this one has different styles, and you could load
-			-- any other, such as 'tokyonight-storm', 'tokyonight-moon', or 'tokyonight-day'.
-			vim.cmd.colorscheme("tokyonight-night")
-
-			-- You can configure highlights by doing something like
 			vim.cmd.hi("Comment gui=none")
+			vim.cmd.colorscheme("tokyonight-night")
 		end,
+	},
+	{
+		"olivercederborg/poimandres.nvim",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			require("poimandres").setup({
+				dim_nc_background = true, -- dim 'non-current' window backgrounds
+				disable_background = false, -- disable background
+				disable_float_background = false, -- disable background for floats
+				disable_italics = true, -- disable italics
+			})
+		end,
+		-- init = function()
+		-- 	vim.cmd.hi("Comment gui=none")
+		-- 	vim.cmd.colorscheme("poimandres")
+		-- end,
 	},
 
 	-- Highlight todo, notes, etc in comments
