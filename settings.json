@@ -1,5 +1,5 @@
 {
-  "editor.fontFamily": "SauceCodePro Nerd Font, SauceCodePro NF",
+  "editor.fontFamily": "iMWritingMono Nerd Font",
   "editor.fontSize": 20,
   "terminal.integrated.fontSize": 20,
   "workbench.settings.editor": "json",
@@ -7,7 +7,7 @@
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": {
-    "source.organizeImports": true
+    "source.organizeImports": "explicit"
   },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
@@ -21,8 +21,6 @@
     "**/node_modules": true,
     "**/out": true
   },
-  "workbench.activityBar.location": "top",
-  "window.commandCenter": false,
   "explorer.compactFolders": false,
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
@@ -70,26 +68,18 @@
       "silent": true
     },
     {
-      "before": ["<C-h>"],
+      "before": ["<S-h>"],
       "commands": ["workbench.action.previousEditor"],
       "silent": true
     },
     {
-      "before": ["<C-l>"],
+      "before": ["<S-l>"],
       "commands": ["workbench.action.nextEditor"],
       "silent": true
     }
   ],
-  "vim.insertModeKeyBindings": [
-    {
-      "before": ["<C-h>"],
-      "commands": ["workbench.action.previousEditor"],
-      "silent": true
-    },
-    {
-      "before": ["<C-l>"],
-      "commands": ["workbench.action.nextEditor"],
-      "silent": true
-    }
-  ]
+  "window.commandCenter": false,
+  "workbench.layoutControl.enabled": false,
+  "workbench.colorTheme": "poimandres-noitalics",
+  "workbench.activityBar.location": "hidden"
 }
