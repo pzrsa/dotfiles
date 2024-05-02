@@ -1,18 +1,14 @@
 {
-  "editor.fontFamily": "iMWritingMono Nerd Font",
+  "editor.fontFamily": "CommitMono Nerd Font",
   "editor.fontSize": 20,
   "terminal.integrated.fontSize": 20,
   "workbench.settings.editor": "json",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "explicit"
-  },
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.cursorSurroundingLines": 10,
-  "editor.tabSize": 2,
   "vim.useSystemClipboard": true,
   "extensions.ignoreRecommendations": true,
   "terminal.integrated.enablePersistentSessions": false,
@@ -21,6 +17,7 @@
     "**/node_modules": true,
     "**/out": true
   },
+  "workbench.panel.opensMaximized": "always",
   "explorer.compactFolders": false,
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
@@ -35,16 +32,15 @@
   "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[go]": { "editor.defaultFormatter": "golang.go" },
   "vim.normalModeKeyBindings": [
     {
       "before": ["g", "d"],
-      "commands": ["editor.action.peekDefinition"],
+      "commands": ["editor.action.revealDefinition"],
       "silent": true
     },
     {
       "before": ["g", "r"],
-      "commands": ["editor.action.referenceSearch.trigger"],
+      "commands": ["editor.action.goToReferences"],
       "silent": true
     },
     {
@@ -78,8 +74,9 @@
       "silent": true
     }
   ],
-  "window.commandCenter": false,
   "workbench.layoutControl.enabled": false,
-  "workbench.colorTheme": "poimandres-noitalics",
+  "window.commandCenter": false,
+  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.colorTheme": "Tokyo Night",
   "workbench.activityBar.location": "hidden"
 }
