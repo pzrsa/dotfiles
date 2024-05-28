@@ -1,7 +1,7 @@
 {
-  "editor.fontFamily": "CommitMono Nerd Font",
-  "editor.fontSize": 20,
-  "terminal.integrated.fontSize": 20,
+  "editor.fontSize": 19,
+  "terminal.integrated.fontSize": 19,
+  "editor.cursorStyle": "block",
   "workbench.settings.editor": "json",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
@@ -77,6 +77,9 @@
   "workbench.layoutControl.enabled": false,
   "window.commandCenter": false,
   "workbench.editor.editorActionsLocation": "hidden",
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.colorTheme": "Vesper",
+  "terminal.integrated.scrollback": 5000,
+  "prisma.showPrismaDataPlatformNotification": false,
+  "terminal.integrated.defaultProfile.osx": "zsh",
   "workbench.activityBar.location": "hidden"
 }
