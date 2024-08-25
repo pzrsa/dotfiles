@@ -1,10 +1,11 @@
 {
-  "editor.fontSize": 19,
-  "terminal.integrated.fontSize": 19,
-  "editor.cursorStyle": "block",
+  "editor.fontFamily": "CommitMono Nerd Font",
+  "editor.fontSize": 16,
+  "terminal.integrated.fontSize": 16,
   "workbench.settings.editor": "json",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
+  "editor.cursorBlinking": "solid",
   "editor.formatOnSave": true,
   "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
@@ -14,7 +15,6 @@
   "terminal.integrated.enablePersistentSessions": false,
   "terminal.integrated.macOptionClickForcesSelection": true,
   "files.exclude": {
-    "**/node_modules": true,
     "**/out": true
   },
   "workbench.panel.opensMaximized": "always",
@@ -22,7 +22,10 @@
   "javascript.preferences.importModuleSpecifier": "relative",
   "typescript.preferences.importModuleSpecifier": "relative",
   "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "[typescript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
   "[typescriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
   "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
@@ -77,9 +80,13 @@
   "workbench.layoutControl.enabled": false,
   "window.commandCenter": false,
   "workbench.editor.editorActionsLocation": "hidden",
-  "workbench.colorTheme": "Vesper",
   "terminal.integrated.scrollback": 5000,
-  "prisma.showPrismaDataPlatformNotification": false,
   "terminal.integrated.defaultProfile.osx": "zsh",
-  "workbench.activityBar.location": "hidden"
+  "explorer.fileNesting.enabled": true,
+  "workbench.activityBar.location": "top",
+  "githubPullRequests.fileListLayout": "tree",
+  "window.titleBarStyle": "custom",
+  "githubPullRequests.pullBranch": "never",
+  "workbench.colorTheme": "oxocarbon-5",
+  "xstate.nestTypegenFiles": false
 }
