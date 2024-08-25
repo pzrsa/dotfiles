@@ -1,40 +1,15 @@
 live_config_reload = true
 
+import = [
+    "~/.config/alacritty/themes/themes/oxocarbon.toml"
+]
+
 [shell]
 program = "/bin/zsh"
 
-[colors.bright]
-black = "#7f7f7f"
-blue = "#5c5cff"
-cyan = "#00ffff"
-green = "#00ff00"
-magenta = "#ff00ff"
-red = "#ff0000"
-white = "#ffffff"
-yellow = "#ffff00"
-
-[colors.normal]
-black = "#000000"
-blue = "#0000ee"
-cyan = "#00cdcd"
-green = "#00cd00"
-magenta = "#cd00cd"
-red = "#cd0000"
-white = "#e5e5e5"
-yellow = "#cdcd00"
-
-[colors.primary]
-background = "#000000"
-foreground = "#ffffff"
-
 [font]
-size = 20.0
+size = 16.0
 normal.family = "CommitMono Nerd Font"
-
-[[keyboard.bindings]]
-action = "None"
-key = "W"
-mods = "Command"
 
 [[keyboard.bindings]]
 chars = "\u001Bb"
@@ -55,5 +30,5 @@ mods = "Alt"
 hide_when_typing = true
 
 [window]
-decorations = "buttonless"
+decorations = "full"
 startup_mode = "Maximized"
