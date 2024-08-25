@@ -11,8 +11,8 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- block and blinking cursor
-vim.opt.guicursor = "i:block"
+-- block
+-- vim.opt.guicursor = "i:block"
 
 -- Make line numbers default
 vim.opt.number = true
@@ -83,10 +83,10 @@ vim.opt.wrap = false
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Diagnostic keymaps
-vim.keymap.set("n", "[e", vim.diagnostic.goto_prev, { desc = "Go to previous error message" })
-vim.keymap.set("n", "]e", vim.diagnostic.goto_next, { desc = "Go to next error message" })
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic quickfix list" })
+-- Fix common typos
+vim.cmd([[
+    cnoreabbrev w wa
+]])
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -98,11 +98,22 @@ vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper win
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
 -- buffers
-vim.keymap.set("n", "<S-h>", "<cmd>bprevious<cr>", { desc = "Prev buffer" })
-vim.keymap.set("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<S-h>", "<cmd>BufferPrevious<cr>", { desc = "Prev buffer" })
+vim.keymap.set("n", "<S-l>", "<cmd>BufferNext<cr>", { desc = "Next buffer" })
+vim.keymap.set("n", "<leader>bp", "<cmd>BufferPin<cr>", { desc = "Toggle pin buffer" })
+vim.keymap.set("n", "<leader>bd", "<cmd>BufferClose<cr>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>bD", "<cmd>BufferClose!<cr>", { desc = "Force close buffer" })
+vim.keymap.set("n", "<leader>bo", "<cmd>BufferCloseAllButCurrent<cr>", { desc = "Close other buffers" })
+vim.keymap.set("n", "<leader>br", "<cmd>BufferRestore<cr>", { desc = "Restore buffer" })
 
 -- git
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
+
+-- load the session for the current directory
+vim.keymap.set("n", "<leader>qs", function()
+	require("persistence").load()
+end, { desc = "Session" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -248,37 +259,47 @@ require("lazy").setup({
 
 			-- [[ Configure Telescope ]]
 			-- See `:help telescope` and `:help telescope.setup()`
+			local noPreview = {
+				theme = "dropdown",
+				previewer = false,
+			}
+
+			local preview = {
+				theme = "dropdown",
+			}
+
 			require("telescope").setup({
 				-- You can put your default mappings / updates / etc. in here
 				--  All the info you're looking for is in `:help telescope.setup()`
-				--
-				-- defaults = {
-				--   mappings = {
-				--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-				--   },
-				-- },
-				-- pickers = {}
-				extensions = {
-					["ui-select"] = {
-						require("telescope.themes").get_dropdown(),
-					},
+				pickers = {
+					find_files = noPreview,
+					keymaps = noPreview,
+					grep_string = preview,
+					live_grep = preview,
+					diagnostics = preview,
+					oldfiles = noPreview,
+					buffers = noPreview,
+					help_tags = preview,
+				},
+				defaults = {
+					file_ignore_patterns = { "node_modules" },
+					wrap_results = true,
 				},
 			})
 
 			-- Enable telescope extensions, if they are installed
 			pcall(require("telescope").load_extension, "fzf")
-			pcall(require("telescope").load_extension, "ui-select")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
-			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
-			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
+			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find current Word" })
 			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find by Grep" })
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find Diagnostics" })
 			vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find in Recent Files" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffers" })
+			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
 
 			-- Slightly advanced example of overriding default behavior and theme
 			vim.keymap.set("n", "<leader>/", function()
@@ -368,15 +389,19 @@ require("lazy").setup({
 
 					-- Rename the variable under your cursor
 					--  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", vim.lsp.buf.rename, "Rename")
+					map("<leader>rn", "<Cmd>Lspsaga rename<CR>", "Rename")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
+					map("<leader>ca", "<Cmd> Lspsaga code_action<CR>", "Code Action")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap
-					map("K", vim.lsp.buf.hover, "Hover Documentation")
+					map("K", "<Cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
+
+					-- Diagnostic keymaps
+					map("[e", ":Lspsaga diagnostic_jump_prev<CR>", "Go to previous error message")
+					map("]e", ":Lspsaga diagnostic_jump_next<CR>", "Go to next error message")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header
@@ -643,27 +668,42 @@ require("lazy").setup({
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
 		"folke/tokyonight.nvim",
 		priority = 1000, -- make sure to load this before all the other start plugins
+		-- init = function()
+		-- 	vim.cmd.hi("Comment gui=none")
+		-- 	vim.cmd.colorscheme("tokyonight-night")
+		-- end,
+	},
+	{
+		"nyoom-engineering/oxocarbon.nvim",
+		priority = 1000,
 		init = function()
-			vim.cmd.hi("Comment gui=none")
-			vim.cmd.colorscheme("tokyonight-night")
+			vim.cmd.colorscheme("oxocarbon")
 		end,
 	},
 	{
-		"olivercederborg/poimandres.nvim",
-		lazy = false,
+		"ellisonleao/gruvbox.nvim",
 		priority = 1000,
-		config = function()
-			require("poimandres").setup({
-				dim_nc_background = true, -- dim 'non-current' window backgrounds
-				disable_background = false, -- disable background
-				disable_float_background = false, -- disable background for floats
-				disable_italics = true, -- disable italics
+		init = function()
+			require("gruvbox").setup({
+				italic = {
+					strings = false,
+					emphasis = false,
+					comments = false,
+					operators = false,
+					folds = false,
+				},
+				inverse = false, -- invert background for search, diffs, statuslines and errors
+				contrast = "hard", -- can be "hard", "soft" or empty string
 			})
+			-- vim.cmd.colorscheme("gruvbox")
 		end,
-		-- init = function()
-		-- 	vim.cmd.hi("Comment gui=none")
-		-- 	vim.cmd.colorscheme("poimandres")
-		-- end,
+	},
+	{
+		"ramojus/mellifluous.nvim",
+		priority = 1000,
+		init = function()
+			-- vim.cmd.colorscheme("mellifluous")
+		end,
 	},
 
 	-- Highlight todo, notes, etc in comments
@@ -756,32 +796,6 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-		"echasnovski/mini.bufremove",
-		keys = {
-			{
-				"<leader>bd",
-				function()
-					local bd = require("mini.bufremove").delete
-					if vim.bo.modified then
-						local choice =
-							vim.fn.confirm(("Save changes to %q?"):format(vim.fn.bufname()), "&Yes\n&No\n&Cancel")
-						if choice == 1 then -- Yes
-							vim.cmd.write()
-							bd(0)
-						elseif choice == 2 then -- No
-							bd(0, true)
-						end
-					else
-						bd(0)
-					end
-				end,
-				desc = "Delete Buffer",
-			},
-    -- stylua: ignore
-    { "<leader>bD", function() require("mini.bufremove").delete(0, true) end, desc = "Delete Buffer (Force)" },
-		},
-	},
-	{
 		"echasnovski/mini.pairs",
 		event = "VeryLazy",
 		opts = {},
@@ -818,86 +832,98 @@ require("lazy").setup({
 		},
 	},
 	{
-		"akinsho/bufferline.nvim",
-		event = "VeryLazy",
-		keys = {
-			{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-			{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-			{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-			{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-			{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
 		},
-		opts = {
-			options = {
-      -- stylua: ignore
-      close_command = function(n) require("mini.bufremove").delete(n, false) end,
-      -- stylua: ignore
-      right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
-				diagnostics = "nvim_lsp",
-				offsets = {
-					{
-						filetype = "neo-tree",
-						text = "Neo-tree",
-						highlight = "Directory",
-						text_align = "left",
-					},
+		init = function()
+			vim.g.barbar_auto_setup = false
+			vim.g.barbar_auto_setup = false -- disable auto-setup
+
+			require("barbar").setup({
+				-- WARN: do not copy everything below into your config!
+				--       It is just an example of what configuration options there are.
+				--       The defaults are suitable for most people.
+
+				-- Enable/disable animations
+				animation = false,
+
+				-- Enable/disable current/total tabpages indicator (top right corner)
+				tabpages = true,
+
+				-- Set the filetypes which barbar will offset itself for
+				sidebar_filetypes = {
+					-- Use the default values: {event = 'BufWinLeave', text = '', align = 'left'}
+					["neo-tree"] = true,
 				},
-			},
-		},
-		config = function(_, opts)
-			require("bufferline").setup(opts)
-			-- Fix bufferline when restoring a session
-			vim.api.nvim_create_autocmd("BufAdd", {
-				callback = function()
-					vim.schedule(function()
-						pcall(nvim_bufferline)
-					end)
-				end,
 			})
 		end,
+		opts = {
+			-- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+			-- animation = true,
+			-- insert_at_start = true,
+			-- …etc.
+		},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
+	-- {
+	-- 	"akinsho/bufferline.nvim",
+	-- 	event = "VeryLazy",
+	-- 	keys = {
+	-- 		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
+	-- 		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
+	-- 		{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
+	-- 		{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
+	-- 		{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
+	-- 	},
+	-- 	opts = {
+	-- 		options = {
+	--      -- stylua: ignore
+	--      close_command = function(n) require("mini.bufremove").delete(n, false) end,
+	--      -- stylua: ignore
+	--      right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
+	-- 			diagnostics = "nvim_lsp",
+	-- 			offsets = {
+	-- 				{
+	-- 					filetype = "neo-tree",
+	-- 					text = "Neo-tree",
+	-- 					highlight = "Directory",
+	-- 					text_align = "left",
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	config = function(_, opts)
+	-- 		require("bufferline").setup(opts)
+	-- 		-- Fix bufferline when restoring a session
+	-- 		vim.api.nvim_create_autocmd("BufAdd", {
+	-- 			callback = function()
+	-- 				vim.schedule(function()
+	-- 					pcall(nvim_bufferline)
+	-- 				end)
+	-- 			end,
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre",
 		opts = { options = vim.opt.sessionoptions:get() },
 	},
+
 	{
-		"nvimdev/dashboard-nvim",
-		event = "VimEnter",
-		opts = function()
-			local opts = {
-				theme = "doom",
-				config = {
-					center = {
-						{ action = "Telescope find_files", desc = " Find file", icon = " ", key = "f" },
-						{ action = "Telescope oldfiles", desc = " Recent files", icon = " ", key = "r" },
-						{ action = "Telescope live_grep", desc = " Find text", icon = " ", key = "g" },
-						{
-							action = 'lua require("persistence").load()',
-							desc = " Restore Session",
-							icon = " ",
-							key = "s",
-						},
-						{ action = "Lazy", desc = " Lazy", icon = "󰒲 ", key = "l" },
-						{ action = "qa", desc = " Quit", icon = " ", key = "q" },
-					},
-					footer = function()
-						local stats = require("lazy").stats()
-						local ms = (math.floor(stats.startuptime * 100 + 0.5) / 100)
-						return {
-							"⚡ Neovim loaded " .. stats.loaded .. "/" .. stats.count .. " plugins in " .. ms .. "ms",
-						}
-					end,
-				},
-			}
 
-			for _, button in ipairs(opts.config.center) do
-				button.desc = button.desc .. string.rep(" ", 43 - #button.desc)
-				button.key_format = "  %s"
-			end
-
-			return opts
+		"nvimdev/lspsaga.nvim",
+		config = function()
+			require("lspsaga").setup({ lightbulb = {
+				enable = false,
+			} })
 		end,
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter", -- optional
+			"nvim-tree/nvim-web-devicons", -- optional
+		},
 	},
 })
 
