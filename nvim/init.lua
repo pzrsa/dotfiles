@@ -172,6 +172,10 @@ require("lazy").setup({
 	-- See `:help gitsigns` to understand what the configuration keys do
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		"lewis6991/gitsigns.nvim",
+		config = function()
+			require("gitsigns").setup()
+			require("scrollbar.handlers.gitsigns").setup()
+		end,
 		opts = {
 			signs = {
 				add = { text = "+" },
@@ -236,6 +240,12 @@ require("lazy").setup({
 
 			-- Useful for getting pretty icons, but requires a Nerd Font.
 			{ "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+			{
+				"nvim-telescope/telescope-live-grep-args.nvim",
+				-- This will not install any breaking changes.
+				-- For major updates, this must be adjusted manually.
+				version = "^1.0.0",
+			},
 		},
 		config = function()
 			-- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -262,6 +272,7 @@ require("lazy").setup({
 			local noPreview = {
 				theme = "dropdown",
 				previewer = false,
+				hidden = true,
 			}
 
 			local preview = {
@@ -289,13 +300,19 @@ require("lazy").setup({
 
 			-- Enable telescope extensions, if they are installed
 			pcall(require("telescope").load_extension, "fzf")
+			pcall(require("telescope").load_extension, "live_grep_args")
 
 			-- See `:help telescope.builtin`
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>ff", builtin.find_files, { desc = "Find Files" })
 			vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "Find Keymaps" })
 			vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "Find current Word" })
-			vim.keymap.set("n", "<leader>fg", builtin.live_grep, { desc = "Find by Grep" })
+			vim.keymap.set(
+				"n",
+				"<leader>fg",
+				require("telescope").extensions.live_grep_args.live_grep_args,
+				{ desc = "Find by Grep" }
+			)
 			vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "Find Diagnostics" })
 			vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = "Find in Recent Files" })
 			vim.keymap.set("n", "<leader>fb", builtin.buffers, { desc = "Find existing buffers" })
@@ -913,7 +930,6 @@ require("lazy").setup({
 	},
 
 	{
-
 		"nvimdev/lspsaga.nvim",
 		config = function()
 			require("lspsaga").setup({ lightbulb = {
@@ -924,6 +940,12 @@ require("lazy").setup({
 			"nvim-treesitter/nvim-treesitter", -- optional
 			"nvim-tree/nvim-web-devicons", -- optional
 		},
+	},
+	{
+		"petertriho/nvim-scrollbar",
+		config = function()
+			require("scrollbar").setup()
+		end,
 	},
 })
 
