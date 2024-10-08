@@ -319,7 +319,7 @@ require("lazy").setup({
 			vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "Find Help" })
 
 			-- Slightly advanced example of overriding default behavior and theme
-			vim.keymap.set("n", "<leader>/", function()
+			vim.keymap.set("n", "<leader>f/", function()
 				-- You can pass additional configuration to telescope to change theme, layout, etc.
 				builtin.current_buffer_fuzzy_find(require("telescope.themes").get_dropdown({
 					winblend = 10,
@@ -330,7 +330,7 @@ require("lazy").setup({
 			-- Shortcut for searching your neovim configuration files
 			vim.keymap.set("n", "<leader>fn", function()
 				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "Find Neovim files" })
+			end, { desc = "Find Neovim Config files" })
 		end,
 	},
 	{ -- LSP Configuration & Plugins
@@ -471,7 +471,7 @@ require("lazy").setup({
 				--    https://github.com/pmizio/typescript-tools.nvim
 				--
 				-- But for many setups, the LSP (`tsserver`) will work just fine
-				tsserver = {
+				ts_ls = {
 					---@diagnostic disable-next-line: missing-fields
 					settings = {
 						completions = {
@@ -682,19 +682,10 @@ require("lazy").setup({
 		end,
 	},
 	{
-		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-		"folke/tokyonight.nvim",
-		priority = 1000, -- make sure to load this before all the other start plugins
-		-- init = function()
-		-- 	vim.cmd.hi("Comment gui=none")
-		-- 	vim.cmd.colorscheme("tokyonight-night")
-		-- end,
-	},
-	{
 		"nyoom-engineering/oxocarbon.nvim",
 		priority = 1000,
 		init = function()
-			vim.cmd.colorscheme("oxocarbon")
+			-- vim.cmd.colorscheme("oxocarbon")
 		end,
 	},
 	{
@@ -713,44 +704,6 @@ require("lazy").setup({
 				contrast = "hard", -- can be "hard", "soft" or empty string
 			})
 			-- vim.cmd.colorscheme("gruvbox")
-		end,
-	},
-	{
-		"ramojus/mellifluous.nvim",
-		priority = 1000,
-		init = function()
-			-- vim.cmd.colorscheme("mellifluous")
-		end,
-	},
-
-	-- Highlight todo, notes, etc in comments
-	{
-		"folke/todo-comments.nvim",
-		event = "VimEnter",
-		dependencies = { "nvim-lua/plenary.nvim" },
-		opts = { signs = false },
-	},
-
-	{ -- Collection of various small independent plugins/modules
-		"echasnovski/mini.nvim",
-		config = function()
-			-- Simple and easy statusline.
-			--  You could remove this setup call if you don't like it,
-			--  and try some other statusline plugin
-			local statusline = require("mini.statusline")
-			-- set use_icons to true if you have a Nerd Font
-			statusline.setup({ use_icons = vim.g.have_nerd_font })
-
-			-- You can configure sections in the statusline by overriding their
-			-- default behavior. For example, here we set the section for
-			-- cursor location to LINE:COLUMN
-			---@diagnostic disable-next-line: duplicate-set-field
-			statusline.section_location = function()
-				return "%2l:%-2v"
-			end
-
-			-- ... and there is more!
-			--  Check out: https://github.com/echasnovski/mini.nvim
 		end,
 	},
 	{ -- Highlight, edit, and navigate code
@@ -859,10 +812,6 @@ require("lazy").setup({
 			vim.g.barbar_auto_setup = false -- disable auto-setup
 
 			require("barbar").setup({
-				-- WARN: do not copy everything below into your config!
-				--       It is just an example of what configuration options there are.
-				--       The defaults are suitable for most people.
-
 				-- Enable/disable animations
 				animation = false,
 
@@ -884,45 +833,6 @@ require("lazy").setup({
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
-	-- {
-	-- 	"akinsho/bufferline.nvim",
-	-- 	event = "VeryLazy",
-	-- 	keys = {
-	-- 		{ "<leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
-	-- 		{ "<leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Delete non-pinned buffers" },
-	-- 		{ "<leader>bo", "<Cmd>BufferLineCloseOthers<CR>", desc = "Delete other buffers" },
-	-- 		{ "<leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Delete buffers to the right" },
-	-- 		{ "<leader>bl", "<Cmd>BufferLineCloseLeft<CR>", desc = "Delete buffers to the left" },
-	-- 	},
-	-- 	opts = {
-	-- 		options = {
-	--      -- stylua: ignore
-	--      close_command = function(n) require("mini.bufremove").delete(n, false) end,
-	--      -- stylua: ignore
-	--      right_mouse_command = function(n) require("mini.bufremove").delete(n, false) end,
-	-- 			diagnostics = "nvim_lsp",
-	-- 			offsets = {
-	-- 				{
-	-- 					filetype = "neo-tree",
-	-- 					text = "Neo-tree",
-	-- 					highlight = "Directory",
-	-- 					text_align = "left",
-	-- 				},
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	config = function(_, opts)
-	-- 		require("bufferline").setup(opts)
-	-- 		-- Fix bufferline when restoring a session
-	-- 		vim.api.nvim_create_autocmd("BufAdd", {
-	-- 			callback = function()
-	-- 				vim.schedule(function()
-	-- 					pcall(nvim_bufferline)
-	-- 				end)
-	-- 			end,
-	-- 		})
-	-- 	end,
-	-- },
 	{
 		"folke/persistence.nvim",
 		event = "BufReadPre",
