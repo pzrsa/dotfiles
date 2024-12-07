@@ -110,10 +110,25 @@ vim.keymap.set("n", "<leader>br", "<cmd>BufferRestore<cr>", { desc = "Restore bu
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
 
+-- search replace
+vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
+
 -- load the session for the current directory
 vim.keymap.set("n", "<leader>qs", function()
 	require("persistence").load()
 end, { desc = "Session" })
+
+local function open_config()
+	local config_path = vim.fn.stdpath("config") .. "/init.lua"
+
+	vim.api.nvim_set_current_buf(vim.api.nvim_get_current_buf())
+	vim.api.nvim_buf_set_name(0, config_path)
+	vim.api.nvim_command("edit " .. config_path)
+end
+
+vim.keymap.set("n", "<leader>qc", function()
+	open_config()
+end, { desc = "Open Config File" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -326,11 +341,6 @@ require("lazy").setup({
 					previewer = false,
 				}))
 			end, { desc = "Find Fuzzily in current buffer" })
-
-			-- Shortcut for searching your neovim configuration files
-			vim.keymap.set("n", "<leader>fn", function()
-				builtin.find_files({ cwd = vim.fn.stdpath("config") })
-			end, { desc = "Find Neovim Config files" })
 		end,
 	},
 	{ -- LSP Configuration & Plugins
@@ -469,16 +479,14 @@ require("lazy").setup({
 				--
 				-- Some languages (like typescript) have entire language plugins that can be useful:
 				--    https://github.com/pmizio/typescript-tools.nvim
-				--
-				-- But for many setups, the LSP (`tsserver`) will work just fine
-				ts_ls = {
-					---@diagnostic disable-next-line: missing-fields
-					settings = {
-						completions = {
-							completeFunctionCalls = true,
-						},
-					},
-				},
+				-- ts_ls = {
+				-- 	---@diagnostic disable-next-line: missing-fields
+				-- 	settings = {
+				-- 		completions = {
+				-- 			completeFunctionCalls = true,
+				-- 		},
+				-- 	},
+				-- },
 				tailwindcss = {},
 				eslint = {},
 				lua_ls = {
@@ -731,9 +739,9 @@ require("lazy").setup({
 					"python",
 					"query",
 					"regex",
+					"sql",
 					"toml",
 					"tsx",
-					"typescript",
 					"vim",
 					"vimdoc",
 					"xml",
@@ -838,7 +846,6 @@ require("lazy").setup({
 		event = "BufReadPre",
 		opts = { options = vim.opt.sessionoptions:get() },
 	},
-
 	{
 		"nvimdev/lspsaga.nvim",
 		config = function()
@@ -856,6 +863,36 @@ require("lazy").setup({
 		config = function()
 			require("scrollbar").setup()
 		end,
+	},
+	{
+		"MagicDuck/grug-far.nvim",
+		config = function()
+			require("grug-far").setup({
+				-- options, see Configuration section below
+				-- there are no required options atm
+				-- engine = 'ripgrep' is default, but 'astgrep' can be specified
+			})
+		end,
+	},
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {},
+		config = function()
+			require("typescript-tools").setup({
+				settings = {
+					complete_function_calls = true,
+				},
+			})
+		end,
+	},
+	{
+		"pwntester/octo.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope.nvim",
+			"nvim-tree/nvim-web-devicons",
+		},
 	},
 })
 
