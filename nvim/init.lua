@@ -12,7 +12,7 @@ vim.g.have_nerd_font = true
 --  For more options, you can see `:help option-list`
 
 -- block
--- vim.opt.guicursor = "i:block"
+vim.opt.guicursor = "i:block"
 
 -- Make line numbers default
 vim.opt.number = true
