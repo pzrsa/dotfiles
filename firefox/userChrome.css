@@ -1,0 +1,79 @@
+* {
+  font-family: "JetBrainsMono Nerd Font" !important;
+}
+
+body {
+  background: var(--custom-bg) !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-box {
+  background: var(--custom-bg) !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-splitter {
+  border: none !important;
+  background: transparent !important;
+  width: 1px !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) #TabsToolbar {
+  visibility: collapse !important;
+}
+
+#TabsToolbar {
+  background: var(--custom-bg) !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) .titlebar-buttonbox-container {
+  position: absolute;
+  right: 0;
+  top: 9px;
+  display: flex;
+  justify-content: center;
+  width: 110px !important;
+}
+
+.titlebar-button {
+  width: 36px !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-header {
+  display: none;
+}
+
+#identity-icon-label {
+  display: none;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-box {
+  --uc-sidebar-width: 60px;
+  --uc-sidebar-hover-width: 360px;
+  position: relative;
+  min-width: var(--uc-sidebar-width) !important;
+  width: var(--uc-sidebar-width) !important;
+  max-width: var(--uc-sidebar-width) !important;
+  z-index: 4 !important;
+}
+
+html:not([privatebrowsingmode="temporary"])
+  #main-window[sizemode="fullscreen"]
+  #sidebar-box {
+  --uc-sidebar-width: 1px;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-splitter {
+  display: none;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar {
+  min-width: var(--uc-sidebar-width) !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) #sidebar-box:hover > #sidebar {
+  min-width: var(--uc-sidebar-hover-width) !important;
+}
+
+html:not([privatebrowsingmode="temporary"]) .sidebar-panel {
+  background-color: transparent !important;
+  color: var(--newtab-text-primary-color) !important;
+}
