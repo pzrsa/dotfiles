@@ -697,21 +697,16 @@ require("lazy").setup({
 		end,
 	},
 	{
-		"ellisonleao/gruvbox.nvim",
+		"sainnhe/gruvbox-material",
+		lazy = false,
 		priority = 1000,
-		init = function()
-			require("gruvbox").setup({
-				italic = {
-					strings = false,
-					emphasis = false,
-					comments = false,
-					operators = false,
-					folds = false,
-				},
-				inverse = false, -- invert background for search, diffs, statuslines and errors
-				contrast = "hard", -- can be "hard", "soft" or empty string
-			})
-			-- vim.cmd.colorscheme("gruvbox")
+		config = function()
+			-- Optionally configure and load the colorscheme
+			-- directly inside the plugin declaration.
+			vim.g.gruvbox_material_background = "hard"
+			vim.g.gruvbox_material_foreground = "original"
+			vim.g.gruvbox_material_foreground = "original"
+			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
 	{ -- Highlight, edit, and navigate code
@@ -821,7 +816,7 @@ require("lazy").setup({
 
 			require("barbar").setup({
 				-- Enable/disable animations
-				animation = false,
+				animation = true,
 
 				-- Enable/disable current/total tabpages indicator (top right corner)
 				tabpages = true,
@@ -886,14 +881,7 @@ require("lazy").setup({
 			})
 		end,
 	},
-	{
-		"pwntester/octo.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			"nvim-telescope/telescope.nvim",
-			"nvim-tree/nvim-web-devicons",
-		},
-	},
+	{ "bluz71/nvim-linefly" },
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
