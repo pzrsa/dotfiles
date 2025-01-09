@@ -111,11 +111,12 @@ vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
 vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset hunk" })
 
--- search replace
-vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
-
 -- ts tools
 vim.keymap.set("n", "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", { desc = "TSToolsOrganizeImports" })
+
+
+-- search replace
+vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
 
 -- load the session for the current directory
 vim.keymap.set("n", "<leader>qs", function()
@@ -408,19 +409,19 @@ require("lazy").setup({
 
 					-- Rename the variable under your cursor
 					--  Most Language Servers support renaming across files, etc.
-					map("<leader>rn", "<Cmd>Lspsaga rename<CR>", "Rename")
+					map("<leader>rn", vim.lsp.buf.rename, "Rename")
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>ca", "<Cmd> Lspsaga code_action<CR>", "Code Action")
+					map("<leader>ca", vim.lsp.buf.code_action, "Code Action")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap
-					map("K", "<Cmd>Lspsaga hover_doc<CR>", "Hover Documentation")
+					map("K", vim.lsp.buf.hover, "Hover Documentation")
 
 					-- Diagnostic keymaps
-					map("[e", ":Lspsaga diagnostic_jump_prev<CR>", "Go to previous error message")
-					map("]e", ":Lspsaga diagnostic_jump_next<CR>", "Go to next error message")
+					map("[e", vim.diagnostic.goto_prev, "Go to previous error message")
+					map("]e", vim.diagnostic.goto_next, "Go to next error message")
 
 					-- WARN: This is not Goto Definition, this is Goto Declaration.
 					--  For example, in C this would take you to the header
@@ -753,13 +754,13 @@ require("lazy").setup({
 		event = "VeryLazy",
 		opts = {},
 	},
-	{ -- Add indentation guides even on blank lines
-		"lukas-reineke/indent-blankline.nvim",
-		-- Enable `lukas-reineke/indent-blankline.nvim`
-		-- See `:help ibl`
-		main = "ibl",
-		opts = {},
-	},
+	-- { -- Add indentation guides even on blank lines
+	-- 	"lukas-reineke/indent-blankline.nvim",
+	-- 	-- Enable `lukas-reineke/indent-blankline.nvim`
+	-- 	-- See `:help ibl`
+	-- 	main = "ibl",
+	-- 	opts = {},
+	-- },
 	{
 		"windwp/nvim-autopairs",
 		event = "InsertEnter",
@@ -778,23 +779,18 @@ require("lazy").setup({
 		},
 		keys = {
 			{
-				"<leader>e",
+				"<C-e>",
 				function()
-					require("neo-tree.command").execute({ toggle = true })
+					require("neo-tree.command").execute({ toggle = true, position = "current", reveal = true })
 				end,
 				desc = "Explorer NeoTree",
 			},
-			{
-				"<leader>ge",
-				function()
-					require("neo-tree.command").execute({ source = "git_status", toggle = true })
-				end,
-				desc = "Git explorer",
-			},
 		},
 		opts = {
-			filesystem = {
-				follow_current_file = { enabled = true },
+			window = {
+				mappings = {
+					["l"] = "open",
+				},
 			},
 		},
 	},
@@ -836,18 +832,6 @@ require("lazy").setup({
 		opts = { options = vim.opt.sessionoptions:get() },
 	},
 	{
-		"nvimdev/lspsaga.nvim",
-		config = function()
-			require("lspsaga").setup({ lightbulb = {
-				enable = false,
-			} })
-		end,
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter", -- optional
-			"nvim-tree/nvim-web-devicons", -- optional
-		},
-	},
-	{
 		"petertriho/nvim-scrollbar",
 		config = function()
 			require("scrollbar").setup()
@@ -876,6 +860,11 @@ require("lazy").setup({
 		end,
 	},
 	{ "bluz71/nvim-linefly" },
+
+	{
+		"mg979/vim-visual-multi",
+		branch = "master",
+	},
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
