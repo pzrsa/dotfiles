@@ -109,26 +109,18 @@ vim.keymap.set("n", "<leader>br", "<cmd>BufferRestore<cr>", { desc = "Restore bu
 -- git
 vim.keymap.set("n", "<leader>gg", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
 vim.keymap.set("n", "<leader>gs", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
+vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gitsigns reset hunk" })
 
 -- search replace
 vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
+
+-- ts tools
+vim.keymap.set("n", "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", { desc = "TSToolsOrganizeImports" })
 
 -- load the session for the current directory
 vim.keymap.set("n", "<leader>qs", function()
 	require("persistence").load()
 end, { desc = "Session" })
-
-local function open_config()
-	local config_path = vim.fn.stdpath("config") .. "/init.lua"
-
-	vim.api.nvim_set_current_buf(vim.api.nvim_get_current_buf())
-	vim.api.nvim_buf_set_name(0, config_path)
-	vim.api.nvim_command("edit " .. config_path)
-end
-
-vim.keymap.set("n", "<leader>qc", function()
-	open_config()
-end, { desc = "Open Config File" })
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -769,9 +761,11 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
-		"echasnovski/mini.pairs",
-		event = "VeryLazy",
-		opts = {},
+		"windwp/nvim-autopairs",
+		event = "InsertEnter",
+		config = true,
+		-- use opts = {} for passing setup options
+		-- this is equivalent to setup({}) function
 	},
 	{
 		"nvim-neo-tree/neo-tree.nvim",
