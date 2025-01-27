@@ -1,31 +1,32 @@
-// Zed settings
-//
-// For information on how to configure Zed, see the Zed
-// documentation: https://zed.dev/docs/configuring-zed
-//
-// To see all of Zed's default settings without changing your
-// custom settings, run `zed: open default settings` from the
-// command palette
 {
-  "theme": "Gruvbox Dark Hard",
+  "assistant": {
+    "default_model": {
+      "provider": "copilot_chat",
+      "model": "claude-3-5-sonnet"
+    },
+    "enable_experimental_live_diffs": true,
+    "version": "2"
+  },
+  "ui_font_size": 14,
+  "ui_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_family": "JetBrainsMono Nerd Font",
+  "buffer_font_size": 14,
+  "features": {
+    "inline_completion_provider": "copilot"
+  },
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Light Hard",
+    "dark": "Gruvbox Dark Hard"
+  },
   "telemetry": {
     "diagnostics": false,
     "metrics": false
   },
   "vim_mode": true,
-  "ui_font_size": 15,
-  "buffer_font_size": 15,
-  "features": {
-    "inline_completion_provider": "none",
-    "copilot": false
-  },
   "vim": { "use_system_clipboard": "always", "use_smartcase_find": true },
-  "ui_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_family": "JetBrainsMono Nerd Font",
   "toolbar": { "quick_actions": false, "selections_menu": false },
   "collaboration_panel": { "button": false },
-  "chat_panel": { "button": false },
-  "assistant": { "enabled": false, "version": "2" },
   "file_scan_exclusions": ["**/out"],
   "gutter": { "code_actions": false, "runnables": false },
   "buffer_font_features": { "calt": false },
@@ -33,8 +34,12 @@
     "inline_blame": { "enabled": false }
   },
   "vertical_scroll_margin": 10,
-  "terminal": { "toolbar": { "title": false } },
+  "terminal": {
+    "toolbar": { "title": false, "breadcrumbs": false },
+    "shell": { "program": "fish" }
+  },
   "command_aliases": {
     "w": "wa"
-  }
+  },
+  "buffer_line_height": "standard"
 }
