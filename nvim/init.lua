@@ -11,9 +11,6 @@ vim.g.have_nerd_font = true
 -- NOTE: You can change these options as you wish!
 --  For more options, you can see `:help option-list`
 
--- block
-vim.opt.guicursor = "i:block"
-
 -- Make line numbers default
 vim.opt.number = true
 -- You can also add relative line numbers, for help with jumping.
@@ -76,6 +73,9 @@ vim.opt.termguicolors = true
 -- Disable line wrap
 vim.opt.wrap = false
 
+-- neovide
+vim.g.neovide_cursor_animation_length = 0
+
 -- [[ Basic Keymaps ]]
 --  See `:help vim.keymap.set()`
 
@@ -83,9 +83,9 @@ vim.opt.wrap = false
 vim.opt.hlsearch = true
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 
--- Fix common typos
 vim.cmd([[
     cnoreabbrev w wa
+    cnoreabbrev W wa
 ]])
 
 -- Keybinds to make split navigation easier.
@@ -113,7 +113,6 @@ vim.keymap.set("n", "<leader>gR", "<cmd>Gitsigns reset_hunk<cr>", { desc = "Gits
 
 -- ts tools
 vim.keymap.set("n", "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", { desc = "TSToolsOrganizeImports" })
-
 
 -- search replace
 vim.keymap.set("n", "<leader>rg", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
