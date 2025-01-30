@@ -1,9 +1,9 @@
-theme = GruvboxDarkHard
+theme = light:GruvboxLight,dark:GruvboxDarkHard
 command = "/opt/homebrew/bin/fish"
 
 shell-integration-features = no-cursor
 cursor-style = block
-font-size = 15
+font-size = 14
 window-save-state = always
 mouse-hide-while-typing = true
 font-feature = -calt
@@ -12,3 +12,5 @@ macos-icon = custom-style
 macos-icon-frame = chrome
 macos-icon-ghost-color = #fff
 macos-icon-screen-color = #111
+term = "xterm-256color"
+font-family = "JetBrainsMono Nerd Font"
