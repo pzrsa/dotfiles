@@ -1,0 +1,34 @@
+theme = "gruvbox_dark_hard"
+
+[editor]
+scrolloff = 10
+cursorline = true
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+
+[editor.inline-diagnostics]
+cursor-line = "error"
+
+[editor.indent-guides]
+render = true
+
+[keys.insert]
+C-space = "completion"
+
+# At most one section each of 'keys.normal', 'keys.insert' and 'keys.select'
+[keys.normal]
+S-h = "goto_previous_buffer" 
+S-l = "goto_next_buffer" 
+C-g = [
+    ":new",
+    ":insert-output lazygit",
+    ":buffer-close!",
+    ":redraw",
+    ":reload-all"
+]
+y = "yank_to_clipboard"
+
+[keys.select]
+y = "yank_to_clipboard"
