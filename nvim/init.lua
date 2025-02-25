@@ -1,89 +1,37 @@
--- Set <space> as the leader key
---  NOTE: Must happen before plugins are loaded (otherwise wrong leader will be used)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
--- Set to true if you have a Nerd Font installed
 vim.g.have_nerd_font = true
-
--- [[ Setting options ]]
--- See `:help vim.opt`
--- NOTE: You can change these options as you wish!
---  For more options, you can see `:help option-list`
 
 -- block
 -- vim.opt.guicursor = "i:block"
 
--- Make line numbers default
 vim.opt.number = true
--- You can also add relative line numbers, for help with jumping.
---  Experiment for yourself to see if you like it!
--- vim.opt.relativenumber = true
-
--- Enable mouse mode, can be useful for resizing splits for example!
 vim.opt.mouse = "a"
-
--- Don't show the mode, since it's already in status line
 vim.opt.showmode = false
-
--- Sync clipboard between OS and Neovim.
---  Remove this option if you want your OS clipboard to remain independent.
---  See `:help 'clipboard'`
 vim.opt.clipboard = "unnamedplus"
-
--- Enable break indent
 vim.opt.breakindent = true
-
--- Save undo history
 vim.opt.undofile = true
-
--- Case-insensitive searching UNLESS \C or capital in search
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
-
-vim.opt.expandtab = true -- Convert tabs to spaces
-vim.opt.shiftwidth = 2 -- Number of spaces for indentation
-vim.opt.tabstop = 2 -- Number of spaces for tab
-vim.opt.softtabstop = 2 -- Number of spaces for soft tab
-
--- Keep signcolumn on by default
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 2
+vim.opt.tabstop = 2
+vim.opt.softtabstop = 2
 vim.opt.signcolumn = "yes"
-
--- Decrease update time
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
-
--- Configure how new splits should be opened
 vim.opt.splitright = true
 vim.opt.splitbelow = true
-
--- Sets how neovim will display certain whitespace in the editor.
---  See `:help 'list'`
---  and `:help 'listchars'`
 vim.opt.list = true
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" }
-
--- Preview substitutions live, as you type!
 vim.opt.inccommand = "split"
-
--- Show which line your cursor is on
 vim.opt.cursorline = true
-
--- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
-
--- Confirm to save changes before exiting modified buffer
 vim.opt.confirm = true
-
--- True color support
 vim.opt.termguicolors = true
-
--- Disable line wrap
 vim.opt.wrap = false
-
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
-
--- Fix common typos
 vim.cmd([[
     cnoreabbrev w wa
 ]])
@@ -131,7 +79,7 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-	"tpope/vim-sleuth",
+	{ "tpope/vim-sleuth" },
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"lewis6991/gitsigns.nvim",
@@ -190,6 +138,7 @@ require("lazy").setup({
 			})
 
 			require("telescope").load_extension("fzf")
+			require("telescope").load_extension("ui-select")
 
 			local builtin = require("telescope.builtin")
 			vim.keymap.set("n", "<leader>f", builtin.find_files, { desc = "Telescope find files" })
@@ -265,8 +214,36 @@ require("lazy").setup({
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls", "pyright", "tailwindcss", "lua_ls", "eslint", "prismals" },
+				ensure_installed = { "gopls", "pyright", "tailwindcss", "lua_ls", "eslint", "prismals", "astro" },
 				automatic_installation = true,
+			})
+			require("mason-lspconfig").setup_handlers({
+				function(server_name)
+					require("lspconfig")[server_name].setup({})
+				end,
+
+				["lua_ls"] = function()
+					require("lspconfig").lua_ls.setup({
+						settings = {
+							Lua = {
+								workspace = {
+									library = vim.api.nvim_get_runtime_file("", true),
+								},
+								runtime = {
+									version = "LuaJIT",
+								},
+							},
+						},
+					})
+				end,
+
+				["ts_ls"] = function()
+					require("typescript-tools").setup({
+						settings = {
+							complete_function_calls = true,
+						},
+					})
+				end,
 			})
 		end,
 	},
@@ -491,13 +468,6 @@ require("lazy").setup({
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
 		opts = {},
-		config = function()
-			require("typescript-tools").setup({
-				settings = {
-					complete_function_calls = true,
-				},
-			})
-		end,
 	},
 	{ "bluz71/nvim-linefly" },
 	{
