@@ -46,17 +46,22 @@
       "silent": true
     },
     {
-      "before": ["r", "n"],
+      "before": ["g", "i"],
+      "commands": ["editor.action.goToImplementation"],
+      "silent": true
+    },
+    {
+      "before": [" ", "r"],
       "commands": ["editor.action.rename"],
       "silent": true
     },
     {
-      "before": ["]", "e"],
+      "before": ["]", "d"],
       "commands": ["editor.action.marker.next"],
       "silent": true
     },
     {
-      "before": ["[", "e"],
+      "before": ["[", "d"],
       "commands": ["editor.action.marker.prev"],
       "silent": true
     },
@@ -85,24 +90,15 @@
   "xstate.nestTypegenFiles": false,
   "terminal.integrated.tabs.enabled": false,
   "workbench.activityBar.location": "top",
-  "githubPullRequests.queries": [
-    {
-      "label": "Waiting For My Review",
-      "query": "is:open review-requested:${user}"
-    },
-    {
-      "label": "Created By Me",
-      "query": "is:open author:${user}"
-    }
-  ],
   "window.autoDetectColorScheme": true,
-  "workbench.preferredLightColorTheme": "Gruvbox Light Medium",
+  "workbench.preferredLightColorTheme": "Gruvbox Light Hard",
   "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
   "editor.accessibilitySupport": "off",
   "githubPullRequests.pullBranch": "never",
   "githubPullRequests.fileListLayout": "tree",
   "github.copilot.advanced": {
-    "authProvider": "github",
-    "useLanguageServer": true
-  }
+    "authProvider": "github"
+  },
+  "search.useIgnoreFiles": false,
+  "git.blame.editorDecoration.enabled": true
 }
