@@ -21,14 +21,15 @@ C-space = "completion"
 [keys.normal]
 S-h = "goto_previous_buffer" 
 S-l = "goto_next_buffer" 
-C-g = [
-    ":new",
-    ":insert-output lazygit",
-    ":buffer-close!",
-    ":redraw",
-    ":reload-all"
-]
 y = "yank_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+c = ["yank_to_clipboard", "change_selection_noyank"]
+d = ["yank_to_clipboard", "delete_selection_noyank"]
 
 [keys.select]
 y = "yank_to_clipboard"
+p = "paste_clipboard_after"
+P = "paste_clipboard_before"
+c = ["yank_to_clipboard", "change_selection_noyank"]
+d = ["yank_to_clipboard", "delete_selection_noyank"]
