@@ -1,12 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
-vim.g.have_nerd_font = true
-
 -- block
 -- vim.opt.guicursor = "i:block"
 
 vim.opt.number = true
+vim.g.have_nerd_font = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = "unnamedplus"
@@ -34,6 +33,7 @@ vim.opt.wrap = false
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.cmd([[
     cnoreabbrev w wa
+    cnoreabbrev W wa
 ]])
 
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -214,14 +214,20 @@ require("lazy").setup({
 
 			require("mason").setup()
 			require("mason-lspconfig").setup({
-				ensure_installed = { "gopls", "pyright", "tailwindcss", "lua_ls", "eslint", "prismals", "astro" },
+				ensure_installed = { "gopls", "pyright", "tailwindcss", "lua_ls", "eslint", "prismals" },
 				automatic_installation = true,
 			})
 			require("mason-lspconfig").setup_handlers({
 				function(server_name)
 					require("lspconfig")[server_name].setup({})
 				end,
-
+				["ts_ls"] = function()
+					require("typescript-tools").setup({
+						settings = {
+							complete_function_calls = true,
+						},
+					})
+				end,
 				["lua_ls"] = function()
 					require("lspconfig").lua_ls.setup({
 						settings = {
@@ -233,14 +239,6 @@ require("lazy").setup({
 									version = "LuaJIT",
 								},
 							},
-						},
-					})
-				end,
-
-				["ts_ls"] = function()
-					require("typescript-tools").setup({
-						settings = {
-							complete_function_calls = true,
 						},
 					})
 				end,
@@ -351,8 +349,8 @@ require("lazy").setup({
 		priority = 1000,
 		config = function()
 			vim.g.gruvbox_material_background = "hard"
-			vim.g.gruvbox_material_foreground = "original"
-			vim.g.gruvbox_material_foreground = "original"
+			vim.g.gruvbox_material_foreground = "hard"
+			vim.g.gruvbox_material_foreground = "hard"
 			vim.cmd.colorscheme("gruvbox-material")
 		end,
 	},
@@ -473,5 +471,58 @@ require("lazy").setup({
 	{
 		"mg979/vim-visual-multi",
 		branch = "master",
+	},
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		lazy = false,
+		version = false, -- Set this to "*" to always pull the latest release version, or set it to false to update to the latest code changes.
+		opts = {
+			provider = "copilot",
+			copilot = {
+				model = "claude-3.5-sonnet",
+			},
+		},
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`,
+		build = "make",
+		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			--- The below dependencies are optional,
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
 	},
 })
