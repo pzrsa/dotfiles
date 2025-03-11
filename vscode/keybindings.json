@@ -12,15 +12,6 @@
     "command": "-workbench.action.files.save"
   },
   {
-    "key": "cmd+k cmd+r",
-    "command": "-workbench.action.keybindingsReference"
-  },
-  {
-    "key": "cmd+k cmd+r",
-    "command": "git.revertSelectedRanges",
-    "when": ""
-  },
-  {
     "key": "shift+cmd+g",
     "command": "-editor.action.previousMatchFindAction",
     "when": "editorFocus"
@@ -81,13 +72,12 @@
   },
   {
     "key": "cmd+g",
-    "command": "-workbench.action.terminal.goToRecentDirectory",
-    "when": "terminalFocus && terminalHasBeenCreated || terminalFocus && terminalProcessSupported"
+    "command": "-workbench.action.terminal.goToRecentDirectory"
   },
   {
     "key": "ctrl+h",
     "command": "workbench.action.focusLeftGroup",
-    "when": "editorFocus"
+    "when": "editorFocus || view == 'workbench.panel.chat.view.edits'"
   },
   {
     "key": "cmd+k cmd+left",
@@ -96,10 +86,45 @@
   {
     "key": "ctrl+l",
     "command": "workbench.action.focusRightGroup",
-    "when": "editorFocus"
+    "when": "editorFocus || view == 'workbench.panel.chat.view.edits'"
   },
   {
     "key": "cmd+k cmd+right",
     "command": "-workbench.action.focusRightGroup"
+  },
+  {
+    "key": "cmd+k",
+    "command": "inlineChat.start",
+    "when": "editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
+  },
+  {
+    "key": "cmd+i",
+    "command": "-inlineChat.start",
+    "when": "editorFocus && inlineChatHasProvider && inlineChatPossible && !editorReadonly && !editorSimpleInput"
+  },
+  {
+    "key": "cmd+i",
+    "command": "workbench.panel.chatEditing",
+    "when": "workbench.panel.chat.view.edits.active"
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.panel.chatEditing",
+    "when": "workbench.panel.chat.view.edits.active"
+  },
+  {
+    "key": "cmd+i",
+    "command": "workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "shift+cmd+i",
+    "command": "-workbench.action.chat.openEditSession",
+    "when": "chatEditingParticipantRegistered && view != 'workbench.panel.chat.view.edits'"
+  },
+  {
+    "key": "shift+cmd+k",
+    "command": "github.copilot.edits.attachSelection",
+    "when": "editorFocus"
   }
 ]
