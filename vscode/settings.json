@@ -1,6 +1,6 @@
 {
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
-  "workbench.fontAliasing": "antialiased",
+  "editor.fontFamily": "CommitMono Nerd Font",
+  "workbench.fontAliasing": "auto",
   "editor.fontSize": 14,
   "terminal.integrated.fontSize": 14,
   "workbench.settings.editor": "json",
@@ -79,16 +79,31 @@
       "before": ["<S-l>"],
       "commands": ["workbench.action.nextEditor"],
       "silent": true
+    },
+    {
+      "before": [" ", "/"],
+      "commands": ["workbench.action.quickTextSearch"],
+      "silent": true
+    }
+  ],
+  "vim.visualModeKeyBindings": [
+    {
+      "before": ["<S-h>"],
+      "commands": ["workbench.action.previousEditor"],
+      "silent": true
+    },
+    {
+      "before": ["<S-l>"],
+      "commands": ["workbench.action.nextEditor"],
+      "silent": true
     }
   ],
   "workbench.layoutControl.enabled": false,
-  "window.commandCenter": false,
   "workbench.editor.editorActionsLocation": "hidden",
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.defaultProfile.osx": "fish",
   "explorer.fileNesting.enabled": true,
   "xstate.nestTypegenFiles": false,
-  "terminal.integrated.tabs.enabled": false,
   "workbench.activityBar.location": "top",
   "window.autoDetectColorScheme": true,
   "workbench.preferredLightColorTheme": "Gruvbox Light Hard",
@@ -100,5 +115,7 @@
     "authProvider": "github"
   },
   "search.useIgnoreFiles": false,
-  "git.blame.editorDecoration.enabled": true
+  "window.commandCenter": false,
+  "git.blame.editorDecoration.enabled": false,
+  "terminal.integrated.tabs.enabled": false
 }
