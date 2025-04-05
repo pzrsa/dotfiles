@@ -1,10 +1,3 @@
-// Zed keymap
-//
-// For information on binding keys, see the Zed
-// documentation: https://zed.dev/docs/key-bindings
-//
-// To see the default key bindings run `zed: open default keymap`
-// from the command palette.
 [
   {
     "context": "Workspace",
@@ -15,18 +8,27 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      "r n": "editor::Rename",
+      "space r": "editor::Rename",
       "g r": "editor::FindAllReferences",
-      "shift-h": "pane::ActivatePrevItem",
+      "g i": "editor::GoToImplementation",
+      "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
       "ctrl-h": "workspace::ActivatePreviousPane",
-      "ctrl-l": "workspace::ActivateNextPane"
+      "ctrl-l": "workspace::ActivateNextPane",
+      "] d": "editor::GoToDiagnostic",
+      "[ d": "editor::GoToPreviousDiagnostic"
+    }
+  },
+  {
+    "context": "Editor && vim_mode == visual",
+    "bindings": {
+      "cmd-k": "assistant::InlineAssist"
     }
   },
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-h": "pane::ActivatePrevItem",
+      "ctrl-h": "pane::ActivatePreviousItem",
       "ctrl-l": "pane::ActivateNextItem"
     }
   }
