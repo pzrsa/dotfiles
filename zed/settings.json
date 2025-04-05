@@ -43,7 +43,8 @@
   "vertical_scroll_margin": 10,
   "terminal": {
     "toolbar": { "title": false, "breadcrumbs": false },
-    "shell": { "program": "fish" }
+    "shell": { "program": "fish" },
+    "line_height": "standard",
   },
   "command_aliases": {
     "w": "wa"
