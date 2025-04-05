@@ -1,18 +1,24 @@
 {
+  "ui_font_size": 13.5,
+  "buffer_font_size": 13.5,
+  "buffer_line_height": "standard",
+  "ui_font_family": "CommitMono Nerd Font",
+  "buffer_font_family": "CommitMono Nerd Font",
   "assistant": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-3-5-sonnet"
+      "model": "claude-3-7-sonnet"
     },
     "enable_experimental_live_diffs": true,
     "version": "2"
   },
-  "ui_font_size": 14,
-  "ui_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_family": "JetBrainsMono Nerd Font",
-  "buffer_font_size": 14,
   "features": {
-    "inline_completion_provider": "copilot"
+    "edit_prediction_provider": "copilot",
+    "copilot": true
+  },
+  "project_panel": {
+    "entry_spacing": "standard",
+    "scrollbar": { "show": "never" }
   },
   "theme": {
     "mode": "system",
@@ -25,6 +31,7 @@
   },
   "vim_mode": true,
   "vim": { "use_system_clipboard": "always", "use_smartcase_find": true },
+  "unstable.ui_density": "compact",
   "toolbar": { "quick_actions": false, "selections_menu": false },
   "collaboration_panel": { "button": false },
   "file_scan_exclusions": ["**/out"],
@@ -41,5 +48,20 @@
   "command_aliases": {
     "w": "wa"
   },
-  "buffer_line_height": "standard"
+  "diagnostics": {
+    "inline": {
+      "enabled": true
+    }
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "relative"
+          }
+        }
+      }
+    }
+  }
 }
