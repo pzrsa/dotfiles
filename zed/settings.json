@@ -18,7 +18,14 @@
   },
   "project_panel": {
     "entry_spacing": "standard",
-    "scrollbar": { "show": "never" }
+    "scrollbar": { "show": "never" },
+    "default_width": 240
+  },
+  "git_panel": {
+    "default_width": 240
+  },
+  "outline_panel": {
+    "default_width": 240
   },
   "theme": {
     "mode": "system",
@@ -44,7 +51,7 @@
   "terminal": {
     "toolbar": { "title": false, "breadcrumbs": false },
     "shell": { "program": "fish" },
-    "line_height": "standard",
+    "line_height": "standard"
   },
   "command_aliases": {
     "w": "wa"
