@@ -5,6 +5,7 @@ vim.g.maplocalleader = " "
 -- vim.opt.guicursor = "i:block"
 
 vim.opt.number = true
+vim.opt.laststatus = 3
 vim.g.have_nerd_font = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
@@ -34,6 +35,7 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.cmd([[
     cnoreabbrev w wa
     cnoreabbrev W wa
+    cnoreabbrev oi TSToolsOrganizeImports
 ]])
 
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -44,17 +46,12 @@ vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right win
 -- buffers
 vim.keymap.set("n", "<S-h>", "<cmd>BufferPrevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferNext<cr>", { desc = "Next buffer" })
-vim.keymap.set("n", "<leader>bd", "<cmd>BufferClose<cr>", { desc = "Close buffer" })
-vim.keymap.set("n", "<leader>bD", "<cmd>BufferClose!<cr>", { desc = "Force close buffer" })
-vim.keymap.set("n", "<leader>bo", "<cmd>BufferCloseAllButCurrent<cr>", { desc = "Close other buffers" })
-vim.keymap.set("n", "<leader>br", "<cmd>BufferRestore<cr>", { desc = "Restore buffer" })
+vim.keymap.set("n", "<leader>c", "<cmd>BufferClose<cr>", { desc = "Close buffer" })
+vim.keymap.set("n", "<leader>C", "<cmd>BufferClose!<cr>", { desc = "Force close buffer" })
 
 -- git
 vim.keymap.set("n", "<C-g>", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-vim.keymap.set("n", "<leader>G", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
-
--- ts tools
-vim.keymap.set("n", "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", { desc = "TSToolsOrganizeImports" })
+vim.keymap.set("n", "<leader>g", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
 
 -- search replace
 vim.keymap.set("n", "<leader>S", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
@@ -85,7 +82,6 @@ require("lazy").setup({
 		"lewis6991/gitsigns.nvim",
 		config = function()
 			require("gitsigns").setup()
-			require("scrollbar.handlers.gitsigns").setup()
 		end,
 		opts = {
 			signs = {
@@ -184,7 +180,7 @@ require("lazy").setup({
 
 					-- Execute a code action, usually your cursor needs to be on top of an error
 					-- or a suggestion from your LSP for this to activate.
-					map("<leader>a", vim.lsp.buf.code_action, "Code Action")
+					map("<leader>.", vim.lsp.buf.code_action, "Code Action")
 
 					-- Opens a popup that displays documentation about the word under your cursor
 					--  See `:help K` for why this keymap
@@ -193,6 +189,11 @@ require("lazy").setup({
 					-- Diagnostic keymaps
 					map("[d", vim.diagnostic.goto_prev, "Go to previous error message")
 					map("]d", vim.diagnostic.goto_next, "Go to next error message")
+
+					vim.diagnostic.config({
+						virtual_text = true,
+						update_in_insert = true,
+					})
 
 					local client = vim.lsp.get_client_by_id(event.data.client_id)
 					if client and client.server_capabilities.documentHighlightProvider then
@@ -387,7 +388,6 @@ require("lazy").setup({
 				},
 				auto_install = true,
 				highlight = { enable = true },
-				indent = { enable = true },
 			})
 		end,
 	},
@@ -451,12 +451,6 @@ require("lazy").setup({
 		opts = { options = vim.opt.sessionoptions:get() },
 	},
 	{
-		"petertriho/nvim-scrollbar",
-		config = function()
-			require("scrollbar").setup()
-		end,
-	},
-	{
 		"MagicDuck/grug-far.nvim",
 		config = function()
 			require("grug-far").setup({})
@@ -469,10 +463,6 @@ require("lazy").setup({
 	},
 	{ "bluz71/nvim-linefly" },
 	{
-		"mg979/vim-visual-multi",
-		branch = "master",
-	},
-	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		lazy = false,
@@ -480,12 +470,11 @@ require("lazy").setup({
 		opts = {
 			provider = "copilot",
 			copilot = {
-				model = "claude-3.5-sonnet",
+				model = "claude-3.7-sonnet",
 			},
 		},
 		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`,
 		build = "make",
-		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
 		dependencies = {
 			"nvim-treesitter/nvim-treesitter",
 			"stevearc/dressing.nvim",
