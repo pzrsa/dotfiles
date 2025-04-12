@@ -4,15 +4,12 @@ command = "/opt/homebrew/bin/fish"
 
 shell-integration = fish
 shell-integration-features = true
-font-size = 14
+font-size = 13.5
+font-family = "CommitMono Nerd Font"
 window-save-state = always
 mouse-hide-while-typing = true
 font-feature = -calt
-
-macos-icon = custom-style
-macos-icon-frame = chrome
-macos-icon-ghost-color = #fff
-macos-icon-screen-color = #111
 term = "xterm-256color"
-font-family = "CommitMono Nerd Font"
+
+macos-icon = chalkboard
 
