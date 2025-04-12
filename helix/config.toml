@@ -4,6 +4,10 @@ theme = "gruvbox_dark_hard"
 scrolloff = 10
 cursorline = true
 bufferline = "always"
+end-of-line-diagnostics = "hint"
+
+[editor.file-picker]
+hidden = false
 
 [editor.cursor-shape]
 insert = "bar"
@@ -14,10 +18,6 @@ cursor-line = "error"
 [editor.indent-guides]
 render = true
 
-[keys.insert]
-C-space = "completion"
-
-# At most one section each of 'keys.normal', 'keys.insert' and 'keys.select'
 [keys.normal]
 S-h = "goto_previous_buffer" 
 S-l = "goto_next_buffer" 
@@ -27,9 +27,15 @@ P = "paste_clipboard_before"
 c = ["yank_to_clipboard", "change_selection_noyank"]
 d = ["yank_to_clipboard", "delete_selection_noyank"]
 
+[keys.insert]
+C-space = "completion"
+
 [keys.select]
 y = "yank_to_clipboard"
 p = "paste_clipboard_after"
 P = "paste_clipboard_before"
 c = ["yank_to_clipboard", "change_selection_noyank"]
 d = ["yank_to_clipboard", "delete_selection_noyank"]
+
+[keys.normal.space]
+c = ":buffer-close"
