@@ -5,6 +5,7 @@ scrolloff = 10
 cursorline = true
 bufferline = "always"
 end-of-line-diagnostics = "hint"
+default-yank-register = "+"
 
 [editor.file-picker]
 hidden = false
@@ -21,21 +22,9 @@ render = true
 [keys.normal]
 S-h = "goto_previous_buffer" 
 S-l = "goto_next_buffer" 
-y = "yank_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
-c = ["yank_to_clipboard", "change_selection_noyank"]
-d = ["yank_to_clipboard", "delete_selection_noyank"]
 
 [keys.insert]
 C-space = "completion"
-
-[keys.select]
-y = "yank_to_clipboard"
-p = "paste_clipboard_after"
-P = "paste_clipboard_before"
-c = ["yank_to_clipboard", "change_selection_noyank"]
-d = ["yank_to_clipboard", "delete_selection_noyank"]
 
 [keys.normal.space]
 c = ":buffer-close"
