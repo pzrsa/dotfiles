@@ -1,3 +1,10 @@
+[language-server.typescript-language-server.config.preferences]
+importModuleSpecifierPreference = "relative"
+
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+
 [[language]]
 name = "javascript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
@@ -12,12 +19,16 @@ auto-format = true
 name = "jsx"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
 [[language]]
 name = "tsx"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
+language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
 [[language]]
 name = "markdown"
 comment-tokens = ["-", "+", "*", "- [ ]", ">"]
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
