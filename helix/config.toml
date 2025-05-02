@@ -6,11 +6,18 @@ cursorline = true
 bufferline = "always"
 end-of-line-diagnostics = "hint"
 default-yank-register = "+"
+true-color = true
+idle-timeout = 0
+completion-trigger-len = 1
 
 [editor.file-picker]
 hidden = false
 
+[editor.lsp]
+display-inlay-hints = true
+
 [editor.cursor-shape]
+normal = "block"
 insert = "bar"
 
 [editor.inline-diagnostics]
@@ -22,10 +29,23 @@ render = true
 [keys.normal]
 S-h = "goto_previous_buffer" 
 S-l = "goto_next_buffer" 
-C-s = ":wa" # Maps Ctrl-s to the typable command :w which is an alias for :write (save file)
+C-s = ":wa"
 
 [keys.insert]
 C-space = "completion"
 
 [keys.normal.space]
 c = ":buffer-close"
+
+[editor.statusline]
+left = [
+  "mode",
+  "spinner",
+  "file-name",
+  "read-only-indicator",
+  "file-modification-indicator",
+  "version-control",
+  "diagnostics"
+  ]
+center = []
+right = []
