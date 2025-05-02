@@ -29,7 +29,8 @@
     "context": "Terminal",
     "bindings": {
       "ctrl-h": "pane::ActivatePreviousItem",
-      "ctrl-l": "pane::ActivateNextItem"
+      "ctrl-l": "pane::ActivateNextItem",
+      "cmd-enter": "workspace::ToggleZoom"
     }
   }
 ]
