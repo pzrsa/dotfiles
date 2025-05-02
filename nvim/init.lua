@@ -50,8 +50,8 @@ vim.keymap.set("n", "<leader>c", "<cmd>BufferClose<cr>", { desc = "Close buffer"
 vim.keymap.set("n", "<leader>C", "<cmd>BufferClose!<cr>", { desc = "Force close buffer" })
 
 -- git
-vim.keymap.set("n", "<C-g>", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
-vim.keymap.set("n", "<leader>g", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
+vim.keymap.set("n", "<leader>g", "<cmd>LazyGit<cr>", { desc = "LazyGit" })
+vim.keymap.set("n", "<leader>G", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
 
 -- search replace
 vim.keymap.set("n", "<leader>S", "<cmd>GrugFar<cr>", { desc = "GrugFar" })
@@ -514,5 +514,14 @@ require("lazy").setup({
 				ft = { "markdown", "Avante" },
 			},
 		},
+	},
+	{
+		"nvimdev/indentmini.nvim",
+		version = false,
+		config = function()
+			vim.cmd.highlight("IndentLine guifg=#32302f")
+			vim.cmd.highlight("IndentLineCurrent guifg=#45403d")
+			require("indentmini").setup() -- use default config
+		end,
 	},
 })
