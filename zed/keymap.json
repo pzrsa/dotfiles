@@ -20,12 +20,6 @@
     }
   },
   {
-    "context": "Editor && vim_mode == visual",
-    "bindings": {
-      "cmd-k": "assistant::InlineAssist"
-    }
-  },
-  {
     "context": "Terminal",
     "bindings": {
       "ctrl-h": "pane::ActivatePreviousItem",
