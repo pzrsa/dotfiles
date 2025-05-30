@@ -1,28 +1,24 @@
 {
-  "editor.fontFamily": "CommitMono Nerd Font",
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
   "workbench.fontAliasing": "auto",
-  "editor.fontSize": 14,
-  "terminal.integrated.fontSize": 14,
+  "editor.fontSize": 12.99,
+  "terminal.integrated.fontSize": 13,
   "workbench.settings.editor": "json",
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
-  "editor.bracketPairColorization.enabled": true,
   "editor.guides.bracketPairs": "active",
   "editor.cursorSurroundingLines": 10,
   "vim.useSystemClipboard": true,
   "extensions.ignoreRecommendations": true,
   "terminal.integrated.enablePersistentSessions": false,
-  "terminal.integrated.macOptionClickForcesSelection": true,
-  "workbench.panel.opensMaximized": "always",
-  "explorer.compactFolders": false,
-  // "typescript.tsserver.experimental.enableProjectDiagnostics": true,
-  "editor.tabSize": 2,
   "[typescript]": {
+    "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.preferences.importModuleSpecifier": "relative"
   },
   "[typescriptreact]": {
+    "editor.tabSize": 2,
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.preferences.importModuleSpecifier": "non-relative"
   },
@@ -81,8 +77,13 @@
       "silent": true
     },
     {
-      "before": [" ", "/"],
-      "commands": ["workbench.action.quickTextSearch"],
+      "before": ["]", "c"],
+      "commands": ["editor.action.nextCommentedRangeAction"],
+      "silent": true
+    },
+    {
+      "before": ["[", "c"],
+      "commands": ["editor.action.previousCommentedRangeAction"],
       "silent": true
     }
   ],
@@ -103,19 +104,22 @@
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.defaultProfile.osx": "fish",
   "explorer.fileNesting.enabled": true,
-  "xstate.nestTypegenFiles": false,
-  "workbench.activityBar.location": "top",
   "window.autoDetectColorScheme": true,
-  "workbench.preferredLightColorTheme": "Gruvbox Light Hard",
   "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
-  "editor.accessibilitySupport": "off",
-  "githubPullRequests.pullBranch": "never",
-  "githubPullRequests.fileListLayout": "tree",
-  "github.copilot.advanced": {
-    "authProvider": "github"
-  },
-  "search.useIgnoreFiles": false,
+  "workbench.preferredLightColorTheme": "Gruvbox Light Hard",
+  "workbench.activityBar.location": "top",
+  "workbench.navigationControl.enabled": false,
   "window.commandCenter": false,
+  "diffEditor.ignoreTrimWhitespace": false,
   "git.blame.editorDecoration.enabled": false,
-  "terminal.integrated.tabs.enabled": false
+  "diffEditor.experimental.showMoves": true,
+  "terminal.integrated.macOptionIsMeta": true,
+  "githubPullRequests.fileListLayout": "tree",
+  "github.copilot.nextEditSuggestions.enabled": false,
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }
