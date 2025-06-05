@@ -1,13 +1,15 @@
-theme = light:GruvboxLightHard,dark:GruvboxDarkHard
+theme = GruvboxDarkHard
 command = "/opt/homebrew/bin/fish"
 
 shell-integration = fish
 shell-integration-features = true
-font-size = 13
-font-family = "CommitMono Nerd Font"
-window-save-state = always
+font-size = 12
+font-family = "JetBrainsMono Nerd Font"
 mouse-hide-while-typing = true
 font-feature = -calt
 term = "xterm-256color"
-macos-icon = chalkboard
-macos-option-as-alt = true
+macos-option-as-alt = left
+background-opacity = 0.95
+background-blur-radius = 20
+macos-non-native-fullscreen = visible-menu
+mouse-hide-while-typing = true
