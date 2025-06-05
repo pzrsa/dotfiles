@@ -1,11 +1,14 @@
 {
-  "ui_font_size": 13,
-  "buffer_font_size": 13,
+  "ui_font_size": 12,
+  "buffer_font_size": 12,
   "agent_font_size": 13,
-  "buffer_line_height": "standard",
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "agent": {
+    "inline_assistant_model": {
+      "provider": "copilot_chat",
+      "model": "claude-sonnet-4"
+    },
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
@@ -18,7 +21,6 @@
     "copilot": true
   },
   "project_panel": {
-    "entry_spacing": "standard",
     "scrollbar": { "show": "never" },
     "default_width": 240
   },
@@ -32,7 +34,7 @@
   },
   "theme": {
     "mode": "system",
-    "light": "Gruvbox Light Hard",
+    "light": "Gruvbox Dark Hard",
     "dark": "Gruvbox Dark Hard"
   },
   "telemetry": {
@@ -44,7 +46,6 @@
     "use_system_clipboard": "always",
     "use_smartcase_find": true
   },
-  "unstable.ui_density": "compact",
   "toolbar": {
     "quick_actions": false,
     "selections_menu": false
@@ -80,5 +81,6 @@
         }
       }
     }
-  }
+  },
+  "inline_code_actions": false
 }
