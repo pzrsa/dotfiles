@@ -30,22 +30,18 @@ vim.opt.confirm = true
 vim.opt.termguicolors = true
 vim.opt.wrap = false
 
--- Keymaps
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
 vim.keymap.set("n", "<C-j>", "<C-w><C-j>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<C-w><C-k>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-l>", "<C-w><C-l>", { desc = "Move focus to the right window" })
 
--- Buffers (keeping barbar commands)
 vim.keymap.set("n", "<S-h>", "<cmd>BufferPrevious<cr>", { desc = "Prev buffer" })
 vim.keymap.set("n", "<S-l>", "<cmd>BufferNext<cr>", { desc = "Next buffer" })
 vim.keymap.set("n", "<leader>c", "<cmd>BufferClose<cr>", { desc = "Close buffer" })
 
--- Git
 vim.keymap.set("n", "<leader>G", "<cmd>Gitsigns<cr>", { desc = "Gitsigns" })
 
--- Abbreviations
 vim.cmd([[
     cnoreabbrev w wa
     cnoreabbrev W wa
@@ -74,7 +70,6 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
-	-- Core functionality
 	{ "numToStr/Comment.nvim", opts = {} },
 	{
 		"lewis6991/gitsigns.nvim",
@@ -88,8 +83,6 @@ require("lazy").setup({
 			},
 		},
 	},
-
-	-- Which-key
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -105,7 +98,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- Fuzzy finder
 	{
 		"nvim-telescope/telescope.nvim",
 		event = "VimEnter",
@@ -126,7 +118,10 @@ require("lazy").setup({
 				},
 				defaults = {
 					file_ignore_patterns = { "node_modules" },
-					wrap_results = true,
+					path_display = function(_, path)
+						local tail = require("telescope.utils").path_tail(path)
+						return string.format("%s (%s)", tail, path)
+					end,
 				},
 			})
 
@@ -147,8 +142,8 @@ require("lazy").setup({
 
 	{
 		"neovim/nvim-lspconfig",
+		dependencies = { "saghen/blink.cmp" },
 		config = function()
-			-- Configure LSP attachment behavior
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function(event)
@@ -163,36 +158,19 @@ require("lazy").setup({
 					map("<leader>r", vim.lsp.buf.rename, "Rename")
 					map("<leader>.", vim.lsp.buf.code_action, "Code Action")
 					map("K", vim.lsp.buf.hover, "Hover Documentation")
-					-- Fix: Wrap diagnostic.jump in anonymous functions
 					map("[d", function()
 						vim.diagnostic.jump({ count = -1 })
 					end, "Go to previous error message")
 					map("]d", function()
 						vim.diagnostic.jump({ count = 1 })
 					end, "Go to next error message")
-
-					local client = vim.lsp.get_client_by_id(event.data.client_id)
-					if client and client.server_capabilities.documentHighlightProvider then
-						vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.document_highlight,
-						})
-
-						vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-							buffer = event.buf,
-							callback = vim.lsp.buf.clear_references,
-						})
-					end
 				end,
 			})
 
-			-- Configure diagnostic display
 			vim.diagnostic.config({
 				virtual_text = true,
 			})
 
-			-- Configure LSP servers using the new Neovim 0.11 API
-			-- Lua Language Server
 			vim.lsp.config("lua_ls", {
 				settings = {
 					Lua = {
@@ -211,7 +189,6 @@ require("lazy").setup({
 			vim.lsp.enable("prismals")
 		end,
 	},
-	-- TypeScript tools
 	{
 		"pmizio/typescript-tools.nvim",
 		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
@@ -225,7 +202,6 @@ require("lazy").setup({
 		},
 	},
 
-	-- Formatting
 	{
 		"stevearc/conform.nvim",
 		opts = {
@@ -245,28 +221,51 @@ require("lazy").setup({
 		},
 	},
 
-	-- Completion
 	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			"hrsh7th/cmp-nvim-lsp",
-			"hrsh7th/cmp-path",
-		},
-		config = function()
-			local cmp = require("cmp")
-			cmp.setup({
-				completion = { completeopt = "menu,menuone,noinsert" },
-				mapping = cmp.mapping.preset.insert({
-					["<CR>"] = cmp.mapping.confirm({ select = true }),
-					["<C-Space>"] = cmp.mapping.complete({}),
-				}),
-				sources = {
-					{ name = "nvim_lsp" },
-					{ name = "path" },
+		"saghen/blink.cmp",
+		dependencies = { "rafamadriz/friendly-snippets", "Kaiser-Yang/blink-cmp-avante" },
+		version = "1.*",
+		---@module 'blink.cmp'
+		---@type blink.cmp.Config
+		opts = {
+			-- All presets have the following mappings:
+			-- C-space: Open menu or open docs if already open
+			-- C-n/C-p or Up/Down: Select next/previous item
+			-- C-e: Hide menu
+			-- C-k: Toggle signature help (if signature.enabled = true)
+			--
+			-- See :h blink-cmp-config-keymap for defining your own keymap
+			keymap = { preset = "enter" },
+
+			appearance = {
+				-- 'mono' (default) for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+				-- Adjusts spacing to ensure icons are aligned
+				nerd_font_variant = "mono",
+			},
+
+			completion = { documentation = { auto_show = false } },
+
+			sources = {
+				default = { "lsp", "path", "snippets", "buffer", "avante" },
+				providers = {
+					avante = {
+						module = "blink-cmp-avante",
+						name = "Avante",
+						opts = {},
+					},
 				},
-			})
-		end,
+			},
+			-- Experimental signature help support
+			signature = { enabled = true },
+
+			-- (Default) Rust fuzzy matcher for typo resistance and significantly better performance
+			-- You may use a lua implementation instead by using `implementation = "lua"` or fallback to the lua implementation,
+			-- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
+			--
+			-- See the fuzzy documentation for more information
+			fuzzy = { implementation = "prefer_rust_with_warning" },
+		},
+		opts_extend = { "sources.default" },
 	},
 
 	-- Syntax highlighting
@@ -329,9 +328,13 @@ require("lazy").setup({
 				desc = "Explorer NeoTree",
 			},
 		},
+		lazy = false,
 		opts = {
-			window = {
-				mappings = { ["l"] = "open" },
+			filesystem = {
+				filtered_items = {
+					hide_dotfiles = false,
+					hide_gitignored = false,
+				},
 			},
 		},
 	},
@@ -363,39 +366,57 @@ require("lazy").setup({
 	{ "windwp/nvim-autopairs", event = "InsertEnter", config = true },
 	{ "windwp/nvim-ts-autotag", event = "VeryLazy", opts = {} },
 
-	-- -- AI Assistant
-	-- {
-	-- 	"yetone/avante.nvim",
-	-- 	event = "VeryLazy",
-	-- 	lazy = false,
-	-- 	version = false,
-	-- 	opts = {
-	-- 		provider = "copilot",
-	-- 		providers = {
-	-- 			copilot = {
-	-- 				model = "claude-sonnet-4",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- 	build = "make",
-	-- 	dependencies = {
-	-- 		"nvim-treesitter/nvim-treesitter",
-	-- 		"stevearc/dressing.nvim",
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 		"echasnovski/mini.pick",
-	-- 		"nvim-telescope/telescope.nvim",
-	-- 		"hrsh7th/nvim-cmp",
-	-- 		"ibhagwan/fzf-lua",
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 		"zbirenbaum/copilot.lua",
-	-- 		{
-	-- 			"MeanderingProgrammer/render-markdown.nvim",
-	-- 			opts = {
-	-- 				file_types = { "markdown", "Avante" },
-	-- 			},
-	-- 			ft = { "markdown", "Avante" },
-	-- 		},
-	-- 	},
-	-- },
+	-- AI Assistant
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		version = false,
+		opts = {
+			provider = "copilot",
+			providers = {
+				copilot = {
+					model = "claude-sonnet-4",
+				},
+			},
+		},
+		-- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+		build = "make",
+		-- build = "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false" -- for windows
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			"stevearc/dressing.nvim",
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim",
+			"echasnovski/mini.pick", -- for file_selector provider mini.pick
+			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+			"ibhagwan/fzf-lua", -- for file_selector provider fzf
+			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+			"zbirenbaum/copilot.lua", -- for providers='copilot'
+			{
+				-- support for image pasting
+				"HakonHarnes/img-clip.nvim",
+				event = "VeryLazy",
+				opts = {
+					-- recommended settings
+					default = {
+						embed_image_as_base64 = false,
+						prompt_for_file_name = false,
+						drag_and_drop = {
+							insert_mode = true,
+						},
+						-- required for Windows users
+						use_absolute_path = true,
+					},
+				},
+			},
+			{
+				-- Make sure to set this up properly if you have lazy=true
+				"MeanderingProgrammer/render-markdown.nvim",
+				opts = {
+					file_types = { "markdown", "Avante" },
+				},
+				ft = { "markdown", "Avante" },
+			},
+		},
+	},
 })
