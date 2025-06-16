@@ -57,22 +57,8 @@
     "when": "terminalFocus && terminalHasBeenCreated && !terminalEditorFocus || terminalFocus && terminalProcessSupported && !terminalEditorFocus"
   },
   {
-    "key": "cmd+g",
+    "key": "cmd+/",
     "command": "workbench.action.quickTextSearch"
-  },
-  {
-    "key": "cmd+g",
-    "command": "-workbench.action.terminal.findNext",
-    "when": "terminalFindFocused && terminalHasBeenCreated || terminalFindFocused && terminalProcessSupported || terminalFocusInAny && terminalHasBeenCreated || terminalFocusInAny && terminalProcessSupported"
-  },
-  {
-    "key": "cmd+g",
-    "command": "-editor.action.nextMatchFindAction",
-    "when": "editorFocus"
-  },
-  {
-    "key": "cmd+g",
-    "command": "-workbench.action.terminal.goToRecentDirectory"
   },
   {
     "key": "ctrl+h",
@@ -126,5 +112,15 @@
     "key": "ctrl+l",
     "command": "-workbench.action.chat.newEditSession",
     "when": "chatEditingParticipantRegistered && chatIsEnabled && inChat"
+  },
+  {
+    "key": "ctrl+j",
+    "command": "workbench.action.quickOpenSelectNext",
+    "when": "inQuickOpen"
+  },
+  {
+    "key": "ctrl+k",
+    "command": "workbench.action.quickOpenSelectPrevious",
+    "when": "inQuickOpen"
   }
 ]
