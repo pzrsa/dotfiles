@@ -1,25 +1,20 @@
 {
+  "theme": "Fleet Dark",
   "buffer_font_size": 12,
-  "ui_font_size": 13,
-  "agent_font_size": 14,
+  "ui_font_size": 14,
+  "agent_font_size": 16,
   "buffer_font_family": "JetBrainsMono Nerd Font",
   "ui_font_family": "JetBrainsMono Nerd Font",
   "project_panel": {
-    "scrollbar": { "show": "never" },
-    "default_width": 240
+    "default_width": 300,
+    "entry_spacing": "standard",
+    "hide_root": true
   },
   "git_panel": {
-    "scrollbar": { "show": "never" },
-    "default_width": 240
+    "default_width": 300
   },
   "outline_panel": {
-    "scrollbar": { "show": "never" },
-    "default_width": 240
-  },
-  "theme": {
-    "mode": "system",
-    "light": "Gruvbox Dark Hard",
-    "dark": "Gruvbox Dark Hard"
+    "default_width": 300
   },
   "telemetry": {
     "diagnostics": false,
@@ -30,17 +25,12 @@
     "use_system_clipboard": "always",
     "use_smartcase_find": true
   },
-  "toolbar": {
-    "quick_actions": false,
-    "selections_menu": false
-  },
   "collaboration_panel": { "button": false },
-  "unstable.ui_density": "compact",
-  "gutter": { "code_actions": false, "runnables": false },
+  "gutter": { "runnables": false },
   "buffer_font_features": { "calt": false },
   "vertical_scroll_margin": 10,
   "terminal": {
-    "toolbar": { "title": false, "breadcrumbs": false },
+    "toolbar": { "breadcrumbs": false },
     "shell": { "program": "fish" },
     "line_height": "standard",
     "font_size": 12
@@ -64,17 +54,20 @@
       }
     }
   },
-  "show_edit_predictions": false,
   "agent": {
-    "model_parameters": [],
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
       "model": "claude-sonnet-4"
     },
-    "version": "2"
+    "enable_feedback": false,
+    "preferred_completion_mode": "burn",
+    "stream_edits": true
   },
   "features": {
     "edit_prediction_provider": "copilot"
   },
-  "inline_code_actions": false
+  "inline_code_actions": false,
+  "git": { "inline_blame": { "enabled": false } }
 }
