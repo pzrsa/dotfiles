@@ -1,5 +1,5 @@
 {
-  "theme": "Fleet Dark",
+  "theme": { "light": "Fleet Light", "dark": "Fleet Dark" },
   "buffer_font_size": 12,
   "ui_font_size": 14,
   "agent_font_size": 16,
@@ -69,5 +69,6 @@
     "edit_prediction_provider": "copilot"
   },
   "inline_code_actions": false,
-  "git": { "inline_blame": { "enabled": false } }
+  "git": { "inline_blame": { "enabled": false } },
+  "preview_tabs": { "enabled": false }
 }
