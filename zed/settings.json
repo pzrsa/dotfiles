@@ -1,5 +1,6 @@
 {
-  "theme": { "light": "Fleet Light", "dark": "Fleet Dark" },
+  "show_edit_predictions": true,
+  "theme": { "light": "Neovim default light", "dark": "Neovim default dark" },
   "buffer_font_size": 12,
   "ui_font_size": 14,
   "agent_font_size": 16,
@@ -31,7 +32,7 @@
   "vertical_scroll_margin": 10,
   "terminal": {
     "toolbar": { "breadcrumbs": false },
-    "shell": { "program": "fish" },
+    "shell": { "program": "nu" },
     "line_height": "standard",
     "font_size": 12
   },
@@ -70,5 +71,14 @@
   },
   "inline_code_actions": false,
   "git": { "inline_blame": { "enabled": false } },
-  "preview_tabs": { "enabled": false }
+  "preview_tabs": { "enabled": false },
+  "edit_predictions": {
+    "mode": "subtle",
+    "copilot": {
+      "proxy": null,
+      "proxy_no_verify": null,
+      "enterprise_uri": null
+    },
+    "enabled_in_text_threads": false
+  }
 }
