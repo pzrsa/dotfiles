@@ -1,15 +1,13 @@
-theme = GruvboxDarkHard
+theme = light:tokyonight-day,dark:tokyonight
 command = "/opt/homebrew/bin/fish"
 
-shell-integration = fish
-shell-integration-features = true
 font-size = 12
 font-family = "JetBrainsMono Nerd Font"
 mouse-hide-while-typing = true
 font-feature = -calt
 term = "xterm-256color"
 macos-option-as-alt = left
-background-opacity = 0.95
+background-opacity = 0.90
 background-blur-radius = 20
 macos-non-native-fullscreen = visible-menu
 mouse-hide-while-typing = true
