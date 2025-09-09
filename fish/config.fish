@@ -4,16 +4,16 @@ alias c="clear"
 alias vi="nvim"
 alias lg="lazygit"
 alias ls="eza -l --icons"
-alias g="git"
+export EDITOR=nvim
 
 set -g fish_key_bindings fish_vi_key_bindings
 
 source "/opt/homebrew/opt/fzf/shell/key-bindings.fish"
 fzf_key_bindings
 
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-export EDITOR=nvim
+fish_add_path /opt/homebrew/bin
+fish_add_path $HOME/.local/bin
+fish_add_path $HOME/.bun/bin
 
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")
