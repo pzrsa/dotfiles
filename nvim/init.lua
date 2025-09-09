@@ -53,6 +53,8 @@ vim.cmd([[
     cnoreabbrev W wa
 ]])
 
+vim.api.nvim_create_user_command("CopyRelPath", "call setreg('+', expand('%'))", {})
+
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
 	group = vim.api.nvim_create_augroup("highlight-yank", { clear = true }),
@@ -62,15 +64,18 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.uv.fs_stat(lazypath) then
-	vim.fn.system({
-		"git",
-		"clone",
-		"--filter=blob:none",
-		"https://github.com/folke/lazy.nvim.git",
-		"--branch=stable",
-		lazypath,
-	})
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -79,9 +84,7 @@ require("lazy").setup({
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			defaults = { formatter = "path.filename_first" },
-		},
+		opts = { { "borderless-full" }, defaults = { formatter = { "path.filename_first", 2 } } },
 	},
 	{
 		"lewis6991/gitsigns.nvim",
@@ -107,16 +110,12 @@ require("lazy").setup({
 		config = function()
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
-				callback = function(event)
-					local map = function(keys, func, desc)
-						vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-					end
-
-					map("gd", require("fzf-lua").lsp_definitions, "Goto Definition")
-					map("gr", require("fzf-lua").lsp_references, "Goto References")
-					map("gi", require("fzf-lua").lsp_implementations, "Goto Implementation")
-					map("<leader>r", vim.lsp.buf.rename, "Rename")
-					map("<leader>.", vim.lsp.buf.code_action, "Code Action")
+				callback = function()
+					vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { desc = "goto definition" })
+					vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", { desc = "goto references" })
+					vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementationscr>", { desc = "goto implementation" })
+					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "rename" })
+					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "code action" })
 				end,
 			})
 
@@ -132,26 +131,41 @@ require("lazy").setup({
 					},
 				},
 			})
+
+			vim.lsp.config("vtsls", {
+				settings = {
+					vtsls = {
+						tsserver = {
+							complete_function_calls = true,
+							tsserver_file_preferences = {
+								importModuleSpecifierPreference = "relative",
+							},
+						},
+					},
+				},
+			})
+
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("tailwindcss")
-			vim.lsp.enable("eslint")
 			vim.lsp.enable("prismals")
 			vim.lsp.enable("astro")
 			vim.lsp.enable("basedpyright")
+			vim.lsp.enable("vtsls")
+			vim.lsp.enable("jsonls")
 		end,
 	},
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {
-			settings = {
-				complete_function_calls = true,
-				tsserver_file_preferences = {
-					importModuleSpecifierPreference = "relative",
-				},
-			},
-		},
-	},
+	-- {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	opts = {
+	-- 		settings = {
+	-- 			complete_function_calls = true,
+	-- 			tsserver_file_preferences = {
+	-- 				importModuleSpecifierPreference = "relative",
+	-- 			},
+	-- 		},
+	-- 	},
+	-- },
 
 	{
 		"stevearc/conform.nvim",
@@ -227,6 +241,8 @@ require("lazy").setup({
 					"sql",
 					"tsx",
 				},
+				auto_install = false,
+				sync_install = true,
 				modules = {},
 				autopairs = {
 					enable = true,
@@ -237,23 +253,25 @@ require("lazy").setup({
 				incremental_selection = {
 					enable = true,
 				},
+				indent = {
+					enable = true,
+				},
 			})
 		end,
 	},
 
-	{
-		"sainnhe/gruvbox-material",
-		lazy = false,
-		priority = 1000,
-		config = function()
-			vim.g.gruvbox_material_background = "hard"
-			vim.g.gruvbox_material_foreground = "original"
-			vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-			vim.g.gruvbox_material_transparent_background = 1
-			vim.cmd.colorscheme("gruvbox-material")
-		end,
-	},
-
+	-- {
+	-- 	"sainnhe/gruvbox-material",
+	-- 	lazy = false,
+	-- 	priority = 1000,
+	-- 	config = function()
+	-- 		vim.g.gruvbox_material_background = "hard"
+	-- 		vim.g.gruvbox_material_foreground = "mix"
+	-- 		vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+	-- 		vim.g.gruvbox_material_transparent_background = 1
+	-- 		vim.cmd.colorscheme("gruvbox-material")
+	-- 	end,
+	-- },
 	{
 		"nvim-neo-tree/neo-tree.nvim",
 		branch = "v3.x",
@@ -292,53 +310,27 @@ require("lazy").setup({
 	},
 	{ "windwp/nvim-ts-autotag", event = "VeryLazy", opts = {} },
 	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		version = false,
+		"f-person/auto-dark-mode.nvim",
+		opts = {},
+	},
+	{
+		"folke/tokyonight.nvim",
+		lazy = false,
+		priority = 1000,
 		opts = {
-			provider = "copilot",
-			providers = {
-				copilot = {
-					model = "claude-sonnet-4",
-				},
-			},
-		},
-		build = "make",
-		dependencies = {
-			"nvim-treesitter/nvim-treesitter",
-			"stevearc/dressing.nvim",
-			"nvim-lua/plenary.nvim",
-			"MunifTanjim/nui.nvim",
-			"echasnovski/mini.pick", -- for file_selector provider mini.pick
-			"nvim-telescope/telescope.nvim", -- for file_selector provider telescope
-			"ibhagwan/fzf-lua", -- for file_selector provider fzf
-			"nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
-			"zbirenbaum/copilot.lua", -- for providers='copilot'
-			{
-				-- support for image pasting
-				"HakonHarnes/img-clip.nvim",
-				event = "VeryLazy",
-				opts = {
-					-- recommended settings
-					default = {
-						embed_image_as_base64 = false,
-						prompt_for_file_name = false,
-						drag_and_drop = {
-							insert_mode = true,
-						},
-						-- required for Windows users
-						use_absolute_path = true,
-					},
-				},
-			},
-			{
-				-- Make sure to set this up properly if you have lazy=true
-				"MeanderingProgrammer/render-markdown.nvim",
-				opts = {
-					file_types = { "markdown", "Avante" },
-				},
-				ft = { "markdown", "Avante" },
+			style = "night",
+			transparent = true,
+			styles = {
+				-- Style to be applied to different syntax groups
+				-- Value is any valid attr-list value for `:help nvim_set_hl`
+				comments = { italic = true },
+				keywords = { italic = false },
+				-- Background styles. Can be "dark", "transparent" or "normal"
+				sidebars = "transparent", -- style for sidebars, see below
+				floats = "transparent", -- style for floating windows
 			},
 		},
 	},
 })
+
+vim.cmd.colorscheme("tokyonight")
