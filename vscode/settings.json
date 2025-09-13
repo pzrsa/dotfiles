@@ -7,10 +7,8 @@
   "editor.minimap.enabled": false,
   "explorer.confirmDragAndDrop": false,
   "editor.formatOnSave": true,
-  "editor.guides.bracketPairs": "active",
   "editor.cursorSurroundingLines": 10,
   "vim.useSystemClipboard": true,
-  "extensions.ignoreRecommendations": true,
   "terminal.integrated.enablePersistentSessions": false,
   "[typescript]": {
     "editor.tabSize": 2,
@@ -22,14 +20,30 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "typescript.preferences.importModuleSpecifier": "non-relative"
   },
-  "[javascript]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[javascriptreact]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[json]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[jsonc]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[css]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[html]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[markdown]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
-  "[yaml]": { "editor.defaultFormatter": "esbenp.prettier-vscode" },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[javascriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
   "vim.normalModeKeyBindings": [
     {
       "before": ["g", "d"],
@@ -75,16 +89,6 @@
       "before": ["<S-l>"],
       "commands": ["workbench.action.nextEditor"],
       "silent": true
-    },
-    {
-      "before": ["]", "c"],
-      "commands": ["editor.action.nextCommentedRangeAction"],
-      "silent": true
-    },
-    {
-      "before": ["[", "c"],
-      "commands": ["editor.action.previousCommentedRangeAction"],
-      "silent": true
     }
   ],
   "vim.visualModeKeyBindings": [
@@ -99,27 +103,27 @@
       "silent": true
     }
   ],
-  "workbench.layoutControl.enabled": false,
-  "workbench.editor.editorActionsLocation": "hidden",
+  "workbench.editor.editorActionsLocation": "titleBar",
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.defaultProfile.osx": "fish",
   "explorer.fileNesting.enabled": true,
   "window.autoDetectColorScheme": true,
-  "workbench.preferredDarkColorTheme": "Gruvbox Dark Hard",
-  "workbench.preferredLightColorTheme": "Gruvbox Dark Hard",
-  "workbench.activityBar.location": "top",
-  "workbench.navigationControl.enabled": false,
-  "window.commandCenter": false,
-  "diffEditor.ignoreTrimWhitespace": false,
-  "git.blame.editorDecoration.enabled": false,
-  "diffEditor.experimental.showMoves": true,
   "diffEditor.renderSideBySide": false,
   "terminal.integrated.macOptionIsMeta": true,
-  "github.copilot.nextEditSuggestions.enabled": false,
-  "github.copilot.enable": {
-    "*": false,
-    "plaintext": false,
-    "markdown": false,
-    "scminput": false
-  }
+  "diffEditor.ignoreTrimWhitespace": true,
+  "extensions.ignoreRecommendations": true,
+  "github-enterprise.uri": "https://github.tesla.com",
+  "workbench.editor.enablePreview": false,
+  "cursor.general.disableHttp2": true,
+  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
+  "workbench.preferredDarkColorTheme": "Tokyo Night",
+  "workbench.preferredLightColorTheme": "Tokyo Night Light",
+  "cursor.composer.textSizeScale": 1.15,
+  "cursor.composer.usageSummaryDisplay": "always",
+  "githubPullRequests.fileListLayout": "tree",
+  "terminal.external.osxExec": "Ghostty.app",
+  "terminal.integrated.automationProfile.osx": {
+    "path": "/opt/homebrew/bin/fish"
+  },
+  "git.blame.editorDecoration.enabled": true
 }
