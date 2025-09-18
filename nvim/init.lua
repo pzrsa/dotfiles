@@ -48,12 +48,15 @@ vim.keymap.set("n", "<leader>h", "<cmd>FzfLua helptags<cr>", { desc = "find help
 vim.keymap.set("n", "<leader>k", "<cmd>FzfLua keymaps<cr>", { desc = "find keymaps" })
 vim.keymap.set("n", "<leader>'", "<cmd>FzfLua resume<cr>", { desc = "last picker" })
 
+vim.keymap.set("n", "<leader>g", "<cmd>Gitsigns<cr>", { desc = "gitsigns" })
+
 vim.cmd([[
-    cnoreabbrev w wa
-    cnoreabbrev W wa
+    cnoreabbrev w wall
+    cnoreabbrev W wall
 ]])
 
 vim.api.nvim_create_user_command("CopyRelPath", "call setreg('+', expand('%'))", {})
+vim.keymap.set("n", "<leader>cp", "<cmd>CopyRelPath<cr>", { desc = "copy relative path" })
 
 vim.api.nvim_create_autocmd("TextYankPost", {
 	desc = "Highlight when yanking (copying) text",
@@ -84,11 +87,22 @@ require("lazy").setup({
 	{
 		"ibhagwan/fzf-lua",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = { { "borderless-full" }, defaults = { formatter = { "path.filename_first", 2 } } },
+		opts = {
+			{ "borderless-full" },
+			defaults = {
+				formatter = { "path.filename_first", 2 },
+				fzf_opts = { ["--cycle"] = true },
+			},
+		},
 	},
 	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
+		config = function()
+			require("gitsigns").setup({
+				current_line_blame = true,
+			})
+		end,
 	},
 	{
 		"folke/which-key.nvim",
@@ -152,6 +166,7 @@ require("lazy").setup({
 			vim.lsp.enable("basedpyright")
 			vim.lsp.enable("vtsls")
 			vim.lsp.enable("jsonls")
+			vim.lsp.enable("eslint")
 		end,
 	},
 	-- {
@@ -284,7 +299,7 @@ require("lazy").setup({
 			{
 				"<C-e>",
 				function()
-					require("neo-tree.command").execute({ toggle = true, position = "current", reveal = true })
+					require("neo-tree.command").execute({ toggle = true, reveal = true })
 				end,
 				desc = "Explorer NeoTree",
 			},
@@ -299,7 +314,22 @@ require("lazy").setup({
 			},
 		},
 	},
-	{ "bluz71/nvim-linefly" },
+	{
+		"nvim-lualine/lualine.nvim",
+		dependencies = { "nvim-tree/nvim-web-devicons" },
+		config = function()
+			require("lualine").setup({
+				sections = {
+					lualine_a = { "mode" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "buffers" },
+					lualine_x = { "encoding", "fileformat", "filetype", "lsp_status" },
+					lualine_y = { "progress" },
+					lualine_z = { "location" },
+				},
+			})
+		end,
+	},
 	{
 		"windwp/nvim-autopairs",
 		event = "VeryLazy",
@@ -317,20 +347,18 @@ require("lazy").setup({
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
-		opts = {
-			style = "night",
-			transparent = true,
-			styles = {
-				-- Style to be applied to different syntax groups
-				-- Value is any valid attr-list value for `:help nvim_set_hl`
-				comments = { italic = true },
-				keywords = { italic = false },
-				-- Background styles. Can be "dark", "transparent" or "normal"
-				sidebars = "transparent", -- style for sidebars, see below
-				floats = "transparent", -- style for floating windows
-			},
-		},
+		config = function()
+			require("tokyonight").setup({
+				style = "night",
+				transparent = true,
+				styles = {
+					comments = { italic = false },
+					keywords = { italic = false },
+					sidebars = "transparent", -- style for sidebars, see below
+					floats = "transparent", -- style for floating windows
+				},
+			})
+			vim.cmd.colorscheme("tokyonight")
+		end,
 	},
 })
-
-vim.cmd.colorscheme("tokyonight")
