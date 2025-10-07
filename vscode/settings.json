@@ -1,7 +1,11 @@
 {
-  "editor.fontSize": 12,
-  "terminal.integrated.fontSize": 12,
-  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "workbench.preferredDarkColorTheme": "Tokyo Night",
+  "workbench.preferredLightColorTheme": "Tokyo Night Light",
+  "editor.fontSize": 13,
+  "terminal.integrated.fontSize": 13,
+  "editor.fontFamily": "TX-02",
+  "chat.fontFamily": "TX-02",
+  "scm.inputFontFamily": "TX-02",
   "workbench.fontAliasing": "auto",
   "workbench.settings.editor": "json",
   "editor.minimap.enabled": false,
@@ -103,7 +107,6 @@
       "silent": true
     }
   ],
-  "workbench.editor.editorActionsLocation": "titleBar",
   "terminal.integrated.scrollback": 5000,
   "terminal.integrated.defaultProfile.osx": "fish",
   "explorer.fileNesting.enabled": true,
@@ -113,16 +116,16 @@
   "diffEditor.ignoreTrimWhitespace": true,
   "extensions.ignoreRecommendations": true,
   "workbench.editor.enablePreview": false,
-  "cursor.general.disableHttp2": true,
-  "cursor.cpp.disabledLanguages": ["plaintext", "markdown", "scminput"],
-  "workbench.preferredDarkColorTheme": "Tokyo Night",
-  "workbench.preferredLightColorTheme": "Tokyo Night Light",
-  "cursor.composer.textSizeScale": 1.15,
-  "cursor.composer.usageSummaryDisplay": "always",
   "githubPullRequests.fileListLayout": "tree",
   "terminal.external.osxExec": "Ghostty.app",
   "terminal.integrated.automationProfile.osx": {
     "path": "/opt/homebrew/bin/fish"
   },
-  "git.blame.editorDecoration.enabled": true
+  "git.blame.editorDecoration.enabled": true,
+  "window.commandCenter": true,
+  "githubPullRequests.pullBranch": "never",
+  "workbench.activityBar.location": "top",
+  "chat.tools.global.autoApprove": true,
+  "github.copilot.chat.agent.thinkingTool": true,
+  "chat.agent.thinkingStyle": "collapsedPreview"
 }
