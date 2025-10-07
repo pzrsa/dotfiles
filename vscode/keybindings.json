@@ -140,5 +140,23 @@
   {
     "key": "shift+cmd+f",
     "command": "search.action.openNewEditor"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "-editor.action.toggleScreenReaderAccessibilityMode",
+    "when": "accessibilityHelpIsShown"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "-actions.findWithSelection"
+  },
+  {
+    "key": "cmd+shift+b",
+    "command": "workbench.action.showEditorsInGroup"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build",
+    "when": "taskCommandsRegistered"
   }
 ]
