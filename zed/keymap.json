@@ -24,7 +24,8 @@
       "ctrl-h": "workspace::ActivatePreviousPane",
       "ctrl-l": "workspace::ActivateNextPane",
       "] d": "editor::GoToDiagnostic",
-      "[ d": "editor::GoToPreviousDiagnostic"
+      "[ d": "editor::GoToPreviousDiagnostic",
+      "space b": "tab_switcher::ToggleAll"
     }
   },
   {
@@ -49,6 +50,11 @@
     "bindings": {
       "cmd-g": null,
       "cmd-shift-g": "git_panel::ToggleFocus"
+    }
+  },
+  {
+    "bindings": {
+      "cmd-,": "zed::OpenSettingsFile"
     }
   }
 ]
