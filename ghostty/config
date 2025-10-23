@@ -10,5 +10,7 @@ macos-option-as-alt = left
 background-opacity = 0.90
 background-blur-radius = 20
 mouse-hide-while-typing = true
-macos-titlebar-style = tabs
 adjust-cell-height = 5
+maximize = true
+
+keybind = shift+enter=text:\x1b\r
