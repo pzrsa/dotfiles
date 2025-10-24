@@ -1,7 +1,4 @@
 {
-  "edit_predictions": {
-    "disabled_globs": []
-  },
   "theme": { "light": "Tokyo Night Light", "dark": "Tokyo Night" },
   "buffer_font_size": 13,
   "ui_font_size": 14,
@@ -55,9 +52,7 @@
           "preferences": {
             "importModuleSpecifier": "relative"
           },
-          "tsserver": {
-            "maxTsServerMemory": 8192
-          }
+          "tsserver": { "maxTsServerMemory": 16184 }
         }
       }
     }
@@ -79,6 +74,26 @@
   "inline_code_actions": false,
   "git": { "inline_blame": { "enabled": true, "show_commit_summary": true } },
   "preview_tabs": { "enabled": false },
-  "toolbar": { "quick_actions": false },
-  "tab_bar": { "show_tab_bar_buttons": false }
+  "toolbar": { "code_actions": false, "quick_actions": false },
+  "tab_bar": {
+    "show_nav_history_buttons": true,
+    "show_tab_bar_buttons": false
+  },
+  "tabs": {
+    "show_diagnostics": "errors",
+    "file_icons": true
+  },
+  "title_bar": {
+    "show_sign_in": false
+  },
+  "file_finder": {
+    "modal_max_width": "medium"
+  },
+  "minimap": {
+    "show": "never"
+  },
+  "cursor_shape": "block",
+  "edit_predictions": {
+    "disabled_globs": []
+  }
 }
