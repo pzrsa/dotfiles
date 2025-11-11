@@ -1,8 +1,8 @@
 {
   "theme": { "light": "Tokyo Night Light", "dark": "Tokyo Night" },
-  "buffer_font_size": 13,
+  "buffer_font_size": 14,
   "ui_font_size": 14,
-  "agent_ui_font_size": 16,
+  "agent_ui_font_size": 17,
   "buffer_font_family": "TX-02",
   "ui_font_family": "TX-02",
   "project_panel": {
@@ -65,8 +65,7 @@
       "model": "claude-sonnet-4.5"
     },
     "enable_feedback": false,
-    "preferred_completion_mode": "burn",
-    "stream_edits": true
+    "preferred_completion_mode": "burn"
   },
   "features": {
     "edit_prediction_provider": "copilot"
@@ -86,14 +85,13 @@
   "title_bar": {
     "show_sign_in": false
   },
-  "file_finder": {
-    "modal_max_width": "medium"
-  },
   "minimap": {
     "show": "never"
   },
-  "cursor_shape": "block",
   "edit_predictions": {
     "disabled_globs": []
+  },
+  "node": {
+    "path": "/opt/homebrew/opt/node@24/bin/node"
   }
 }
