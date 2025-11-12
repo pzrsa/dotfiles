@@ -179,16 +179,16 @@ require("lazy").setup({
 			format_on_save = { timeout_ms = 500, lsp_fallback = true },
 			formatters_by_ft = {
 				lua = { "stylua" },
-				javascript = { "prettierd" },
-				typescript = { "prettierd" },
-				javascriptreact = { "prettierd" },
-				typescriptreact = { "prettierd" },
-				css = { "prettierd" },
-				html = { "prettierd" },
-				json = { "prettierd" },
-				jsonc = { "prettierd" },
-				markdown = { "prettierd" },
-				astro = { "prettierd" },
+				javascript = { "prettier" },
+				typescript = { "prettier" },
+				javascriptreact = { "prettier" },
+				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				html = { "prettier" },
+				json = { "prettier" },
+				jsonc = { "prettier" },
+				markdown = { "prettier" },
+				astro = { "prettier" },
 			},
 		},
 	},
@@ -196,7 +196,7 @@ require("lazy").setup({
 	{
 		"saghen/blink.cmp",
 		event = "VeryLazy",
-		dependencies = { "rafamadriz/friendly-snippets", "Kaiser-Yang/blink-cmp-avante" },
+		dependencies = { "rafamadriz/friendly-snippets" },
 		version = "1.*",
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
@@ -209,15 +209,8 @@ require("lazy").setup({
 					"path",
 					"snippets",
 					"buffer",
-					"avante",
 				},
-				providers = {
-					avante = {
-						module = "blink-cmp-avante",
-						name = "Avante",
-						opts = {},
-					},
-				},
+				providers = {},
 			},
 			signature = { enabled = true },
 			fuzzy = { implementation = "prefer_rust_with_warning" },
@@ -265,45 +258,18 @@ require("lazy").setup({
 		end,
 	},
 
-	-- {
-	-- 	"sainnhe/gruvbox-material",
-	-- 	lazy = false,
-	-- 	priority = 1000,
-	-- 	config = function()
-	-- 		vim.g.gruvbox_material_background = "hard"
-	-- 		vim.g.gruvbox_material_foreground = "mix"
-	-- 		vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-	-- 		vim.g.gruvbox_material_transparent_background = 1
-	-- 		vim.cmd.colorscheme("gruvbox-material")
-	-- 	end,
-	-- },
-	-- {
-	-- 	"nvim-neo-tree/neo-tree.nvim",
-	-- 	branch = "v3.x",
-	-- 	dependencies = {
-	-- 		"nvim-lua/plenary.nvim",
-	-- 		"nvim-tree/nvim-web-devicons",
-	-- 		"MunifTanjim/nui.nvim",
-	-- 	},
-	-- 	keys = {
-	-- 		{
-	-- 			"<C-e>",
-	-- 			function()
-	-- 				require("neo-tree.command").execute({ toggle = true, reveal = true })
-	-- 			end,
-	-- 			desc = "Explorer NeoTree",
-	-- 		},
-	-- 	},
-	-- 	lazy = false,
-	-- 	opts = {
-	-- 		filesystem = {
-	-- 			filtered_items = {
-	-- 				hide_dotfiles = false,
-	-- 				hide_gitignored = false,
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"sainnhe/gruvbox-material",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			vim.g.gruvbox_material_background = "hard"
+			vim.g.gruvbox_material_foreground = "mix"
+			vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+			vim.g.gruvbox_material_transparent_background = 1
+			-- vim.cmd.colorscheme("gruvbox-material")
+		end,
+	},
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
