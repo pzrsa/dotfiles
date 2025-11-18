@@ -1,8 +1,9 @@
 {
-  "workbench.preferredDarkColorTheme": "Tokyo Night",
   "workbench.preferredLightColorTheme": "Tokyo Night Light",
-  "editor.fontSize": 13,
-  "terminal.integrated.fontSize": 13,
+  "workbench.preferredDarkColorTheme": "Tokyo Night",
+  "editor.fontSize": 15,
+  "terminal.integrated.fontSize": 15,
+  "chat.fontSize": 15,
   "editor.fontFamily": "TX-02",
   "chat.fontFamily": "TX-02",
   "scm.inputFontFamily": "TX-02",
@@ -113,7 +114,7 @@
   "window.autoDetectColorScheme": true,
   "diffEditor.renderSideBySide": false,
   "terminal.integrated.macOptionIsMeta": true,
-  "diffEditor.ignoreTrimWhitespace": true,
+  "diffEditor.ignoreTrimWhitespace": false,
   "extensions.ignoreRecommendations": true,
   "workbench.editor.enablePreview": false,
   "githubPullRequests.fileListLayout": "tree",
@@ -122,10 +123,24 @@
     "path": "/opt/homebrew/bin/fish"
   },
   "git.blame.editorDecoration.enabled": true,
-  "window.commandCenter": true,
+  "window.commandCenter": false,
   "githubPullRequests.pullBranch": "never",
-  "workbench.activityBar.location": "top",
-  "chat.tools.global.autoApprove": true,
   "github.copilot.chat.agent.thinkingTool": true,
-  "chat.agent.thinkingStyle": "collapsedPreview"
+  "chat.tools.global.autoApprove": true,
+  "chat.agent.thinkingStyle": "expanded",
+  "chat.agent.maxRequests": 50,
+  "typescript.tsserver.nodePath": "/opt/homebrew/opt/node@24/bin/node",
+  "typescript.tsserver.maxTsServerMemory": 16184,
+  "chat.checkpoints.showFileChanges": true,
+  "chat.emptyState.history.enabled": true,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "scminput": false
+  },
+  "chat.commandCenter.enabled": false,
+  "search.searchEditor.defaultNumberOfContextLines": 3,
+  "search.searchEditor.focusResultsOnSearch": true,
+  "search.searchEditor.reusePriorSearchConfiguration": true,
+  "cursor.cpp.disabledLanguages": ["plaintext", "scminput"]
 }
