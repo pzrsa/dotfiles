@@ -94,6 +94,7 @@ require("lazy").setup({
 			})
 		end,
 	},
+	{ "sindrets/diffview.nvim" },
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -119,7 +120,7 @@ require("lazy").setup({
 					-- vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", { desc = "goto references" })
 					-- vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementationscr>", { desc = "goto implementation" })
 					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "rename" })
-					-- vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "code action" })
+					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "code action" })
 				end,
 			})
 
@@ -136,41 +137,43 @@ require("lazy").setup({
 				},
 			})
 
-			vim.lsp.config("vtsls", {
-				settings = {
-					vtsls = {
-						tsserver = {
-							complete_function_calls = true,
-							tsserver_file_preferences = {
-								importModuleSpecifierPreference = "relative",
-							},
-						},
-					},
-				},
-			})
+			-- vim.lsp.config("vtsls", {
+			-- 	settings = {
+			-- 		vtsls = {
+			-- 			tsserver = {
+			-- 				complete_function_calls = true,
+			-- 				tsserver_file_preferences = {
+			-- 					importModuleSpecifierPreference = "relative",
+			-- 				},
+			-- 				maxTsServerMemory = 16184,
+			-- 			},
+			-- 		},
+			-- 	},
+			-- })
 
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("tailwindcss")
 			vim.lsp.enable("prismals")
 			vim.lsp.enable("astro")
 			vim.lsp.enable("basedpyright")
-			vim.lsp.enable("vtsls")
+			-- vim.lsp.enable("vtsls")
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("eslint")
 		end,
 	},
-	-- {
-	-- 	"pmizio/typescript-tools.nvim",
-	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-	-- 	opts = {
-	-- 		settings = {
-	-- 			complete_function_calls = true,
-	-- 			tsserver_file_preferences = {
-	-- 				importModuleSpecifierPreference = "relative",
-	-- 			},
-	-- 		},
-	-- 	},
-	-- },
+	{
+		"pmizio/typescript-tools.nvim",
+		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		opts = {
+			settings = {
+				complete_function_calls = true,
+				tsserver_file_preferences = {
+					importModuleSpecifierPreference = "relative",
+				},
+				tsserver_max_memory = "auto",
+			},
+		},
+	},
 
 	{
 		"stevearc/conform.nvim",
@@ -277,8 +280,8 @@ require("lazy").setup({
 			require("lualine").setup({
 				sections = {
 					lualine_a = { "mode" },
-					lualine_b = { "branch", "diff" },
-					lualine_c = { "diagnostics", "buffers" },
+					lualine_b = { "branch", "diff", "diagnostics" },
+					lualine_c = { "filename" },
 					lualine_x = { "encoding", "fileformat", "filetype", "lsp_status" },
 					lualine_y = { "progress" },
 					lualine_z = { "location" },
@@ -323,19 +326,15 @@ require("lazy").setup({
 		lazy = false,
 		---@type snacks.Config
 		opts = {
-			bigfile = { enabled = true },
-			dashboard = { enabled = true },
 			explorer = { enabled = true },
 			indent = { enabled = true, animate = { enabled = false } },
 			input = { enabled = true },
 			notifier = {
 				enabled = true,
-				timeout = 3000,
 			},
 			picker = { enabled = true, formatters = { file = { filename_first = true } } },
 			quickfile = { enabled = true },
 			scope = { enabled = true },
-			scroll = { enabled = false },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
 		},
@@ -344,7 +343,7 @@ require("lazy").setup({
 			{
 				"<leader>f",
 				function()
-					Snacks.picker.smart()
+					Snacks.picker.smart({ multi = { "files" }, hidden = true })
 				end,
 				desc = "Smart Find Files",
 			},
@@ -370,13 +369,6 @@ require("lazy").setup({
 				desc = "Resume",
 			},
 			{
-				"<leader>:",
-				function()
-					Snacks.picker.commands()
-				end,
-				desc = "Commands",
-			},
-			{
 				"<leader>n",
 				function()
 					Snacks.picker.notifications()
@@ -386,53 +378,9 @@ require("lazy").setup({
 			{
 				"<c-e>",
 				function()
-					Snacks.explorer()
+					Snacks.explorer({ ignored = true, hidden = true })
 				end,
 				desc = "File Explorer",
-			},
-			-- find
-			{
-				"<leader>R",
-				function()
-					Snacks.picker.recent()
-				end,
-				desc = "Recent",
-			},
-			-- git
-			{
-				"<leader>gl",
-				function()
-					Snacks.picker.git_log()
-				end,
-				desc = "Git Log",
-			},
-			{
-				"<leader>gL",
-				function()
-					Snacks.picker.git_log_line()
-				end,
-				desc = "Git Log Line",
-			},
-			{
-				"<leader>gS",
-				function()
-					Snacks.picker.git_stash()
-				end,
-				desc = "Git Stash",
-			},
-			{
-				"<leader>gd",
-				function()
-					Snacks.picker.git_diff()
-				end,
-				desc = "Git Diff (Hunks)",
-			},
-			{
-				"<leader>gf",
-				function()
-					Snacks.picker.git_log_file()
-				end,
-				desc = "Git Log File",
 			},
 			-- Grep
 			{
@@ -443,35 +391,13 @@ require("lazy").setup({
 				desc = "Buffer Lines",
 			},
 			{
-				"<leader>sB",
-				function()
-					Snacks.picker.grep_buffers()
-				end,
-				desc = "Grep Open Buffers",
-			},
-			{
 				"<leader>sg",
 				function()
 					Snacks.picker.grep()
 				end,
 				desc = "Grep",
 			},
-			{
-				"<leader>sw",
-				function()
-					Snacks.picker.grep_word()
-				end,
-				desc = "Visual selection or word",
-				mode = { "n", "x" },
-			},
 			-- search
-			{
-				'<leader>s"',
-				function()
-					Snacks.picker.registers()
-				end,
-				desc = "Registers",
-			},
 			{
 				"<leader>s/",
 				function()
@@ -534,34 +460,6 @@ require("lazy").setup({
 					Snacks.picker.loclist()
 				end,
 				desc = "Location List",
-			},
-			{
-				"<leader>sm",
-				function()
-					Snacks.picker.marks()
-				end,
-				desc = "Marks",
-			},
-			{
-				"<leader>sM",
-				function()
-					Snacks.picker.man()
-				end,
-				desc = "Man Pages",
-			},
-			{
-				"<leader>sq",
-				function()
-					Snacks.picker.qflist()
-				end,
-				desc = "Quickfix List",
-			},
-			{
-				"<leader>sR",
-				function()
-					Snacks.picker.resume()
-				end,
-				desc = "Resume",
 			},
 			{
 				"<leader>su",
