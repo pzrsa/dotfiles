@@ -1,8 +1,9 @@
 {
   "theme": { "light": "Tokyo Night Light", "dark": "Tokyo Night" },
   "buffer_font_size": 14,
-  "ui_font_size": 14,
-  "agent_ui_font_size": 17,
+  "ui_font_size": 15,
+  "agent_ui_font_size": 18,
+  "agent_buffer_font_size": 14,
   "buffer_font_family": "TX-02",
   "ui_font_family": "TX-02",
   "project_panel": {
@@ -57,12 +58,17 @@
       }
     }
   },
+  "languages": {
+    "TypeScript": {
+      "language_servers": ["tsgo", "vtsls"]
+    }
+  },
   "agent": {
     "always_allow_tool_actions": true,
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-sonnet-4.5"
+      "model": "claude-opus-4.5"
     },
     "enable_feedback": false,
     "preferred_completion_mode": "burn"
