@@ -12,6 +12,7 @@ source "/opt/homebrew/opt/fzf/shell/key-bindings.fish"
 fzf_key_bindings
 
 fish_add_path /opt/homebrew/bin
+fish_add_path --move /opt/homebrew/opt/node@20/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.bun/bin
 
@@ -23,3 +24,5 @@ function y
     end
     rm -f -- "$tmp"
 end
+
+zoxide init fish | source
