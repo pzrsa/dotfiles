@@ -1,6 +1,7 @@
+theme = light:TokyoNight Day,dark:TokyoNight
 command = "/opt/homebrew/bin/fish"
 
-font-size = 14
+font-size = 15
 font-family = "TX-02"
 mouse-hide-while-typing = true
 font-feature = -calt
@@ -9,7 +10,9 @@ macos-option-as-alt = left
 background-opacity = 0.90
 background-blur-radius = 20
 mouse-hide-while-typing = true
-adjust-cell-height = 8
+adjust-cell-height = 7
+macos-titlebar-style = tabs
 maximize = true
+macos-non-native-fullscreen = visible-menu
 
 keybind = shift+enter=text:\x1b\r
