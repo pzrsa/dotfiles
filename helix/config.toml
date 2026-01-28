@@ -1,14 +1,14 @@
-theme = "gruvbox_dark_hard"
+theme = "tokyonight"
 
 [editor]
 scrolloff = 10
 cursorline = true
-bufferline = "always"
 end-of-line-diagnostics = "hint"
 default-yank-register = "+"
 true-color = true
 idle-timeout = 0
 completion-trigger-len = 1
+bufferline = "always"
 
 [editor.file-picker]
 hidden = false
@@ -33,9 +33,6 @@ C-s = ":wa"
 
 [keys.insert]
 C-space = "completion"
-
-[keys.normal.space]
-c = ":buffer-close"
 
 [editor.statusline]
 left = [
