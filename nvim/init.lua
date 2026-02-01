@@ -1,11 +1,11 @@
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.have_nerd_font = true
+
 vim.opt.number = true
 vim.opt.laststatus = 3
-vim.g.have_nerd_font = true
 vim.opt.mouse = "a"
 vim.opt.showmode = false
 vim.opt.clipboard = "unnamedplus"
@@ -28,8 +28,8 @@ vim.opt.inccommand = "split"
 vim.opt.cursorline = true
 vim.opt.scrolloff = 10
 vim.opt.confirm = true
-vim.opt.termguicolors = true
 vim.opt.wrap = false
+vim.opt.termguicolors = true
 
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<CR>")
 vim.keymap.set("n", "<C-h>", "<C-w><C-h>", { desc = "Move focus to the left window" })
@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 })
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 	if vim.v.shell_error ~= 0 then
@@ -75,17 +75,6 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
 	{ "numToStr/Comment.nvim", event = "VeryLazy", opts = {} },
 	{
-		"ibhagwan/fzf-lua",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		opts = {
-			{ "borderless-full" },
-			defaults = {
-				formatter = { "path.filename_first", 2 },
-				fzf_opts = { ["--cycle"] = true },
-			},
-		},
-	},
-	{
 		"lewis6991/gitsigns.nvim",
 		event = "VeryLazy",
 		config = function()
@@ -95,6 +84,59 @@ require("lazy").setup({
 		end,
 	},
 	{ "sindrets/diffview.nvim" },
+	{
+		"folke/trouble.nvim",
+		cmd = "Trouble",
+		opts = {
+			focus = true,
+		},
+		keys = {
+			{
+				"gr",
+				"<cmd>Trouble lsp_references<cr>",
+				desc = "References (Buffer)",
+			},
+			{
+				"]r",
+				function()
+					require("trouble").next({ skip_groups = true, jump = true })
+				end,
+				desc = "Next Reference",
+			},
+			{
+				"[r",
+				function()
+					require("trouble").prev({ skip_groups = true, jump = true })
+				end,
+				desc = "Previous Reference",
+			},
+			{
+				"<leader>xx",
+				"<cmd>Trouble diagnostics toggle<cr>",
+				desc = "Diagnostics (Trouble)",
+			},
+			{
+				"<leader>xb",
+				"<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+				desc = "Buffer Diagnostics (Trouble)",
+			},
+			{
+				"<leader>cs",
+				"<cmd>Trouble symbols<cr>",
+				desc = "Document Symbols (Buffer)",
+			},
+			{
+				"<leader>xl",
+				"<cmd>Trouble loclist toggle<cr>",
+				desc = "Location List (Trouble)",
+			},
+			{
+				"<leader>xq",
+				"<cmd>Trouble qflist toggle<cr>",
+				desc = "Quickfix List (Trouble)",
+			},
+		},
+	},
 	{
 		"folke/which-key.nvim",
 		event = "VeryLazy",
@@ -116,9 +158,6 @@ require("lazy").setup({
 			vim.api.nvim_create_autocmd("LspAttach", {
 				group = vim.api.nvim_create_augroup("lsp-attach", { clear = true }),
 				callback = function()
-					-- vim.keymap.set("n", "gd", "<cmd>FzfLua lsp_definitions<cr>", { desc = "goto definition" })
-					-- vim.keymap.set("n", "gr", "<cmd>FzfLua lsp_references<cr>", { desc = "goto references" })
-					-- vim.keymap.set("n", "gi", "<cmd>FzfLua lsp_implementationscr>", { desc = "goto implementation" })
 					vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, { desc = "rename" })
 					vim.keymap.set("n", "<leader>.", vim.lsp.buf.code_action, { desc = "code action" })
 				end,
@@ -137,26 +176,11 @@ require("lazy").setup({
 				},
 			})
 
-			-- vim.lsp.config("vtsls", {
-			-- 	settings = {
-			-- 		vtsls = {
-			-- 			tsserver = {
-			-- 				complete_function_calls = true,
-			-- 				tsserver_file_preferences = {
-			-- 					importModuleSpecifierPreference = "relative",
-			-- 				},
-			-- 				maxTsServerMemory = 16184,
-			-- 			},
-			-- 		},
-			-- 	},
-			-- })
-
 			vim.lsp.enable("lua_ls")
 			vim.lsp.enable("tailwindcss")
 			vim.lsp.enable("prismals")
 			vim.lsp.enable("astro")
 			vim.lsp.enable("basedpyright")
-			-- vim.lsp.enable("vtsls")
 			vim.lsp.enable("jsonls")
 			vim.lsp.enable("eslint")
 		end,
@@ -213,7 +237,6 @@ require("lazy").setup({
 					"snippets",
 					"buffer",
 				},
-				providers = {},
 			},
 			signature = { enabled = true },
 			fuzzy = { implementation = "prefer_rust_with_warning" },
@@ -243,8 +266,7 @@ require("lazy").setup({
 					"tsx",
 				},
 				auto_install = false,
-				sync_install = true,
-				modules = {},
+				sync_install = false,
 				autopairs = {
 					enable = true,
 				},
@@ -260,17 +282,12 @@ require("lazy").setup({
 			})
 		end,
 	},
-
 	{
-		"sainnhe/gruvbox-material",
-		lazy = false,
-		priority = 1000,
+		"akinsho/bufferline.nvim",
+		version = "*",
+		dependencies = "nvim-tree/nvim-web-devicons",
 		config = function()
-			vim.g.gruvbox_material_background = "hard"
-			vim.g.gruvbox_material_foreground = "mix"
-			vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
-			vim.g.gruvbox_material_transparent_background = 1
-			-- vim.cmd.colorscheme("gruvbox-material")
+			require("bufferline").setup({})
 		end,
 	},
 	{
@@ -303,6 +320,18 @@ require("lazy").setup({
 		opts = {},
 	},
 	{
+		"sainnhe/gruvbox-material",
+		lazy = false,
+		priority = 1000,
+		config = function()
+			-- vim.g.gruvbox_material_background = "hard"
+			-- vim.g.gruvbox_material_foreground = "mix"
+			-- vim.g.gruvbox_material_diagnostic_virtual_text = "colored"
+			-- vim.g.gruvbox_material_transparent_background = 1
+			-- vim.cmd.colorscheme("gruvbox-material")
+		end,
+	},
+	{
 		"folke/tokyonight.nvim",
 		lazy = false,
 		priority = 1000,
@@ -326,7 +355,10 @@ require("lazy").setup({
 		lazy = false,
 		---@type snacks.Config
 		opts = {
+			bigfile = { enabled = true },
+			dashboard = { enabled = true },
 			explorer = { enabled = true },
+			gitbrowse = { enabled = true },
 			indent = { enabled = true, animate = { enabled = false } },
 			input = { enabled = true },
 			notifier = {
@@ -334,6 +366,7 @@ require("lazy").setup({
 			},
 			picker = { enabled = true, formatters = { file = { filename_first = true } } },
 			quickfile = { enabled = true },
+			rename = { enabled = true },
 			scope = { enabled = true },
 			statuscolumn = { enabled = true },
 			words = { enabled = true },
@@ -484,14 +517,6 @@ require("lazy").setup({
 				desc = "Goto Definition",
 			},
 			{
-				"gr",
-				function()
-					Snacks.picker.lsp_references()
-				end,
-				nowait = true,
-				desc = "References",
-			},
-			{
 				"gi",
 				function()
 					Snacks.picker.lsp_implementations()
@@ -511,6 +536,14 @@ require("lazy").setup({
 					Snacks.picker.lsp_symbols()
 				end,
 				desc = "LSP Symbols",
+			},
+			-- Git operations
+			{
+				"<leader>gb",
+				function()
+					Snacks.gitbrowse()
+				end,
+				desc = "Git Browse",
 			},
 		},
 		init = function()
