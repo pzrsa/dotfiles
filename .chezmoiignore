@@ -1,0 +1,10 @@
+{{ if eq .chezmoi.os "darwin" }}
+.DS_Store
+{{ end }}
+
+# Neovim
+.config/nvim/lazy-lock.json
+.config/nvim/.claude/
+
+# IDE
+.idea/
