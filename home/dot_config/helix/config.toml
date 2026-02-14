@@ -1,4 +1,4 @@
-theme = "tokyonight"
+theme = "tokyonight_transparent"
 
 [editor]
 scrolloff = 10
