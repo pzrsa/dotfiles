@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "Bash(nvim:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(chezmoi --version:*)",
+      "Bash(chezmoi status:*)",
+      "Bash(chezmoi add:*)",
+      "Bash(git add:*)",
+      "Bash(chezmoi managed:*)",
+      "Bash(chezmoi target-path:*)"
+    ]
+  }
+}

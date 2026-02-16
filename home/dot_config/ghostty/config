@@ -1,4 +1,4 @@
-theme = light:TokyoNight Day,dark:TokyoNight
+theme = TokyoNight
 command = "/opt/homebrew/bin/fish"
 
 font-size = 15

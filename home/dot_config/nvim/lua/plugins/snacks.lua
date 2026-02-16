@@ -1,18 +1,22 @@
 return {
   "folke/snacks.nvim",
   opts = {
-    -- Disable smooth scrolling
     scroll = { enabled = false },
-    -- Disable animations
     animate = { enabled = false },
-    -- Enable image viewer (works with Ghostty)
     image = { enabled = true },
-    -- Enable explorer (file tree)
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
     explorer = { enabled = true },
-    -- Configure picker (keep it simple - defaults work)
-    picker = {
-      enabled = true,
-    },
+    gitbrowse = { enabled = true },
+    indent = { enabled = true, animate = { enabled = false } },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    picker = { enabled = true, formatters = { file = { filename_first = true } } },
+    quickfile = { enabled = true },
+    rename = { enabled = true },
+    scope = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
   },
   keys = {
     -- Disable ALL LazyVim snacks keybindings (we define our own)
