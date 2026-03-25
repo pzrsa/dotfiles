@@ -1,5 +1,30 @@
 {
-  "theme": { "light": "Tokyo Night Light", "dark": "Tokyo Night" },
+  "theme": {
+    "mode": "system",
+    "light": "Gruvbox Material Light Hard",
+    "dark": "Gruvbox Material Dark Hard",
+  },
+  "ssh_connections": [
+    {
+      "host": "franka",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/data/workspace/umi_ros"],
+        },
+      ],
+    },
+    {
+      "host": "192.168.144.30",
+      "username": "yaak",
+      "args": [],
+      "projects": [
+        {
+          "paths": ["/home/yaak"],
+        },
+      ],
+    },
+  ],
   "buffer_font_size": 14,
   "ui_font_size": 15,
   "agent_ui_font_size": 18,
@@ -9,72 +34,46 @@
   "project_panel": {
     "default_width": 300,
     "entry_spacing": "standard",
-    "hide_root": true
+    "hide_root": true,
   },
   "git_panel": {
     "dock": "left",
     "sort_by_path": false,
-    "default_width": 300
+    "default_width": 300,
   },
   "outline_panel": {
-    "default_width": 300
+    "default_width": 300,
   },
   "telemetry": {
     "diagnostics": true,
-    "metrics": true
+    "metrics": true,
   },
   "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
-    "use_smartcase_find": true
+    "use_smartcase_find": true,
   },
   "collaboration_panel": { "button": false },
   "gutter": { "runnables": false },
   "buffer_font_features": { "calt": false },
-  "vertical_scroll_margin": 10,
+  "vertical_scroll_margin": 22,
   "terminal": {
     "toolbar": { "breadcrumbs": false },
     "shell": { "program": "fish" },
     "line_height": "standard",
-    "font_size": 13.0
   },
   "command_aliases": {
-    "w": "wall"
+    "w": "wall",
   },
   "diagnostics": {
     "inline": {
-      "enabled": true
-    }
-  },
-  "lsp": {
-    "vtsls": {
-      "settings": {
-        "typescript": {
-          "preferences": {
-            "importModuleSpecifier": "relative"
-          },
-          "tsserver": { "maxTsServerMemory": 16184 }
-        }
-      }
-    }
+      "enabled": true,
+    },
   },
   "languages": {
     "TypeScript": {
-      "language_servers": ["tsgo", "vtsls"]
-    }
-  },
-  "agent": {
-    "always_allow_tool_actions": true,
-    "default_profile": "write",
-    "default_model": {
-      "provider": "copilot_chat",
-      "model": "claude-opus-4.5"
+      "language_servers": ["tsgo", "vtsls"],
     },
-    "enable_feedback": false,
-    "preferred_completion_mode": "burn"
-  },
-  "features": {
-    "edit_prediction_provider": "copilot"
   },
   "inline_code_actions": false,
   "git": { "inline_blame": { "enabled": true, "show_commit_summary": true } },
@@ -82,22 +81,22 @@
   "toolbar": { "code_actions": false, "quick_actions": false },
   "tab_bar": {
     "show_nav_history_buttons": true,
-    "show_tab_bar_buttons": false
+    "show_tab_bar_buttons": false,
   },
   "tabs": {
     "show_diagnostics": "errors",
-    "file_icons": true
+    "file_icons": true,
   },
   "title_bar": {
-    "show_sign_in": false
+    "show_sign_in": false,
   },
   "minimap": {
-    "show": "never"
+    "show": "never",
   },
+  "autosave": "on_focus_change",
   "edit_predictions": {
-    "disabled_globs": []
+    "provider": "copilot",
+    "disabled_globs": [],
   },
-  "node": {
-    "path": "/opt/homebrew/opt/node@24/bin/node"
-  }
+  "disable_ai": true,
 }

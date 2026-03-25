@@ -57,8 +57,3 @@ lfcd () {
 }
 bindkey -s '^o' 'lfcd\n'
 
-# To activate the syntax highlighting, add the following at the end of your .zshrc:
-source "/opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
-
-# To activate the autosuggestions, add the following at the end of your .zshrc:
-source "/opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh"

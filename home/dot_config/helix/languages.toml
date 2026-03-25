@@ -33,7 +33,16 @@ comment-tokens = ["-", "+", "*", "- [ ]", ">"]
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
+[language-server.ruff]
+command = "ruff"
+args = ["server"]
+
 [[language]]
 name = "python"
 language-servers = [ "ruff", "ty" ]
+auto-format = true
+
+[[language]]
+name = "rust"
+language-servers = [ "rust-analyzer" ]
 auto-format = true

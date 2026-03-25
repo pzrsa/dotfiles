@@ -1,7 +1,8 @@
-theme = "tokyonight_transparent"
+theme = "gruvbox-transparent"
 
 [editor]
-scrolloff = 10
+evil = true
+scrolloff = 22
 cursorline = true
 end-of-line-diagnostics = "hint"
 default-yank-register = "+"

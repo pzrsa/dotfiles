@@ -1,4 +1,4 @@
-theme = TokyoNight
+theme = Gruvbox Material Dark
 command = "/opt/homebrew/bin/fish"
 
 font-size = 15
@@ -16,3 +16,4 @@ maximize = true
 macos-non-native-fullscreen = visible-menu
 
 keybind = shift+enter=text:\x1b\r
+clipboard-paste-protection=false

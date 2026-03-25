@@ -3,10 +3,12 @@ eval (/opt/homebrew/bin/brew shellenv)
 alias c="clear"
 alias vi="nvim"
 alias lg="lazygit"
-alias ls="eza -l --icons"
-export EDITOR=nvim
+alias ls="eza -la --icons"
+alias cd="z"
+export EDITOR=hx
 
 set -g fish_key_bindings fish_vi_key_bindings
+set -g fish_greeting
 
 source "/opt/homebrew/opt/fzf/shell/key-bindings.fish"
 fzf_key_bindings
