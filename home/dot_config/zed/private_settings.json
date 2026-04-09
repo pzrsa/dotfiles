@@ -10,9 +10,16 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/data/workspace/umi_ros"],
+          "paths": [
+            "/data/workspace/ubu20"
+          ]
         },
-      ],
+        {
+          "paths": [
+            "/data/workspace/umi_ros"
+          ]
+        }
+      ]
     },
     {
       "host": "192.168.144.30",
@@ -20,10 +27,17 @@
       "args": [],
       "projects": [
         {
-          "paths": ["/home/yaak"],
-        },
-      ],
+          "paths": [
+            "/home/yaak"
+          ]
+        }
+      ]
     },
+    {
+      "host": "franka",
+      "args": [],
+      "projects": []
+    }
   ],
   "buffer_font_size": 14,
   "ui_font_size": 15,

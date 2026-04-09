@@ -11,6 +11,9 @@ idle-timeout = 0
 completion-trigger-len = 1
 bufferline = "always"
 
+[editor.auto-save]
+focus-lost = true
+
 [editor.file-picker]
 hidden = false
 
