@@ -1,14 +1,10 @@
-[language-server.typescript-language-server.config.preferences]
-importModuleSpecifierPreference = "relative"
-
-[language-server.tailwindcss-ls]
-command = "tailwindcss-language-server"
-args = ["--stdio"]
-
 [[language]]
 name = "javascript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
+
+[language-server.typescript-language-server.config.preferences]
+importModuleSpecifierPreference = "relative"
 
 [[language]]
 name = "typescript"
@@ -36,13 +32,31 @@ auto-format = true
 [language-server.ruff]
 command = "ruff"
 args = ["server"]
+config.settings.format.preview = true
 
 [[language]]
 name = "python"
 language-servers = [ "ruff", "ty" ]
 auto-format = true
 
+[language-server.rust-analyzer]
+config = { cargo = { allFeatures = true }, check = { command = "clippy" } }
+
+[language-server.clangd]
+command = "clangd"
+args = ["--clang-tidy"]
+
+[[language]]
+name = "toml"
+auto-format = true
+
+[[language]]
+name = "yaml"
+auto-format = true
+formatter = { command = "yamlfmt", args = ["-"] }
+
 [[language]]
 name = "rust"
 language-servers = [ "rust-analyzer" ]
 auto-format = true
+

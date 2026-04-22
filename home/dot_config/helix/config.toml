@@ -1,7 +1,7 @@
 theme = "gruvbox-transparent"
 
 [editor]
-evil = true
+evil = false
 scrolloff = 22
 cursorline = true
 end-of-line-diagnostics = "hint"
@@ -31,21 +31,30 @@ cursor-line = "error"
 render = true
 
 [keys.normal]
-S-h = "goto_previous_buffer" 
-S-l = "goto_next_buffer" 
+S-h = "goto_previous_buffer"
+S-l = "goto_next_buffer"
 K = "hover"
+C-h = "jump_view_left"
+C-j = "jump_view_down"
+C-k = "jump_view_up"
+C-l = "jump_view_right"
+esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.normal."space"]
 k = "keep_selections"
+i = ":toggle lsp.display-inlay-hints"
 
 [keys.select]
 K = "hover"
+j = ["extend_line_down", "extend_to_line_bounds"]
+k = ["extend_line_up", "extend_to_line_bounds"]
 
 [keys.select."space"]
 k = "no_op"
 
 [keys.insert]
 C-space = "completion"
+esc = ["collapse_selection", "normal_mode"]
 
 [editor.statusline]
 left = [
@@ -59,3 +68,9 @@ left = [
   ]
 center = []
 right = []
+
+[editor.statusline.mode]
+insert = "INSERT"
+normal = "NORMAL"
+select = "SELECT"
+
