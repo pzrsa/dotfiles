@@ -1,4 +1,4 @@
-theme = Gruvbox Material Dark
+theme = light:Gruvbox Material Light, dark:Gruvbox Material Dark
 command = "/opt/homebrew/bin/fish"
 
 font-size = 15
@@ -11,9 +11,8 @@ background-opacity = 0.90
 background-blur-radius = 20
 mouse-hide-while-typing = true
 adjust-cell-height = 7
-macos-titlebar-style = tabs
+macos-titlebar-style = transparent
 maximize = true
-macos-non-native-fullscreen = visible-menu
 
 keybind = shift+enter=text:\x1b\r
 clipboard-paste-protection=false

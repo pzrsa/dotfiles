@@ -1,4 +1,4 @@
-theme = "gruvbox-transparent"
+theme = "gruvbox-material"
 
 [editor]
 evil = false
@@ -10,6 +10,7 @@ true-color = true
 idle-timeout = 0
 completion-trigger-len = 1
 bufferline = "always"
+color-modes = true
 
 [editor.auto-save]
 focus-lost = true
@@ -67,10 +68,13 @@ left = [
   "diagnostics"
   ]
 center = []
-right = []
+right = ["selections", "position", "file-type"]
 
 [editor.statusline.mode]
 insert = "INSERT"
 normal = "NORMAL"
 select = "SELECT"
+
+[editor.soft-wrap]
+enable = true
 
