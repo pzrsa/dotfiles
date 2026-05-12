@@ -1,0 +1,36 @@
+model = "gpt-5.5"
+model_reasoning_effort = "xhigh"
+plan_mode_reasoning_effort = "xhigh"
+personality = "pragmatic"
+approval_policy = "never"
+sandbox_mode = "danger-full-access"
+web_search_mode = "live"
+suppress_unstable_features_warning = true
+
+[features]
+apply_patch_freeform = true
+fast_mode = true
+memories = true
+multi_agent = true
+runtime_metrics = true
+shell_snapshot = true
+unified_exec = true
+terminal_resize_reflow = true
+goals = true
+prevent_idle_sleep = true
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
+
+[tui]
+theme = "gruvbox-dark"
+status_line = ["current-dir", "model-with-reasoning", "context-remaining", "five-hour-limit", "weekly-limit"]
+
+[tui.model_availability_nux]
+"gpt-5.5" = 4
+
+[plugins."browser-use@openai-bundled"]
+enabled = true
+
+[notice]
+fast_default_opt_out = true
