@@ -17,6 +17,7 @@ fish_add_path /opt/homebrew/bin
 fish_add_path --move /opt/homebrew/opt/node@20/bin
 fish_add_path $HOME/.local/bin
 fish_add_path $HOME/.bun/bin
+fish_add_path /Applications/Obsidian.app/Contents/MacOS
 
 function y
     set tmp (mktemp -t "yazi-cwd.XXXXXX")

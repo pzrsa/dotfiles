@@ -1,7 +1,6 @@
 theme = "gruvbox-material"
 
 [editor]
-evil = false
 scrolloff = 15
 cursorline = true
 end-of-line-diagnostics = "hint"
