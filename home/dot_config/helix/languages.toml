@@ -23,10 +23,19 @@ formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 language-servers = [ "typescript-language-server", "tailwindcss-ls" ]
 
+[language-server.harper-ls]
+command = "harper-ls"
+args = ["--stdio"]
+
+[language-server.mdpls]
+command = "mdpls"
+config = { markdown.preview.auto = false }
+
 [[language]]
 name = "markdown"
+language-servers = ["mdpls", "marksman"]
 comment-tokens = ["-", "+", "*", "- [ ]", ">"]
-formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+formatter = { command = 'prettier', args = ["--parser", "markdown"] }
 auto-format = true
 
 [language-server.ruff]
@@ -59,4 +68,6 @@ formatter = { command = "yamlfmt", args = ["-"] }
 name = "rust"
 language-servers = [ "rust-analyzer" ]
 auto-format = true
+
+
 

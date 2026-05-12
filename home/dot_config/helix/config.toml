@@ -2,7 +2,7 @@ theme = "gruvbox-material"
 
 [editor]
 evil = false
-scrolloff = 22
+scrolloff = 15
 cursorline = true
 end-of-line-diagnostics = "hint"
 default-yank-register = "+"
