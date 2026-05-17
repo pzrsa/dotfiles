@@ -1,10 +1,16 @@
 {
-  "theme": {
+  "disable_ai": true,
+  "icon_theme": {
     "mode": "system",
-    "light": "Gruvbox Material Light Hard",
-    "dark": "Gruvbox Material Dark Hard",
+    "light": "Zed (Default)",
+    "dark": "Zed (Default)",
   },
-  "helix_mode": true,
+  "theme": {
+    "mode": "dark",
+    "light": "Gruvbox Material Light",
+    "dark": "Gruvbox Material",
+  },
+  "vim_mode": true,
   "ssh_connections": [
     {
       "host": "franka",
@@ -41,6 +47,7 @@
   "buffer_font_family": "TX-02",
   "ui_font_family": "TX-02",
   "project_panel": {
+    "dock": "left",
     "default_width": 300,
     "entry_spacing": "standard",
     "hide_root": true,
@@ -51,18 +58,18 @@
     "default_width": 300,
   },
   "outline_panel": {
+    "dock": "left",
     "default_width": 300,
   },
   "telemetry": {
     "diagnostics": true,
     "metrics": true,
   },
-  "vim_mode": true,
   "vim": {
     "use_system_clipboard": "always",
     "use_smartcase_find": true,
   },
-  "collaboration_panel": { "button": false },
+  "collaboration_panel": { "dock": "left", "button": false },
   "gutter": { "runnables": false },
   "buffer_font_features": { "calt": false },
   "vertical_scroll_margin": 22,
@@ -108,5 +115,4 @@
     "provider": "copilot",
     "disabled_globs": [],
   },
-  "disable_ai": true,
 }
