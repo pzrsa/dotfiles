@@ -1,0 +1,116 @@
+# Zenwritten dark — Helix port of upstream default styles.
+# Source: https://github.com/zenbones-theme/zenbones.nvim
+# Commit: 8304d8df9b823ff11e103afa62f38c39f534abe6
+# MIT License
+# 
+# Copyright (c) 2022 Michael Chris Lopez
+# 
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+# 
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+# 
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+"attribute" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"type" = { fg = "#969696" }
+"constructor" = { fg = "#939393", modifiers = ["bold"] }
+"constant" = { fg = "#9E9E9E", modifiers = ["bold"] }
+"constant.builtin" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"constant.builtin.boolean" = { fg = "#BBBBBB", modifiers = ["italic"] }
+"constant.character" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"constant.character.escape" = { fg = "#939393", modifiers = ["bold"] }
+"constant.numeric" = { fg = "#8B8B8B" }
+"string" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"string.regexp" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"string.special" = { fg = "#939393", modifiers = ["bold"] }
+"comment" = { fg = "#686868", modifiers = ["italic"] }
+"variable" = { fg = "#9E9E9E" }
+"variable.builtin" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"label" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"punctuation" = { fg = "#7C7C7C" }
+"keyword" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"keyword.storage" = { fg = "#969696" }
+"operator" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"function" = { fg = "#BBBBBB" }
+"function.builtin" = { fg = "#939393", modifiers = ["bold"] }
+"function.macro" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"tag" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"namespace" = { fg = "#8B8B8B" }
+"special" = { fg = "#939393", modifiers = ["bold"] }
+"markup.heading" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"markup.list" = { fg = "#7C7C7C" }
+"markup.raw" = { fg = "#969696" }
+"markup.quote" = { fg = "#8B8B8B", modifiers = ["italic"] }
+"markup.link.url" = { fg = "#66A5AD", underline = { style = "line" } }
+"markup.link.text" = { fg = "#BBBBBB" }
+"diff.plus" = { fg = "#819B69" }
+"diff.minus" = { fg = "#DE6E7C" }
+"diff.delta" = { fg = "#6099C0" }
+"ui.background" = { fg = "#BBBBBB", bg = "#191919" }
+"ui.text" = { fg = "#BBBBBB", bg = "#191919" }
+"ui.text.inactive" = { fg = "#686868", modifiers = ["italic"] }
+"ui.text.focus" = { bg = "#444444", fg = "#BBBBBB" }
+"ui.text.directory" = { fg = "#BBBBBB" }
+"ui.cursor" = { fg = "#191919", bg = "#C9C9C9" }
+"ui.cursor.primary" = { fg = "#191919", bg = "#C9C9C9" }
+"ui.cursor.match" = { fg = "#BBBBBB", bg = "#65435E" }
+"ui.selection" = { bg = "#404040" }
+"ui.selection.primary" = { bg = "#404040" }
+"ui.cursorline.primary" = { bg = "#222222" }
+"ui.linenr" = { fg = "#616161" }
+"ui.linenr.selected" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"ui.statusline" = { fg = "#BBBBBB", bg = "#303030" }
+"ui.statusline.inactive" = { fg = "#CFCFCF", bg = "#242424" }
+"ui.bufferline" = { fg = "#CFCFCF", bg = "#242424" }
+"ui.bufferline.active" = { fg = "#BBBBBB", bg = "#303030", modifiers = ["bold"] }
+"ui.bufferline.background" = { fg = "#CFCFCF", bg = "#242424" }
+"ui.popup" = { bg = "#2C2C2C", fg = "#BBBBBB" }
+"ui.help" = { bg = "#2C2C2C", fg = "#BBBBBB" }
+"ui.window" = { fg = "#616161" }
+"ui.menu" = { bg = "#2C2C2C" }
+"ui.menu.selected" = { bg = "#444444", fg = "#BBBBBB" }
+"ui.virtual.whitespace" = { fg = "#555555" }
+"ui.virtual.indent-guide" = { fg = "#555555" }
+"ui.virtual.inlay-hint" = { fg = "#686868", modifiers = ["italic"] }
+"ui.virtual.wrap" = { fg = "#555555" }
+"ui.virtual.ruler" = { bg = "#222222" }
+"ui.virtual.jump-label" = { fg = "#191919", bg = "#BF8FB5", modifiers = ["bold"] }
+"ui.highlight" = { bg = "#222222" }
+"ui.highlight.frameline" = { bg = "#222222" }
+"ui.debug.breakpoint" = { fg = "#DE6E7C" }
+"ui.debug.active" = { fg = "#B77E64" }
+"ui.picker.header" = { fg = "#BBBBBB", bg = "#303030" }
+"ui.picker.header.column" = { fg = "#BBBBBB", bg = "#191919" }
+"ui.picker.header.column.active" = { fg = "#BBBBBB", modifiers = ["bold"] }
+"ui.background.separator" = { fg = "#616161" }
+"tabstop" = { bg = "#404040" }
+"ui.statusline.normal" = { fg = "#BBBBBB", bg = "#303030", modifiers = ["bold"] }
+"ui.statusline.insert" = { fg = "#BBBBBB", bg = "#303030", modifiers = ["bold", "italic"] }
+"ui.statusline.select" = { fg = "#BBBBBB", bg = "#303030", modifiers = ["reversed"] }
+"ui.menu.scroll" = { fg = "#848484", bg = "#595959" }
+"markup.bold" = { modifiers = ["bold"] }
+"markup.italic" = { modifiers = ["italic"] }
+"markup.strikethrough" = { modifiers = ["crossed_out"] }
+"diagnostic.deprecated" = { modifiers = ["crossed_out"] }
+"diagnostic" = { underline = { style = "curl" } }
+"diagnostic.unnecessary" = { modifiers = ["dim"] }
+"error" = { fg = "#DE6E7C" }
+"diagnostic.error" = { underline = { style = "curl", color = "#DE6E7C" } }
+"warning" = { fg = "#B77E64" }
+"diagnostic.warning" = { underline = { style = "curl", color = "#B77E64" } }
+"info" = { fg = "#6099C0" }
+"diagnostic.info" = { underline = { style = "curl", color = "#6099C0" } }
+"hint" = { fg = "#B279A7" }
+"diagnostic.hint" = { underline = { style = "curl", color = "#B279A7" } }

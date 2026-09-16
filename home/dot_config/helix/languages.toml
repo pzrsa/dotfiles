@@ -3,6 +3,11 @@ name = "javascript"
 formatter = { command = 'prettier', args = ["--parser", "typescript"] }
 auto-format = true
 
+[[language]]
+name = "json"
+formatter = { command = 'prettier', args = ["--parser", "json"] }
+auto-format = true
+
 [language-server.typescript-language-server.config.preferences]
 importModuleSpecifierPreference = "relative"
 

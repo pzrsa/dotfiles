@@ -16,11 +16,6 @@ maximize = true
 clipboard-paste-protection=false
 macos-non-native-fullscreen = visible-menu
 
-
-
 keybind = shift+enter=text:\x1b\r
-keybind = ctrl+alt+h=goto_split:left
-keybind = ctrl+alt+j=goto_split:down
-keybind = ctrl+alt+k=goto_split:up
-keybind = ctrl+alt+l=goto_split:right
-
+keybind = alt+left=unbind
+keybind = alt+right=unbind

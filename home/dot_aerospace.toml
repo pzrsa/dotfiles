@@ -4,8 +4,8 @@
 # Config version for compatibility and deprecations
 config-version = 2
 
-# You can use it to add commands that run after AeroSpace startup.
-after-startup-command = []
+# Keep floating Helium Meet/PiP windows on the focused workspace.
+exec-on-workspace-change = ['/Users/parsa/.config/aerospace/sticky-helium.sh']
 
 # Start AeroSpace at login
 start-at-login = true
@@ -27,7 +27,7 @@ default-root-container-orientation = 'auto'
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
 
 # You can effectively turn off macOS "Hide application" (cmd-h) feature by toggling this flag
-automatically-unhide-macos-hidden-apps = false
+automatically-unhide-macos-hidden-apps = true
 
 # Keep your numbered workspaces alive.
 persistent-workspaces = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
@@ -47,18 +47,37 @@ on-mode-changed = []
     outer.right =      0
 
 [[on-window-detected]]
-if.app-id = 'net.imput.helium'
-run = 'move-node-to-workspace 1'
-
-[[on-window-detected]]
 if.app-id = 'com.mitchellh.ghostty'
 run = 'move-node-to-workspace 2'
 
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace 6'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace 4'
+
+[workspace-to-monitor-force-assignment]
+    1 = 'main'
+    2 = 'main'
+    3 = 'main'
+    4 = 'main'
+    5 = 'main'
+    6 = 'dell'
+    7 = 'dell'
+    8 = 'dell'
+    9 = 'built-in'
+    0 = 'built-in'
+
+    
 [mode.main.binding]
     alt-f = 'fullscreen'
+    alt-q = "close --quit-if-last-window"
+
 
     alt-w = 'exec-and-forget open -b net.imput.helium'
-    alt-i = 'exec-and-forget open -b com.mitchellh.ghostty'
+    alt-t = 'exec-and-forget open -b com.mitchellh.ghostty'
     alt-m = 'exec-and-forget open -b com.spotify.client'
 
     alt-slash = 'layout tiles horizontal vertical'
@@ -116,3 +135,5 @@ run = 'move-node-to-workspace 2'
     f = ['layout floating tiling', 'mode main']
     backspace = ['close-all-windows-but-current', 'mode main']
 
+
+    

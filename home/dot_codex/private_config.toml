@@ -7,9 +7,11 @@ sandbox_mode = "danger-full-access"
 web_search_mode = "live"
 suppress_unstable_features_warning = true
 
+[projects."/Users/parsa/Documents/dev/nutron"]
+trust_level = "trusted"
+
 [features]
 apply_patch_freeform = true
-fast_mode = true
 memories = true
 multi_agent = true
 runtime_metrics = true
@@ -29,8 +31,13 @@ status_line = ["current-dir", "model-with-reasoning", "context-remaining", "five
 [tui.model_availability_nux]
 "gpt-5.5" = 4
 
-[plugins."browser-use@openai-bundled"]
-enabled = true
+[marketplaces.openai-bundled]
+last_updated = "2026-05-19T20:19:53Z"
+source_type = "local"
+source = "/Users/parsa/.codex/.tmp/bundled-marketplaces/openai-bundled"
 
 [notice]
 fast_default_opt_out = true
+
+[plugins."browser@openai-bundled"]
+enabled = true
