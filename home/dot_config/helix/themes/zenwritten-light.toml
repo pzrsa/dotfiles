@@ -59,7 +59,7 @@
 "diff.minus" = { fg = "#A8334C" }
 "diff.delta" = { fg = "#286486" }
 "ui.background" = { fg = "#353535", bg = "#EEEEEE" }
-"ui.text" = { fg = "#353535", bg = "#EEEEEE" }
+"ui.text" = { fg = "#353535" }
 "ui.text.inactive" = { fg = "#8B8B8B", modifiers = ["italic"] }
 "ui.text.focus" = { bg = "#B9B9B9", fg = "#353535" }
 "ui.text.directory" = { fg = "#353535" }
